@@ -153,6 +153,12 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 .explain{border-top:2px dashed var(--hair);padding-top:10px;font-size:.92rem;display:flex;flex-direction:column;gap:6px}
 .verdict{font-weight:800}
 .verdict.ok{color:var(--ok)} .verdict.ng{color:var(--ng)}
+.guide-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:800;font-size:.88rem;padding:8px 16px;border-radius:999px;border:2px solid var(--edge);background:var(--gold);color:var(--on-gold);cursor:pointer;box-shadow:0 3px 0 var(--drop)}
+.guide-btn:active{transform:translateY(3px);box-shadow:none}
+.guide-btn svg{width:16px;height:16px}
+.guide-hit{outline:4px solid var(--gold);outline-offset:6px;border-radius:10px;background:var(--gold-soft);animation:guidePulse 1.2s ease-in-out 2;scroll-margin:96px}
+@keyframes guidePulse{50%{outline-color:transparent}}
+.backq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;font:inherit;font-weight:800;font-size:.92rem;padding:10px 22px;border-radius:999px;border:3px solid var(--edge);background:var(--green);color:var(--on-green);cursor:pointer;box-shadow:0 4px 0 var(--drop);white-space:nowrap}
 .score{padding:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
 .medal{width:96px;height:96px}
 .medal .disc{fill:var(--gold);stroke:var(--edge)}
@@ -183,7 +189,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   .glossary dl{grid-template-columns:minmax(0,1fr)}
   .opts{grid-template-columns:minmax(0,1fr)}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.guide-hit{animation:none}}
 </style>
 </head>
 <body>
@@ -244,7 +250,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="block official">
     <span class="tag official">公式の説明</span>
     <p>Google検索は完全に自動化された検索エンジンで、ウェブクローラーと呼ばれるソフトウェアが定期的にウェブを探索し、インデックスに追加するページを見つけています。検索結果に載るページの大半は、手動で登録されたものではなく、クローラーが見つけて自動で追加したものです。<sup class="ref"><a href="#src-1">1</a></sup></p>
-    <p>Googleは、サイトのクロール頻度や掲載順位を上げる対価として金銭を受け取りません。また、Google検索の基本事項に準拠していても、クロール・インデックス登録・検索結果への表示が保証されるわけではありません。<sup class="ref"><a href="#src-1">1</a></sup></p>
+    <p id="a-nopay">Googleは、サイトのクロール頻度や掲載順位を上げる対価として金銭を受け取りません。また、Google検索の基本事項に準拠していても、クロール・インデックス登録・検索結果への表示が保証されるわけではありません。<sup class="ref"><a href="#src-1">1</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
@@ -258,7 +264,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="block official">
     <span class="tag official">公式の説明</span>
     <p>Google検索は次の3段階で動いています。ただし、すべてのページがすべての段階を通過するわけではありません。<sup class="ref"><a href="#src-2">2</a></sup></p>
-    <ol class="steps">
+    <ol class="steps" id="a-stages">
       <li><b>クロール</b>:クローラーと呼ばれる自動プログラムが、ウェブ上で見つけたページからテキスト・画像・動画をダウンロードする。</li>
       <li><b>インデックス登録</b>:ページ上のテキスト・画像・動画ファイルを解析し、大規模なデータベースである<a class="term" href="#g-index">Googleインデックス</a>に保存する。</li>
       <li><b>検索結果の表示</b>:ユーザーが検索したときに、検索語句に関連する情報を返す。</li>
@@ -275,7 +281,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="topic-head"><span class="num">03</span><h2 id="t3">クロール:ページを見つけて取得する</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>最初のステップは、ウェブ上にどんなページがあるかを把握すること(URL検出)です。すべてのページを網羅したデータベースは存在しないため、Googleは新しいページや更新されたページを常に探しています。既知のページからのリンクをたどったり、サイト所有者が送信したページ一覧(サイトマップ)を使ったりして新しいページを見つけます。<sup class="ref"><a href="#src-3">3</a></sup></p>
+    <p id="a-discovery">最初のステップは、ウェブ上にどんなページがあるかを把握すること(URL検出)です。すべてのページを網羅したデータベースは存在しないため、Googleは新しいページや更新されたページを常に探しています。既知のページからのリンクをたどったり、サイト所有者が送信したページ一覧(サイトマップ)を使ったりして新しいページを見つけます。<sup class="ref"><a href="#src-3">3</a></sup></p>
     <p>見つけたページを取得するのが<a class="term" href="#g-googlebot">Googlebot</a>です。どのサイトを、どのくらいの頻度で、何ページ取得するかはアルゴリズムで決まり、サイトに過負荷をかけないよう速度も調整されています。<sup class="ref"><a href="#src-3">3</a></sup></p>
     <p><b>つまずく典型的な原因:</b>見つかったURLがすべてクロールされるわけではありません。<a class="term" href="#g-robots">robots.txt</a>でクロールが禁止されているページやログインが必要なページは取得されません。アクセス自体の問題としては、サーバーの処理の問題、ネットワークの問題、robots.txtのルールが挙げられています。<sup class="ref"><a href="#src-3">3</a></sup></p>
   </div>
@@ -304,7 +310,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="block official">
     <span class="tag official">公式の説明</span>
     <p>クロールの後、Googleはページの内容を理解しようとします。テキストに加え、&lt;title&gt;要素やalt属性などの主要なタグと属性、画像、動画が処理・分析されます。<sup class="ref"><a href="#src-4">4</a></sup></p>
-    <p>この過程で、ページが別ページの重複かどうかが判断されます。内容が似たページをグループにまとめ、その中から最も代表的なページが<a class="term" href="#g-canonical">正規ページ</a>として選ばれます。グループ内のほかのページは、モバイル端末からの検索など、別の状況で表示されうる代替バージョンとして扱われます。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p id="a-canonical">この過程で、ページが別ページの重複かどうかが判断されます。内容が似たページをグループにまとめ、その中から最も代表的なページが<a class="term" href="#g-canonical">正規ページ</a>として選ばれます。グループ内のほかのページは、モバイル端末からの検索など、別の状況で表示されうる代替バージョンとして扱われます。<sup class="ref"><a href="#src-4">4</a></sup></p>
     <p><b>つまずく典型的な原因:</b>処理したページがすべてインデックスに登録されるわけではありません。コンテンツの品質が低い、<a class="term" href="#g-robots">robots metaルール</a>で登録が禁止されている、サイトのデザインが原因で登録が難しくなっている、の3つが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
   </div>
   <div class="block practice">
@@ -332,7 +338,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="block official">
     <span class="tag official">公式の説明</span>
     <p>ユーザーが検索すると、Googleはインデックスから一致するページを探し、関連性が高く高品質と判断した結果を返します。<a class="term" href="#g-relevance">関連性</a>は多くの要素で決まり、ユーザーの所在地、言語、デバイス(パソコンかスマートフォンか)などが含まれます。例えば「自転車修理店」と検索すると、パリのユーザーと香港のユーザーでは異なる結果が表示されます。<sup class="ref"><a href="#src-5">5</a></sup></p>
-    <p><b>つまずく典型的な原因:</b>Search Consoleでインデックス登録済みなのに、検索結果に出ないことがあります。ページの内容が検索語句と関連していない、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つが挙げられています。<sup class="ref"><a href="#src-5">5</a></sup></p>
+    <p id="a-notshown"><b>つまずく典型的な原因:</b>Search Consoleでインデックス登録済みなのに、検索結果に出ないことがあります。ページの内容が検索語句と関連していない、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つが挙げられています。<sup class="ref"><a href="#src-5">5</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
@@ -412,24 +418,26 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 
 </div>
 
+<button type="button" class="backq" id="backq" hidden>↩ クイズにもどる</button>
+
 <script>
 (function(){
   var Q=[
     {q:"Google検索が動く3つのステージの順序として正しいものはどれですか。",
      o:["インデックス登録 → クロール → 検索結果の表示","クロール → インデックス登録 → 検索結果の表示","クロール → 検索結果の表示 → インデックス登録","検索結果の表示 → クロール → インデックス登録"],a:1,
-     e:"クローラーがページを取得し(クロール)、内容を解析してインデックスに保存し(インデックス登録)、検索時に関連情報を返します(検索結果の表示)。",s:[2]},
+     e:"クローラーがページを取得し(クロール)、内容を解析してインデックスに保存し(インデックス登録)、検索時に関連情報を返します(検索結果の表示)。",s:[2],g:"a-stages"},
     {q:"Googleが新しいページを見つける方法として、公式ページで挙げられているものはどれですか。",
      o:["検索広告に出稿されたURLを登録する","すべてのウェブページを網羅した公式データベースから一覧を受け取る","既知のページからのリンクをたどる、またはサイトマップを使う","メタキーワードを読み取って登録する"],a:2,
-     e:"すべてのページを網羅したデータベースは存在しないため、Googleは既知のページからのリンクや、サイト所有者が送信したサイトマップで新しいページを見つけます。",s:[3]},
+     e:"すべてのページを網羅したデータベースは存在しないため、Googleは既知のページからのリンクや、サイト所有者が送信したサイトマップで新しいページを見つけます。",s:[3],g:"a-discovery"},
     {q:"公式ページでの「正規ページ」の説明として正しいものはどれですか。",
      o:["検索結果に表示される可能性のあるページ","サイト所有者が最初に公開したページ","最もアクセス数が多いページ","Search Consoleで送信したページ"],a:0,
-     e:"似たページをグループにまとめ、最も代表的なものが正規ページとして選ばれます。正規ページは検索結果に表示される可能性のあるページです。",s:[4]},
+     e:"似たページをグループにまとめ、最も代表的なものが正規ページとして選ばれます。正規ページは検索結果に表示される可能性のあるページです。",s:[4],g:"a-canonical"},
     {q:"Googleの姿勢として、公式ページに書かれていることはどれですか。",
      o:["有料プランに申し込むとクロール頻度を上げられる","基本事項に準拠していれば、インデックス登録と表示が保証される","クロール頻度や掲載順位を上げる対価として金銭を受け取らず、基本事項に準拠しても表示は保証されない","検索結果のページの大半は手動で登録されている"],a:2,
-     e:"Googleは掲載順位やクロール頻度のために金銭を受け取らず、基本事項に準拠していてもクロール・インデックス登録・表示は保証されないと明記しています。掲載ページの大半はクローラーが自動で追加したものです。",s:[1]},
+     e:"Googleは掲載順位やクロール頻度のために金銭を受け取らず、基本事項に準拠していてもクロール・インデックス登録・表示は保証されないと明記しています。掲載ページの大半はクローラーが自動で追加したものです。",s:[1],g:"a-nopay"},
     {q:"Search Consoleでインデックス登録済みなのに検索結果に出ない理由として、公式ページで挙げられているものはどれですか。",
      o:["ページにalt属性が1つもない","コンテンツの品質が低い","サイトマップを毎日送信していない","ページがJavaScriptを使っている"],a:1,
-     e:"公式ページは、検索語句との関連性が低い、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つを挙げています。",s:[5]}
+     e:"公式ページは、検索語句との関連性が低い、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つを挙げています。",s:[5],g:"a-notshown"}
   ];
   var L=["A","B","C","D"],NS="http://www.w3.org/2000/svg";
   var root=document.getElementById("quiz"),scoreBox=document.getElementById("score"),starsEl=document.getElementById("stars");
@@ -464,7 +472,14 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
         var p=document.createElement("p");p.textContent=item.e;
         var c=document.createElement("p");c.className="meta";c.appendChild(document.createTextNode("根拠:"));
         item.s.forEach(function(k,idx){var a=document.createElement("a");a.href="#src-"+k;a.textContent="出典"+k;if(idx)c.appendChild(document.createTextNode("、"));c.appendChild(a)});
-        ex.appendChild(v);ex.appendChild(p);ex.appendChild(c);card.appendChild(ex);
+        ex.appendChild(v);ex.appendChild(p);ex.appendChild(c);
+        if(!ok&&item.g){
+          var gb=document.createElement("button");gb.type="button";gb.className="guide-btn";
+          gb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>';
+          gb.appendChild(document.createTextNode("答えが書いてある箇所を本文で確認する"));
+          gb.addEventListener("click",function(){guide(item.g,card,i)});ex.appendChild(gb);
+        }
+        card.appendChild(ex);
         done++;if(ok){starNodes[right].classList.add("got");right++;}
         starsEl.setAttribute("aria-label","正解数 "+right+" / "+Q.length);
         if(done===Q.length)finish();
@@ -472,15 +487,28 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
       root.appendChild(card);
     });
   }
+  var backq=document.getElementById("backq"),hitEl=null,backCard=null;
+  function clearHit(){if(hitEl){hitEl.classList.remove("guide-hit");hitEl=null;}}
+  function guide(id,card,i){
+    var t=document.getElementById(id);if(!t)return;
+    var d=t.closest("details");if(d)d.open=true;
+    clearHit();t.classList.add("guide-hit");hitEl=t;backCard=card;
+    t.scrollIntoView({behavior:"smooth",block:"center"});
+    backq.textContent="↩ Q"+(i+1)+"にもどる";backq.hidden=false;
+  }
+  backq.addEventListener("click",function(){
+    backq.hidden=true;clearHit();
+    if(backCard)backCard.scrollIntoView({behavior:"smooth",block:"center"});
+  });
   function finish(){
     var all=right===Q.length;
     document.getElementById("medal-disc").setAttribute("class","disc"+(all?"":" dim"));
     document.getElementById("score-big").textContent=all?"STAGE 1 クリア!":"スター "+right+" / "+Q.length;
-    document.getElementById("score-msg").textContent=all?"全問正解です。次のステージも挑戦してみてください。":"間違えた問題の出典を読み返してから、もう一度挑戦してみてください。";
+    document.getElementById("score-msg").textContent=all?"全問正解です。次のステージも挑戦してみてください。":"間違えた問題は「本文で確認する」から答えの箇所を読み返して、もう一度挑戦してみてください。";
     scoreBox.hidden=false;
   }
   document.getElementById("retry").addEventListener("click",function(){
-    render();document.getElementById("quiz-h").scrollIntoView({behavior:"smooth",block:"start"});
+    backq.hidden=true;clearHit();render();document.getElementById("quiz-h").scrollIntoView({behavior:"smooth",block:"start"});
   });
   render();
 })();
