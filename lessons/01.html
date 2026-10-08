@@ -1,9 +1,22 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><title>SEO仕組み講座 第1回</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SEO仕組み講座 第1回</title>
+<meta name="description" content="Google公式ドキュメントを出典に、クロール・インデックス登録・検索結果の表示の3段階を15分で学ぶ。">
+<meta property="og:title" content="SEO仕組み講座 第1回|全体像:Google検索の3つのステージ">
+<meta property="og:description" content="Google公式ドキュメントを出典に、クロール・インデックス登録・検索結果の表示の3段階を15分で学ぶ。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/lessons/01.html">
+<meta property="og:site_name" content="SEO仕組み講座">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: 単一カラムの教材(最大720px)。工程地図を帯として冒頭近くに置き、各トピックは「公式」「実務」の2種のブロックを縦に積む */
+/* Layout: 単一カラムの教材(最大720px)。上下にナビ、ゴール→用語→工程地図→本編→まとめ→課題→クイズ→出典の順に縦積み */
 :root{
   --bg:#f5f7f8; --surface:#ffffff; --fg:#1b2329; --muted:#5b6872; --line:#d9e0e4;
   --accent:#145c74; --accent-soft:#e2eff3;
@@ -11,6 +24,7 @@
   --ok:#1d7a4a; --ok-bg:#e6f4ec; --ng:#b03a2e; --ng-bg:#fbeceb;
   --font-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
   --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#12181c; --surface:#1a2228; --fg:#e4eaee; --muted:#9aa8b2; --line:#2c3842;
@@ -23,49 +37,86 @@
   --practice:#e8b866; --practice-bg:#2a2216; --practice-line:#5a4520;
   --ok:#6fd39a; --ok-bg:#163024; --ng:#f08b7f; --ng-bg:#3a1d1a; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.85;margin:0}
-.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.85}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:20px 64px;display:flex;flex-direction:column;gap:40px}
 a{color:var(--accent);text-underline-offset:3px}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 h1,h2,h3{text-wrap:balance;line-height:1.4;margin:0}
 h1{font-size:clamp(1.6rem,4.6vw,2.2rem);font-weight:900;letter-spacing:.01em}
 h2{font-size:1.35rem;font-weight:700}
-h3{font-size:1.1rem;font-weight:700}
 p{margin:0}
+section{display:flex;flex-direction:column;gap:16px}
 .eyebrow{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .meta{color:var(--muted);font-size:.9rem}
+
+/* ナビ */
+.topnav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.85rem;border-bottom:1px solid var(--line);padding-bottom:12px}
+.topnav a{text-decoration:none;font-weight:700}
+.topnav span{color:var(--muted);font-family:var(--font-mono);font-size:.78rem}
+.pager{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pager > *{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:2px;text-decoration:none;min-width:0}
+.pager small{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.06em}
+.pager b{font-size:.92rem}
+.pager .next{text-align:right}
+.pager .soon{background:transparent;border-style:dashed;color:var(--muted)}
+.pager a:hover{border-color:var(--accent)}
+
 header{display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line);padding-bottom:28px}
-.goal{background:var(--accent-soft);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
-.goal ul{margin:0;padding-left:1.2em}
+.dates{display:flex;flex-wrap:wrap;gap:4px 16px;font-family:var(--font-mono);font-size:.78rem;color:var(--muted)}
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.85rem;color:var(--muted)}
-.tag{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;letter-spacing:.06em;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;font-size:.75rem;font-weight:700;letter-spacing:.06em;padding:2px 10px;border-radius:999px;white-space:nowrap;align-self:flex-start}
 .tag.official{background:var(--accent-soft);color:var(--accent)}
 .tag.practice{background:var(--practice-bg);color:var(--practice);border:1px dashed var(--practice-line)}
+
+.goal{background:var(--accent-soft);border-radius:10px;padding:18px 20px;gap:6px}
+.goal ul{margin:0;padding-left:1.2em}
+
+/* 用語 */
+.glossary{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;gap:10px}
+.glossary h2{font-size:1.05rem}
+.glossary dl{margin:0;display:grid;grid-template-columns:minmax(0,9em) minmax(0,1fr);gap:8px 14px;font-size:.92rem;line-height:1.7}
+.glossary dt{font-weight:700;scroll-margin-top:16px}
+.glossary dd{margin:0}
+.glossary dt:target,.glossary dt:target + dd{background:var(--accent-soft);border-radius:4px}
+a.term{color:inherit;text-decoration:underline dotted var(--accent);text-underline-offset:4px}
+
 /* 工程地図 */
-.map{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 16px;display:flex;flex-direction:column;gap:12px}
-.map-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;align-items:stretch}
-.stage{position:relative;border:1px solid var(--line);border-radius:8px;padding:10px 6px;text-align:center;font-size:.85rem;font-weight:700;color:var(--muted);background:var(--bg)}
-.stage small{display:block;font-family:var(--font-mono);font-weight:500;font-size:.68rem;letter-spacing:.08em}
-.stage.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.stage:not(:last-child)::after{content:"›";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:400;z-index:1}
+.map{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 16px;gap:12px}
+.map-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stage{position:relative;border:1px solid var(--line);border-radius:8px;padding:10px 8px;display:flex;flex-direction:column;gap:4px;color:var(--muted);background:var(--bg)}
+.stage small{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em}
+.stage b{font-size:.92rem}
+.stage span{font-size:.78rem;line-height:1.55;font-weight:400}
+.stage.on{border-color:var(--accent);background:var(--accent-soft);color:var(--fg)}
+.stage.on b,.stage.on small{color:var(--accent)}
+.stage:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--muted);z-index:1}
 .map p{font-size:.85rem;color:var(--muted)}
-/* トピック */
-.topic{display:flex;flex-direction:column;gap:14px}
+
+/* 本編 */
 .topic-head{display:flex;align-items:baseline;gap:10px}
 .topic-head .num{font-family:var(--font-mono);color:var(--accent);font-size:.9rem}
 .block{border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
 .block.official{background:var(--surface);border:1px solid var(--line)}
 .block.practice{background:var(--practice-bg);border:1px dashed var(--practice-line)}
 .block .note{font-size:.78rem;color:var(--practice)}
-.cite{font-size:.8rem;white-space:nowrap}
-.cite::before{content:"出典: ";color:var(--muted)}
 ol.steps,ul.plain{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px}
+sup.ref{font-family:var(--font-mono);font-size:.7em;line-height:0;margin-left:2px}
+sup.ref a{text-decoration:none;padding:0 1px}
 details.deep{border:1px solid var(--line);border-radius:10px;background:var(--surface)}
 details.deep summary{cursor:pointer;padding:12px 18px;font-weight:700;font-size:.95rem;color:var(--accent);list-style:none;display:flex;align-items:center;gap:8px}
 details.deep summary::-webkit-details-marker{display:none}
 details.deep summary::before{content:"+";font-family:var(--font-mono);width:1em}
 details.deep[open] summary::before{content:"−"}
 details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:12px}
+
+/* まとめ・課題 */
+.summary{border-left:4px solid var(--accent);padding:4px 0 4px 18px;gap:10px}
+.summary ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;font-weight:500}
+.try{background:var(--practice-bg);border:1px dashed var(--practice-line);border-radius:12px;padding:18px 20px;gap:10px}
+.try h2{font-size:1.1rem}
+.try ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px}
+
 /* クイズ */
 .quiz{display:flex;flex-direction:column;gap:18px}
 .q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
@@ -80,20 +131,37 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
 .explain{border-top:1px solid var(--line);padding-top:10px;font-size:.92rem;display:flex;flex-direction:column;gap:6px}
 .verdict{font-weight:700}
 .verdict.ok{color:var(--ok)} .verdict.ng{color:var(--ng)}
-.score{background:var(--accent-soft);border-radius:12px;padding:18px;text-align:center;font-weight:700}
+.score{background:var(--accent-soft);border-radius:12px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:700;text-align:center}
 .score b{font-family:var(--font-mono);font-size:1.6rem;color:var(--accent);font-variant-numeric:tabular-nums}
-.sources ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
-.next{border-top:1px solid var(--line);padding-top:20px;color:var(--muted)}
-section{display:flex;flex-direction:column;gap:16px}
-@media (max-width:480px){.stage{font-size:.75rem;padding:8px 2px}.stage small{font-size:.6rem}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+.retry{font:inherit;font-weight:700;font-size:.9rem;padding:8px 18px;border-radius:999px;border:1px solid var(--accent);background:var(--surface);color:var(--accent);cursor:pointer}
+.retry:hover{background:var(--accent);color:var(--surface)}
 
+.sources ol{margin:0;padding-left:1.6em;display:flex;flex-direction:column;gap:6px}
+.sources li{scroll-margin-top:16px}
+.sources li:target{background:var(--accent-soft);border-radius:4px}
+
+@media (max-width:560px){
+  .map-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stage::after{display:none}
+  .glossary dl{grid-template-columns:minmax(0,1fr)}
+  .glossary dd{margin-bottom:6px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
 <div class="wrap">
+
+<nav class="topnav" aria-label="講座内の移動">
+  <a href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/">← 講座の目次</a>
+  <span>第1回 / 全15回</span>
+</nav>
+
 <header>
-  <div class="eyebrow">SEO仕組み講座 · 第1回 / 全15回 · 第1週 Google検索の仕組み</div>
+  <div class="eyebrow">SEO仕組み講座 · 第1週 Google検索の仕組み</div>
   <h1>全体像:Google検索の3つのステージ</h1>
-  <p class="meta">基礎だけなら約15分。「深掘り」は開いて読む補足です。</p>
+  <div class="dates"><span>公開日 2026-10-08</span><span>出典確認日 2026-10-08</span></div>
+  <p class="meta">約15分。「深掘り」は開いて読む補足です。本文中の小さな番号は、ページ下の出典一覧へのリンクです。</p>
   <div class="legend">
     <span><span class="tag official">公式の説明</span> Googleの公式ページに書かれていることだけ</span>
     <span><span class="tag practice">実務での解釈</span> SEO実務上の読み方(Googleの公式見解ではありません)</span>
@@ -108,13 +176,31 @@ section{display:flex;flex-direction:column;gap:16px}
   </ul>
 </section>
 
+<section class="glossary" aria-labelledby="glo-h">
+  <h2 id="glo-h">今日出てくる用語</h2>
+  <dl>
+    <dt id="g-googlebot">Googlebot</dt>
+    <dd>ウェブ上のページを取得するGoogleのプログラム。クローラー、ロボット、ボット、スパイダーとも呼ばれます。<sup class="ref"><a href="#src-3">3</a></sup></dd>
+    <dt id="g-rendering">レンダリング</dt>
+    <dd>ブラウザと同じようにページを表示処理すること。Googleは最新版のChromeでページをレンダリングし、JavaScriptも実行します。<sup class="ref"><a href="#src-3">3</a></sup></dd>
+    <dt id="g-index">Googleインデックス</dt>
+    <dd>ページについて集めた情報を保存する、何千台ものコンピュータ上にある大規模なデータベース。<sup class="ref"><a href="#src-4">4</a></sup></dd>
+    <dt id="g-canonical">正規ページ</dt>
+    <dd>内容が似たページのグループから代表として選ばれた、検索結果に表示される可能性のあるページ。<sup class="ref"><a href="#src-4">4</a></sup></dd>
+    <dt id="g-robots">robots.txt / robots metaルール</dt>
+    <dd>robots.txtはGooglebotのアクセス(クロール)を、robots metaルールはインデックス登録や表示を制御するための指定です。<sup class="ref"><a href="#src-3">3</a></sup><sup class="ref"><a href="#src-4">4</a></sup></dd>
+    <dt id="g-relevance">関連性</dt>
+    <dd>検索語句に対するページの合い具合。ユーザーの所在地・言語・デバイスなど、多くの要素で決まります。<sup class="ref"><a href="#src-5">5</a></sup></dd>
+  </dl>
+</section>
+
 <section class="map" aria-labelledby="map-h">
   <div class="eyebrow" id="map-h">工程地図 · 今日の位置</div>
   <div class="map-row">
-    <div class="stage on"><small>STEP 1</small>クロール</div>
-    <div class="stage on"><small>STEP 2</small>インデックス</div>
-    <div class="stage on"><small>STEP 3</small>ランキング</div>
-    <div class="stage on"><small>STEP 4</small>表示</div>
+    <div class="stage on"><small>STEP 1</small><b>クロール</b><span>ページを見つけて取得する</span></div>
+    <div class="stage on"><small>STEP 2</small><b>インデックス</b><span>内容を解析して保存する</span></div>
+    <div class="stage on"><small>STEP 3</small><b>ランキング</b><span>関連性と品質で結果を選ぶ</span></div>
+    <div class="stage on"><small>STEP 4</small><b>表示</b><span>検索した人に結果を返す</span></div>
   </div>
   <p>第1回は全体像なので4工程すべてが範囲です。公式ページでは「ランキング」は「検索結果の表示」の中で説明されています。この講座では第2週でランキングを独立して扱うため、地図では分けて描いています。</p>
 </section>
@@ -124,13 +210,12 @@ section{display:flex;flex-direction:column;gap:16px}
   <div class="topic-head"><span class="num">01</span><h2 id="t1">Google検索の前提</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>Google検索は完全に自動化された検索エンジンで、ウェブクローラーと呼ばれるソフトウェアが定期的にウェブを探索し、インデックスに追加するページを見つけています。検索結果に載るページの大半は、手動で登録されたものではなく、クローラーが見つけて自動で追加したものです。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">Google検索の仕組み(冒頭)</a></p>
-    <p>Googleは、サイトのクロール頻度を上げることや掲載順位を上げることの対価として金銭を受け取りません。また、Google検索の基本事項に準拠していても、クロール・インデックス登録・検索結果への表示が保証されるわけではありません。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">Google検索の仕組み(冒頭)</a></p>
+    <p>Google検索は完全に自動化された検索エンジンで、ウェブクローラーと呼ばれるソフトウェアが定期的にウェブを探索し、インデックスに追加するページを見つけています。検索結果に載るページの大半は、手動で登録されたものではなく、クローラーが見つけて自動で追加したものです。<sup class="ref"><a href="#src-1">1</a></sup></p>
+    <p>Googleは、サイトのクロール頻度や掲載順位を上げる対価として金銭を受け取りません。また、Google検索の基本事項に準拠していても、クロール・インデックス登録・検索結果への表示が保証されるわけではありません。<sup class="ref"><a href="#src-1">1</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">実務での解釈</span>
     <p>クライアントから「申請すれば載りますか」「費用を払えば早くなりますか」と聞かれたときの根拠になる一文です。「基本事項を満たしても表示は保証されない」という前提を最初に共有しておくと、施策の期待値調整がしやすくなります。</p>
-    <p class="note">※ Googleの公式見解ではなく、実務上の使い方の提案です。</p>
   </div>
 </section>
 
@@ -139,17 +224,16 @@ section{display:flex;flex-direction:column;gap:16px}
   <div class="topic-head"><span class="num">02</span><h2 id="t2">3つのステージ</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>Google検索は次の3段階で動いています。ただし、すべてのページがすべての段階を通過するわけではありません。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">Google検索の仕組み(3つのステージ)</a></p>
+    <p>Google検索は次の3段階で動いています。ただし、すべてのページがすべての段階を通過するわけではありません。<sup class="ref"><a href="#src-2">2</a></sup></p>
     <ol class="steps">
       <li><b>クロール</b>:クローラーと呼ばれる自動プログラムが、ウェブ上で見つけたページからテキスト・画像・動画をダウンロードする。</li>
-      <li><b>インデックス登録</b>:ページ上のテキスト・画像・動画ファイルを解析し、大規模なデータベースであるGoogleインデックスに保存する。</li>
+      <li><b>インデックス登録</b>:ページ上のテキスト・画像・動画ファイルを解析し、大規模なデータベースである<a class="term" href="#g-index">Googleインデックス</a>に保存する。</li>
       <li><b>検索結果の表示</b>:ユーザーが検索したときに、検索語句に関連する情報を返す。</li>
     </ol>
   </div>
   <div class="block practice">
     <span class="tag practice">実務での解釈</span>
-    <p>「検索に出ない」という相談は、まずどの段階で止まっているかを切り分けると整理しやすくなります。クロールされていないのか、クロールされたがインデックスに入っていないのか、インデックスにはあるが表示されないのか。Search ConsoleのURL検査やページのインデックス登録レポートは、この切り分けに使う道具だと捉えると読みやすくなります(各レポートの詳細は今回の範囲外です)。</p>
-    <p class="note">※ Googleの公式見解ではなく、実務上の解釈です。</p>
+    <p>「検索に出ない」という相談は、まずどの段階で止まっているかを切り分けると整理しやすくなります。クロールされていないのか、クロールされたがインデックスに入っていないのか、インデックスにはあるが表示されないのか。Search ConsoleのURL検査は、この切り分けに使う道具だと捉えると読みやすくなります。</p>
   </div>
 </section>
 
@@ -158,22 +242,24 @@ section{display:flex;flex-direction:column;gap:16px}
   <div class="topic-head"><span class="num">03</span><h2 id="t3">クロール:ページを見つけて取得する</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>最初のステップは、ウェブ上にどんなページがあるかを把握すること(URL検出)です。すべてのウェブページを網羅したデータベースが存在するわけではないため、Googleは新しいページや更新されたページを常に探しています。既知のページからのリンクをたどったり、サイト所有者が送信したページ一覧(サイトマップ)を使ったりして新しいページを見つけます。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">Google検索の仕組み(クロール)</a></p>
-    <p>見つけたページを訪問して取得するのがGooglebotです。どのサイトを、どのくらいの頻度で、各サイトから何ページ取得するかはアルゴリズムで決まります。サイトに過負荷をかけないよう、クロールが速くなりすぎないようにプログラムされています。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">Google検索の仕組み(クロール)</a></p>
+    <p>最初のステップは、ウェブ上にどんなページがあるかを把握すること(URL検出)です。すべてのページを網羅したデータベースは存在しないため、Googleは新しいページや更新されたページを常に探しています。既知のページからのリンクをたどったり、サイト所有者が送信したページ一覧(サイトマップ)を使ったりして新しいページを見つけます。<sup class="ref"><a href="#src-3">3</a></sup></p>
+    <p>見つけたページを取得するのが<a class="term" href="#g-googlebot">Googlebot</a>です。どのサイトを、どのくらいの頻度で、何ページ取得するかはアルゴリズムで決まり、サイトに過負荷をかけないよう速度も調整されています。<sup class="ref"><a href="#src-3">3</a></sup></p>
+    <p><b>つまずく典型的な原因:</b>見つかったURLがすべてクロールされるわけではありません。<a class="term" href="#g-robots">robots.txt</a>でクロールが禁止されているページやログインが必要なページは取得されません。アクセス自体の問題としては、サーバーの処理の問題、ネットワークの問題、robots.txtのルールが挙げられています。<sup class="ref"><a href="#src-3">3</a></sup></p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">実務での解釈</span>
+    <p>「リンクとサイトマップで見つかる」ということは、内部リンクから到達できず、サイトマップにも載っていないページは発見されにくい、ということです。新規ページの公開時に内部リンクとサイトマップの両方を確認する運用は、この説明から自然に導けます。</p>
   </div>
   <details class="deep">
-    <summary>深掘り:レンダリングと、クロールできない典型的な原因</summary>
+    <summary>深掘り:レンダリングとJavaScript</summary>
     <div class="inner">
       <div class="block official">
         <span class="tag official">公式の説明</span>
-        <p>見つかったURLがすべてクロールされるわけではありません。robots.txtでクロールが禁止されているページや、ログインしないとアクセスできないページはクロールされません。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">Google検索の仕組み(クロール)</a></p>
-        <p>クロール中、Googleはページを最新バージョンのChromeでレンダリングし、見つかったJavaScriptを実行します。多くのサイトはJavaScriptでコンテンツを表示しており、レンダリングしないとそのコンテンツが見えない可能性があるためです。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">Google検索の仕組み(クロール)</a></p>
-        <p>Googlebotがサイトにアクセスできない典型的な原因として、サーバーによるサイトの処理に関する問題、ネットワークの問題、Googlebotのアクセスを妨げるrobots.txtのルールが挙げられています。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">Google検索の仕組み(クロール)</a></p>
+        <p>クロール中、Googleはページを最新版のChromeで<a class="term" href="#g-rendering">レンダリング</a>し、見つかったJavaScriptを実行します。多くのサイトはJavaScriptでコンテンツを表示しており、レンダリングしないとそのコンテンツが見えないためです。<sup class="ref"><a href="#src-3">3</a></sup></p>
       </div>
       <div class="block practice">
         <span class="tag practice">実務での解釈</span>
-        <p>「リンクとサイトマップで見つかる」ということは、内部リンクから到達できず、サイトマップにも載っていないページは発見されにくい、ということでもあります。新規ページ公開時に内部リンクとサイトマップの両方を確認する運用は、この公式説明から自然に導けるチェック項目です。サイトマップ・robots.txt・JavaScriptの詳細は第2回で扱います。</p>
-        <p class="note">※ Googleの公式見解ではなく、実務上の解釈です。</p>
+        <p>JavaScriptで後から表示する本文やリンクがある場合は、Googleから見えているかをURL検査で確かめる価値があります。サイトマップ・robots.txt・JavaScriptの詳細は第2回で扱います。</p>
       </div>
     </div>
   </details>
@@ -184,21 +270,24 @@ section{display:flex;flex-direction:column;gap:16px}
   <div class="topic-head"><span class="num">04</span><h2 id="t4">インデックス登録:内容を理解して保存する</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>クロールの後、Googleはページの内容を理解しようとします。テキストの内容に加え、&lt;title&gt;要素やalt属性などの主要なタグと属性、画像、動画が処理・分析されます。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">Google検索の仕組み(インデックス登録)</a></p>
-    <p>この過程で、ページがほかのページの重複かどうかと、正規ページかどうかが判断されます。正規ページとは、検索結果に表示される可能性のあるページのことです。内容が似たページをグループ化し、その中から最も代表的なページが正規ページとして選ばれます。グループ内のほかのページは、異なるコンテキストで表示される可能性のある代替バージョンとして扱われます。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">Google検索の仕組み(インデックス登録)</a></p>
+    <p>クロールの後、Googleはページの内容を理解しようとします。テキストに加え、&lt;title&gt;要素やalt属性などの主要なタグと属性、画像、動画が処理・分析されます。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p>この過程で、ページが別ページの重複かどうかが判断されます。内容が似たページをグループにまとめ、その中から最も代表的なページが<a class="term" href="#g-canonical">正規ページ</a>として選ばれます。グループ内のほかのページは、モバイル端末からの検索など、別の状況で表示されうる代替バージョンとして扱われます。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p><b>つまずく典型的な原因:</b>処理したページがすべてインデックスに登録されるわけではありません。コンテンツの品質が低い、<a class="term" href="#g-robots">robots metaルール</a>で登録が禁止されている、サイトのデザインが原因で登録が難しくなっている、の3つが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">実務での解釈</span>
+    <p>「正規ページ=検索結果に表示されうるページ」という定義は、canonical設計の出発点になります。自分が正規にしたいURLとGoogleが選ぶURLがずれると、意図しないURLが表示されるためです。noindexは第3回、重複と正規化は第4回で詳しく扱います。</p>
   </div>
   <details class="deep">
-    <summary>深掘り:収集されるシグナルと、インデックスに登録されない理由</summary>
+    <summary>深掘り:インデックス登録で集められるシグナル</summary>
     <div class="inner">
       <div class="block official">
         <span class="tag official">公式の説明</span>
-        <p>Googleは正規ページとそのコンテンツに関するシグナルも収集し、次の段階(検索結果の表示)で使うことがあります。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。収集した情報はGoogleインデックスに保存されることがありますが、Googleが処理したページがすべてインデックスに登録されるとは限りません。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">Google検索の仕組み(インデックス登録)</a></p>
-        <p>インデックス登録がうまくいかない典型的な原因として、コンテンツの品質が低いこと、robots metaルールでインデックス登録が禁止されていること、サイトのデザインが原因でインデックス登録が困難になっていることが挙げられています。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">Google検索の仕組み(インデックス登録)</a></p>
+        <p>Googleは正規ページとそのコンテンツについてシグナルも集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
       </div>
       <div class="block practice">
         <span class="tag practice">実務での解釈</span>
-        <p>「正規ページ=検索結果に表示されうるページ」という定義は、canonical設計の議論の出発点になります。自分が正規にしたいURLとGoogleが選ぶURLがずれると、意図しないURLが表示されることになるためです。noindexは第3回、重複と正規化は第4回で詳しく扱います。</p>
-        <p class="note">※ Googleの公式見解ではなく、実務上の解釈です。</p>
+        <p>言語や配信国がシグナルとして集められることは、多言語・多地域サイトでページの言語と対象地域をはっきりさせておく理由になります。</p>
       </div>
     </div>
   </details>
@@ -209,94 +298,137 @@ section{display:flex;flex-direction:column;gap:16px}
   <div class="topic-head"><span class="num">05</span><h2 id="t5">検索結果の表示:関連性の高い結果を返す</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>ユーザーが検索すると、Googleはインデックスから一致するページを探し、関連性が高く高品質であると判断した結果を返します。関連性は数多くの要素で決まり、ユーザーの所在地、言語、デバイス(パソコンかスマートフォンか)などの情報が含まれることがあります。例として、「自転車修理店」と検索した場合、パリのユーザーと香港のユーザーでは異なる結果が表示されます。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#serving">Google検索の仕組み(検索結果の表示)</a></p>
-    <p>検索結果ページに表示される検索機能も、検索語句によって変わります。例えば「自転車修理店」ではローカル検索結果が表示される可能性が高く、「最新の自転車」では画像検索結果が表示される可能性が高い、と説明されています。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#serving">Google検索の仕組み(検索結果の表示)</a></p>
+    <p>ユーザーが検索すると、Googleはインデックスから一致するページを探し、関連性が高く高品質と判断した結果を返します。<a class="term" href="#g-relevance">関連性</a>は多くの要素で決まり、ユーザーの所在地、言語、デバイス(パソコンかスマートフォンか)などが含まれます。例えば「自転車修理店」と検索すると、パリのユーザーと香港のユーザーでは異なる結果が表示されます。<sup class="ref"><a href="#src-5">5</a></sup></p>
+    <p><b>つまずく典型的な原因:</b>Search Consoleでインデックス登録済みなのに、検索結果に出ないことがあります。ページの内容が検索語句と関連していない、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つが挙げられています。<sup class="ref"><a href="#src-5">5</a></sup></p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">実務での解釈</span>
+    <p>順位チェックツールの結果と、クライアントが自分の端末で見た結果が違うという相談はよくあります。所在地・言語・デバイスで関連性が変わるという説明は、この差を伝えるときの根拠になります。「インデックス済み=表示される」ではない点も、クライアントと共有しておきたいポイントです。</p>
   </div>
   <details class="deep">
-    <summary>深掘り:インデックス済みなのに表示されないとき</summary>
+    <summary>深掘り:検索語句によって変わる検索機能</summary>
     <div class="inner">
       <div class="block official">
         <span class="tag official">公式の説明</span>
-        <p>Search Consoleでインデックスに登録済みと表示されているのに、検索結果にページが出ないことがあります。その原因として、ページのコンテンツが検索語句と関連していないこと、コンテンツの品質が低いこと、robots metaルールによって表示が禁止されていることが挙げられています。 <a class="cite" href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#serving">Google検索の仕組み(検索結果の表示)</a></p>
+        <p>検索結果ページに出る検索機能も、検索語句によって変わります。「自転車修理店」ではローカル検索結果が、「最新の自転車」では画像検索結果が表示される可能性が高い、と説明されています。<sup class="ref"><a href="#src-5">5</a></sup></p>
       </div>
       <div class="block practice">
         <span class="tag practice">実務での解釈</span>
-        <p>順位チェックツールの結果とクライアントが自分の端末で見た結果が違う、という相談はよくあります。所在地・言語・デバイスで関連性が変わるという公式説明は、この差を説明するときの根拠として使えます。「インデックス済み=表示される」ではない、という点もクライアントに伝えておきたいポイントです。</p>
-        <p class="note">※ Googleの公式見解ではなく、実務上の解釈です。</p>
+        <p>狙うキーワードで実際にどんな検索機能が出ているかを見ておくと、通常の検索結果だけを狙うべきか、ローカルや画像の枠も狙うべきかを判断しやすくなります。</p>
       </div>
     </div>
   </details>
 </section>
 
-<!-- Quiz -->
+<section class="summary" aria-labelledby="sum-h">
+  <h2 id="sum-h">今日の3行まとめ</h2>
+  <ol>
+    <li>Google検索は「クロール → インデックス登録 → 検索結果の表示」の3段階で動き、すべてのページが全段階を通るわけではない。</li>
+    <li>ページはリンクとサイトマップで見つかり、似たページはまとめられて代表の「正規ページ」が選ばれる。</li>
+    <li>結果は所在地・言語・デバイスで変わり、インデックス済みでも関連性・品質・robots metaルールが原因で表示されないことがある。</li>
+  </ol>
+</section>
+
+<section class="try" aria-labelledby="try-h">
+  <span class="tag practice">現場でやってみる</span>
+  <h2 id="try-h">担当サイトのページが、3段階のどこまで進んでいるか確かめる</h2>
+  <ol>
+    <li>担当サイトから、最近公開したページか、流入が少ないページを1つ選ぶ。</li>
+    <li>Search ConsoleのURL検査にそのURLを入れ、Googleに登録されているかどうかの表示を確認する。</li>
+    <li>登録されていない場合は、表示されている理由を読み、今日の3段階(クロール/インデックス登録/表示)のどこで止まっているかを考える。</li>
+    <li>登録済みの場合は、そのページで狙っている語句で実際に検索し、表示されているか、どんな検索機能が出ているかを見る。</li>
+  </ol>
+  <p class="meta">所要5分。結果をチームで共有すると、「どの段階の問題か」で会話する練習になります。</p>
+</section>
+
 <section aria-labelledby="quiz-h">
   <div class="eyebrow">確認クイズ · 4択5問</div>
   <h2 id="quiz-h">理解度チェック</h2>
   <div class="quiz" id="quiz"></div>
-  <div class="score" id="score" hidden></div>
+  <div class="score" id="score" hidden>
+    <div id="score-text"></div>
+    <button type="button" class="retry" id="retry">もう一度解く</button>
+  </div>
 </section>
 
 <section class="sources" aria-labelledby="src-h">
   <h2 id="src-h">出典一覧</h2>
-  <ul>
-    <li><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">Google検索の仕組みに関する詳細ガイド(Google検索セントラル)</a> — 冒頭、<a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">クロール</a>、<a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">インデックス登録</a>、<a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#serving">検索結果の表示</a></li>
-  </ul>
+  <p class="meta">すべてGoogle検索セントラル「Google検索の仕組みに関する詳細ガイド」(2026-10-08 確認)。</p>
+  <ol>
+    <li id="src-1"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">冒頭・開始するにあたっての注意事項</a></li>
+    <li id="src-2"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">Google検索の3つのステージの流れ</a></li>
+    <li id="src-3"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">クロール</a></li>
+    <li id="src-4"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">インデックス登録</a></li>
+    <li id="src-5"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#serving">検索結果への表示</a></li>
+  </ol>
 </section>
 
-<p class="next"><b>次回予告</b>(第2回):クロールを深掘りします。リンクとサイトマップによるURL検出、robots.txt、レンダリングとJavaScript。</p>
+<nav class="pager" aria-label="前後の回">
+  <a href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/"><small>← 目次</small><b>講座の目次</b></a>
+  <div class="next soon"><small>次回 · 10/9 公開</small><b>第2回 クロール</b></div>
+</nav>
+
 </div>
 
 <script>
 (function(){
-  var SRC="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja";
   var Q=[
     {q:"Google検索が動く3つのステージの順序として正しいものはどれですか。",
      o:["インデックス登録 → クロール → 検索結果の表示","クロール → インデックス登録 → 検索結果の表示","クロール → 検索結果の表示 → インデックス登録","検索結果の表示 → クロール → インデックス登録"],a:1,
-     e:"クローラーがページを取得し(クロール)、内容を解析してインデックスに保存し(インデックス登録)、検索時に関連情報を返します(検索結果の表示)。",
-     s:[["Google検索の仕組み(3つのステージ)",SRC]]},
+     e:"クローラーがページを取得し(クロール)、内容を解析してインデックスに保存し(インデックス登録)、検索時に関連情報を返します(検索結果の表示)。",s:[2]},
     {q:"Googleが新しいページを見つける方法として、公式ページで挙げられているものはどれですか。",
      o:["検索広告に出稿されたURLを登録する","すべてのウェブページを網羅した公式データベースから一覧を受け取る","既知のページからのリンクをたどる、またはサイトマップを使う","メタキーワードを読み取って登録する"],a:2,
-     e:"すべてのウェブページを網羅したデータベースは存在しないため、Googleは既知のページからのリンクや、サイト所有者が送信したサイトマップで新しいページを見つけます。",
-     s:[["Google検索の仕組み(クロール)",SRC+"#crawling"]]},
+     e:"すべてのページを網羅したデータベースは存在しないため、Googleは既知のページからのリンクや、サイト所有者が送信したサイトマップで新しいページを見つけます。",s:[3]},
     {q:"公式ページでの「正規ページ」の説明として正しいものはどれですか。",
      o:["検索結果に表示される可能性のあるページ","サイト所有者が最初に公開したページ","最もアクセス数が多いページ","Search Consoleで送信したページ"],a:0,
-     e:"似たページをグループ化し、最も代表的なものが正規ページとして選ばれます。正規ページは検索結果に表示される可能性のあるページと説明されています。",
-     s:[["Google検索の仕組み(インデックス登録)",SRC+"#indexing"]]},
+     e:"似たページをグループにまとめ、最も代表的なものが正規ページとして選ばれます。正規ページは検索結果に表示される可能性のあるページです。",s:[4]},
     {q:"Googleの姿勢として、公式ページに書かれていることはどれですか。",
      o:["有料プランに申し込むとクロール頻度を上げられる","基本事項に準拠していれば、インデックス登録と表示が保証される","クロール頻度や掲載順位を上げる対価として金銭を受け取らず、基本事項に準拠しても表示は保証されない","検索結果のページの大半は手動で登録されている"],a:2,
-     e:"Googleは掲載順位やクロール頻度のために金銭を受け取らず、基本事項に準拠していてもクロール・インデックス登録・表示は保証されないと明記しています。また、掲載ページの大半はクローラーが自動で追加したものです。",
-     s:[["Google検索の仕組み(冒頭)",SRC]]},
+     e:"Googleは掲載順位やクロール頻度のために金銭を受け取らず、基本事項に準拠していてもクロール・インデックス登録・表示は保証されないと明記しています。掲載ページの大半はクローラーが自動で追加したものです。",s:[1]},
     {q:"Search Consoleでインデックス登録済みなのに検索結果に出ない理由として、公式ページで挙げられているものはどれですか。",
      o:["ページにalt属性が1つもない","コンテンツの品質が低い","サイトマップを毎日送信していない","ページがJavaScriptを使っている"],a:1,
-     e:"公式ページは、検索語句との関連性が低い、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3点を挙げています。",
-     s:[["Google検索の仕組み(検索結果の表示)",SRC+"#serving"]]}
+     e:"公式ページは、検索語句との関連性が低い、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つを挙げています。",s:[5]}
   ];
-  var root=document.getElementById("quiz"),scoreEl=document.getElementById("score"),done=0,right=0;
-  Q.forEach(function(item,i){
-    var card=document.createElement("div");card.className="q";
-    var t=document.createElement("div");t.className="q-title";
-    t.innerHTML="<span>Q"+(i+1)+"</span>";t.appendChild(document.createTextNode(item.q));card.appendChild(t);
-    var opts=document.createElement("div");opts.className="opts";card.appendChild(opts);
-    var btns=item.o.map(function(text,j){
-      var b=document.createElement("button");b.type="button";b.className="opt";b.id="q"+(i+1)+"-o"+(j+1);
-      b.textContent=["A","B","C","D"][j]+". "+text;
-      b.addEventListener("click",function(){answer(j)});opts.appendChild(b);return b;});
-    function answer(j){
-      btns.forEach(function(b){b.disabled=true});
-      btns[item.a].classList.add("correct");
-      var ok=j===item.a; if(!ok)btns[j].classList.add("wrong");
-      var ex=document.createElement("div");ex.className="explain";
-      var v=document.createElement("div");v.className="verdict "+(ok?"ok":"ng");v.textContent=ok?"正解":"不正解(正解は "+["A","B","C","D"][item.a]+")";
-      var p=document.createElement("p");p.textContent=item.e;
-      var c=document.createElement("p");c.className="cite";c.style.whiteSpace="normal";
-      item.s.forEach(function(s,k){var a=document.createElement("a");a.href=s[1];a.textContent=s[0];a.target="_blank";a.rel="noopener";if(k)c.appendChild(document.createTextNode(" / "));c.appendChild(a)});
-      ex.appendChild(v);ex.appendChild(p);ex.appendChild(c);card.appendChild(ex);
-      done++; if(ok)right++;
-      if(done===Q.length){scoreEl.hidden=false;scoreEl.innerHTML="スコア <b>"+right+" / "+Q.length+"</b><div class=\"meta\" style=\"font-weight:400\">"+(right===Q.length?"全問正解です。":"解説の出典リンクから該当節を読み返してみてください。")+"</div>";}
-    }
-    root.appendChild(card);
+  var L=["A","B","C","D"];
+  var root=document.getElementById("quiz"),scoreBox=document.getElementById("score"),scoreText=document.getElementById("score-text");
+  var done=0,right=0;
+  function render(){
+    root.innerHTML="";done=0;right=0;scoreBox.hidden=true;
+    Q.forEach(function(item,i){
+      var card=document.createElement("div");card.className="q";
+      var t=document.createElement("div");t.className="q-title";
+      var n=document.createElement("span");n.textContent="Q"+(i+1);t.appendChild(n);
+      t.appendChild(document.createTextNode(item.q));card.appendChild(t);
+      var opts=document.createElement("div");opts.className="opts";card.appendChild(opts);
+      var btns=item.o.map(function(text,j){
+        var b=document.createElement("button");b.type="button";b.className="opt";b.id="q"+(i+1)+"-o"+(j+1);
+        b.textContent=L[j]+". "+text;b.addEventListener("click",function(){answer(j)});opts.appendChild(b);return b;});
+      function answer(j){
+        btns.forEach(function(b){b.disabled=true});
+        btns[item.a].classList.add("correct");
+        var ok=j===item.a;if(!ok)btns[j].classList.add("wrong");
+        var ex=document.createElement("div");ex.className="explain";
+        var v=document.createElement("div");v.className="verdict "+(ok?"ok":"ng");v.textContent=ok?"正解":"不正解(正解は "+L[item.a]+")";
+        var p=document.createElement("p");p.textContent=item.e;
+        var c=document.createElement("p");c.className="meta";c.appendChild(document.createTextNode("根拠:"));
+        item.s.forEach(function(k,idx){var a=document.createElement("a");a.href="#src-"+k;a.textContent="出典"+k;if(idx)c.appendChild(document.createTextNode("、"));c.appendChild(a)});
+        ex.appendChild(v);ex.appendChild(p);ex.appendChild(c);card.appendChild(ex);
+        done++;if(ok)right++;
+        if(done===Q.length){
+          scoreText.innerHTML="スコア <b>"+right+" / "+Q.length+"</b>";
+          var m=document.createElement("div");m.className="meta";m.style.fontWeight="400";
+          m.textContent=right===Q.length?"全問正解です。":"間違えた問題の出典を読み返してから、もう一度解いてみてください。";
+          scoreText.appendChild(m);scoreBox.hidden=false;
+        }
+      }
+      root.appendChild(card);
+    });
+  }
+  document.getElementById("retry").addEventListener("click",function(){
+    render();document.getElementById("quiz-h").scrollIntoView({behavior:"smooth",block:"start"});
   });
+  render();
 })();
 </script>
-
-</body></html>
+</body>
+</html>
