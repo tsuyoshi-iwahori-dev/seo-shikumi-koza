@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SEO仕組み講座</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 教材と同じ単一カラム(最大720px)。週ごとに回を並べた目次 */
+:root{
+  --bg:#f5f7f8; --surface:#ffffff; --fg:#1b2329; --muted:#5b6872; --line:#d9e0e4;
+  --accent:#145c74; --accent-soft:#e2eff3;
+  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12181c; --surface:#1a2228; --fg:#e4eaee; --muted:#9aa8b2; --line:#2c3842;
+  --accent:#6cc1dc; --accent-soft:#1b3440; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12181c; --surface:#1a2228; --fg:#e4eaee; --muted:#9aa8b2; --line:#2c3842;
+  --accent:#6cc1dc; --accent-soft:#1b3440; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.8}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:40px 64px;display:flex;flex-direction:column;gap:36px}
+h1,h2{margin:0;line-height:1.4;text-wrap:balance}
+h1{font-size:clamp(1.6rem,4.6vw,2.2rem);font-weight:900}
+h2{font-size:1.1rem;font-weight:700}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.eyebrow{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.meta{color:var(--muted);font-size:.9rem}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line);padding-bottom:28px}
+section{display:flex;flex-direction:column;gap:10px}
+ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+li{display:grid;grid-template-columns:3.2em minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+li .no{font-family:var(--font-mono);color:var(--accent);font-variant-numeric:tabular-nums}
+li .date{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+li.pending{background:transparent;border-style:dashed;color:var(--muted)}
+li.pending .no{color:var(--muted)}
+li a{font-weight:700;text-decoration:none}
+li a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:.85rem}
+@media (max-width:480px){li{grid-template-columns:2.6em minmax(0,1fr);}li .date{grid-column:2}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Google公式ドキュメントで学ぶ · 全15回</div>
+  <h1>SEO仕組み講座</h1>
+  <p class="meta">Google検索セントラルの公式ドキュメントを出典に、検索の仕組みを1回15分ずつ学びます。各回は「公式の説明」「実務での解釈」「確認クイズ」の3部構成です。平日の朝に1回ずつ公開します。</p>
+</header>
+
+<section>
+  <h2>第1週:Google検索の仕組み</h2>
+  <ol>
+    <li><span class="no">01</span><a href="lessons/01.html">全体像:Google検索の3つのステージ</a><span class="date">10/8</span></li>
+    <li class="pending"><span class="no">02</span><span>クロール:URLの見つけ方、robots.txt、レンダリング</span><span class="date">10/9</span></li>
+    <li class="pending"><span class="no">03</span><span>インデックス①:ページ内容の解析と、登録されない理由</span><span class="date">10/13</span></li>
+    <li class="pending"><span class="no">04</span><span>インデックス②:重複と正規化</span><span class="date">10/14</span></li>
+    <li class="pending"><span class="no">05</span><span>検索結果の表示:関連性の決まり方</span><span class="date">10/15</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>第2週:ランキングシステム</h2>
+  <ol>
+    <li class="pending"><span class="no">06</span><span>言葉を理解するAI</span><span class="date">10/16</span></li>
+    <li class="pending"><span class="no">07</span><span>リンク分析とPageRank、オリジナルコンテンツ、鮮度</span><span class="date">10/19</span></li>
+    <li class="pending"><span class="no">08</span><span>結果を整えるシステム、スパム検出、廃止されたシステム</span><span class="date">10/20</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>第3週:品質の考え方</h2>
+  <ol>
+    <li class="pending"><span class="no">09</span><span>ユーザー第一のコンテンツと自己評価の質問</span><span class="date">10/21</span></li>
+    <li class="pending"><span class="no">10</span><span>E-E-A-T・YMYLと品質評価者の役割</span><span class="date">10/22</span></li>
+    <li class="pending"><span class="no">11</span><span>誰が・どのように・なぜ</span><span class="date">10/23</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>第4週:SEOスターターガイドと総まとめ</h2>
+  <ol>
+    <li class="pending"><span class="no">12</span><span>Googleに見つけてもらう・サイトを整理する</span><span class="date">10/26</span></li>
+    <li class="pending"><span class="no">13</span><span>コンテンツ・リンク・タイトル・画像</span><span class="date">10/27</span></li>
+    <li class="pending"><span class="no">14</span><span>Googleが「重要ではない」と言っていること</span><span class="date">10/28</span></li>
+    <li class="pending"><span class="no">15</span><span>総まとめ:工程の地図で振り返る＋総合テスト</span><span class="date">10/29</span></li>
+  </ol>
+</section>
+
+<footer>出典はすべて<a href="https://developers.google.com/search/docs?hl=ja">Google検索セントラル</a>の公式ドキュメントです。「実務での解釈」はGoogleの公式見解ではありません。</footer>
+</div>
+</body>
+</html>
