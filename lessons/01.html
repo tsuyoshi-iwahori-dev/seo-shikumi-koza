@@ -14,137 +14,173 @@
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap">
 <style>
-/* Layout: 単一カラムの教材(最大720px)。上下にナビ、ゴール→用語→工程地図→本編→まとめ→課題→クイズ→出典の順に縦積み */
+/* Layout: 探検マップ。単一カラム(最大760px)。太い輪郭線と段差のある影でゲームのUIのような手触りにし、
+   ナビ→ステージ見出し→ミッション→用語ずかん→冒険ルート→本編→おさらい→現場ミッション→チェックポイント→出典 の順に並べる */
 :root{
-  --bg:#f5f7f8; --surface:#ffffff; --fg:#1b2329; --muted:#5b6872; --line:#d9e0e4;
-  --accent:#145c74; --accent-soft:#e2eff3;
-  --practice:#8a5a12; --practice-bg:#fbf5ea; --practice-line:#e2c99a;
-  --ok:#1d7a4a; --ok-bg:#e6f4ec; --ng:#b03a2e; --ng-bg:#fbeceb;
-  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --bg:#EEF5E9; --surface:#FFFFFF; --fg:#1E2B24; --muted:#4C5C53;
+  --edge:#1E2B24; --drop:#1E2B24; --hair:#C9D8C4;
+  --green:#2F8F5B; --green-ink:#1F6E45; --green-soft:#DDEFE3; --on-green:#FFFFFF;
+  --gold:#F2B43C; --gold-soft:#FFF4D6; --gold-line:#C9921C; --on-gold:#1E2B24;
+  --idle:#E3E9E0;
+  --ok:#1D7A4A; --ok-bg:#E3F4E9; --ng:#B03A2E; --ng-bg:#FBECEB;
+  --font-display:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
+  --font-body:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#12181c; --surface:#1a2228; --fg:#e4eaee; --muted:#9aa8b2; --line:#2c3842;
-  --accent:#6cc1dc; --accent-soft:#1b3440;
-  --practice:#e8b866; --practice-bg:#2a2216; --practice-line:#5a4520;
-  --ok:#6fd39a; --ok-bg:#163024; --ng:#f08b7f; --ng-bg:#3a1d1a; color-scheme:dark}}
+  --bg:#121A15; --surface:#1C2721; --fg:#EAF2EC; --muted:#A7B8AD;
+  --edge:#8FA597; --drop:#050806; --hair:#33433A;
+  --green:#2C7A50; --green-ink:#7FD3A4; --green-soft:#1F3A2B; --on-green:#FFFFFF;
+  --gold:#F2B43C; --gold-soft:#33291A; --gold-line:#A9802F; --on-gold:#1E2B24;
+  --idle:#26332B;
+  --ok:#73D6A0; --ok-bg:#173326; --ng:#F2958A; --ng-bg:#3A1E1B; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#12181c; --surface:#1a2228; --fg:#e4eaee; --muted:#9aa8b2; --line:#2c3842;
-  --accent:#6cc1dc; --accent-soft:#1b3440;
-  --practice:#e8b866; --practice-bg:#2a2216; --practice-line:#5a4520;
-  --ok:#6fd39a; --ok-bg:#163024; --ng:#f08b7f; --ng-bg:#3a1d1a; color-scheme:dark}
+  --bg:#121A15; --surface:#1C2721; --fg:#EAF2EC; --muted:#A7B8AD;
+  --edge:#8FA597; --drop:#050806; --hair:#33433A;
+  --green:#2C7A50; --green-ink:#7FD3A4; --green-soft:#1F3A2B; --on-green:#FFFFFF;
+  --gold:#F2B43C; --gold-soft:#33291A; --gold-line:#A9802F; --on-gold:#1E2B24;
+  --idle:#26332B;
+  --ok:#73D6A0; --ok-bg:#173326; --ng:#F2958A; --ng-bg:#3A1E1B; color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.85}
-.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:20px 64px;display:flex;flex-direction:column;gap:40px}
-a{color:var(--accent);text-underline-offset:3px}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.9;font-weight:500}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 72px;display:flex;flex-direction:column;gap:36px}
+a{color:var(--green-ink);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
 h1,h2,h3{text-wrap:balance;line-height:1.4;margin:0}
-h1{font-size:clamp(1.6rem,4.6vw,2.2rem);font-weight:900;letter-spacing:.01em}
-h2{font-size:1.35rem;font-weight:700}
+h2{font-family:var(--font-display);font-weight:400;font-size:1.4rem}
 p{margin:0}
-section{display:flex;flex-direction:column;gap:16px}
-.eyebrow{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.meta{color:var(--muted);font-size:.9rem}
+b,strong{font-weight:800}
+section{display:flex;flex-direction:column;gap:14px}
+.meta{color:var(--muted);font-size:.88rem}
+.card{background:var(--surface);border:3px solid var(--edge);border-radius:20px}
+.pop{box-shadow:0 5px 0 var(--drop)}
 
-/* ナビ */
-.topnav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.85rem;border-bottom:1px solid var(--line);padding-bottom:12px}
-.topnav a{text-decoration:none;font-weight:700}
-.topnav span{color:var(--muted);font-family:var(--font-mono);font-size:.78rem}
-.pager{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.pager > *{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:2px;text-decoration:none;min-width:0}
-.pager small{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.06em}
-.pager b{font-size:.92rem}
-.pager .next{text-align:right}
-.pager .soon{background:transparent;border-style:dashed;color:var(--muted)}
-.pager a:hover{border-color:var(--accent)}
+/* 上部ナビと進捗 */
+.topnav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pill-btn{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.85rem;text-decoration:none;color:var(--fg);background:var(--surface);border:2px solid var(--edge);border-radius:999px;padding:6px 14px;box-shadow:0 3px 0 var(--drop)}
+.pill-btn:hover{transform:translateY(1px);box-shadow:0 2px 0 var(--drop)}
+.progress{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.8rem;letter-spacing:.06em}
+.bar{width:150px;height:14px;background:var(--surface);border:2px solid var(--edge);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold)}
 
-header{display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line);padding-bottom:28px}
-.dates{display:flex;flex-wrap:wrap;gap:4px 16px;font-family:var(--font-mono);font-size:.78rem;color:var(--muted)}
-.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.85rem;color:var(--muted)}
-.tag{display:inline-flex;align-items:center;font-size:.75rem;font-weight:700;letter-spacing:.06em;padding:2px 10px;border-radius:999px;white-space:nowrap;align-self:flex-start}
-.tag.official{background:var(--accent-soft);color:var(--accent)}
-.tag.practice{background:var(--practice-bg);color:var(--practice);border:1px dashed var(--practice-line)}
+/* ステージ見出し */
+.hero{background:var(--green);color:var(--on-green);border:3px solid var(--edge);border-radius:24px;box-shadow:0 6px 0 var(--drop);padding:26px 26px 24px;display:flex;flex-direction:column;gap:12px}
+.hero .world{align-self:flex-start;background:var(--gold);color:var(--on-gold);font-weight:800;font-size:.8rem;padding:3px 12px;border-radius:999px;border:2px solid var(--edge)}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(1.7rem,5.4vw,2.5rem);line-height:1.3}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:rgba(255,255,255,.18);padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:700}
+.dates{font-size:.78rem;opacity:.85}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.84rem;color:var(--muted)}
+.tag{display:inline-flex;align-items:center;font-size:.75rem;font-weight:800;padding:2px 11px;border-radius:999px;white-space:nowrap;align-self:flex-start;border:2px solid var(--edge)}
+.tag.official{background:var(--green-soft);color:var(--green-ink)}
+.tag.practice{background:var(--gold);color:var(--on-gold)}
 
-.goal{background:var(--accent-soft);border-radius:10px;padding:18px 20px;gap:6px}
-.goal ul{margin:0;padding-left:1.2em}
+/* ミッション(ゴール) */
+.goal{padding:18px 22px;gap:8px}
+.goal h2,.glossary h2,.map h2,.summary h2{font-size:1.1rem}
+.goal ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.goal li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;align-items:start}
+.goal li::before{content:"";width:22px;height:22px;margin-top:4px;border:2px solid var(--edge);border-radius:6px;background:var(--gold-soft)}
 
-/* 用語 */
-.glossary{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;gap:10px}
-.glossary h2{font-size:1.05rem}
-.glossary dl{margin:0;display:grid;grid-template-columns:minmax(0,9em) minmax(0,1fr);gap:8px 14px;font-size:.92rem;line-height:1.7}
-.glossary dt{font-weight:700;scroll-margin-top:16px}
-.glossary dd{margin:0}
-.glossary dt:target,.glossary dt:target + dd{background:var(--accent-soft);border-radius:4px}
-a.term{color:inherit;text-decoration:underline dotted var(--accent);text-underline-offset:4px}
+/* 用語ずかん */
+.glossary{padding:18px 22px;gap:12px}
+.glossary dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.glossary .item{background:var(--bg);border:2px solid var(--hair);border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:2px;scroll-margin-top:16px}
+.glossary dt{font-weight:800;color:var(--green-ink)}
+.glossary dd{margin:0;font-size:.9rem;line-height:1.75}
+.glossary .item:target{border-color:var(--gold);background:var(--gold-soft)}
+a.term{color:inherit;text-decoration:underline wavy var(--gold);text-decoration-thickness:2px;text-underline-offset:5px}
 
-/* 工程地図 */
-.map{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 16px;gap:12px}
-.map-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.stage{position:relative;border:1px solid var(--line);border-radius:8px;padding:10px 8px;display:flex;flex-direction:column;gap:4px;color:var(--muted);background:var(--bg)}
-.stage small{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em}
-.stage b{font-size:.92rem}
-.stage span{font-size:.78rem;line-height:1.55;font-weight:400}
-.stage.on{border-color:var(--accent);background:var(--accent-soft);color:var(--fg)}
-.stage.on b,.stage.on small{color:var(--accent)}
-.stage:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--muted);z-index:1}
+/* 冒険ルート(工程地図) */
+.map{padding:20px 20px 18px;gap:16px}
+.route{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;position:relative}
+.route::before{content:"";position:absolute;left:12%;right:12%;top:34px;border-top:4px dashed var(--hair)}
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.stage .node{width:68px;height:68px;border-radius:50%;background:var(--idle);border:3px solid var(--edge);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.stage.on .node{background:var(--gold);color:var(--on-gold);box-shadow:0 4px 0 var(--drop)}
+.stage .node svg{width:32px;height:32px}
+.stage small{font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--muted)}
+.stage b{font-size:.95rem}
+.stage span{font-size:.78rem;line-height:1.55;color:var(--muted)}
 .map p{font-size:.85rem;color:var(--muted)}
 
 /* 本編 */
-.topic-head{display:flex;align-items:baseline;gap:10px}
-.topic-head .num{font-family:var(--font-mono);color:var(--accent);font-size:.9rem}
-.block{border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
-.block.official{background:var(--surface);border:1px solid var(--line)}
-.block.practice{background:var(--practice-bg);border:1px dashed var(--practice-line)}
-.block .note{font-size:.78rem;color:var(--practice)}
-ol.steps,ul.plain{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px}
-sup.ref{font-family:var(--font-mono);font-size:.7em;line-height:0;margin-left:2px}
+.topic-head{display:flex;align-items:center;gap:12px}
+.topic-head .num{flex:none;font-family:var(--font-display);font-size:1rem;width:40px;height:40px;border-radius:12px;background:var(--gold);color:var(--on-gold);border:3px solid var(--edge);display:flex;align-items:center;justify-content:center}
+.block{border-radius:18px;padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+.block.official{background:var(--surface);border:3px solid var(--edge)}
+.block.practice{background:var(--gold-soft);border:3px dashed var(--gold-line)}
+ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px}
+sup.ref{font-size:.7em;line-height:0;margin-left:2px;font-weight:800}
 sup.ref a{text-decoration:none;padding:0 1px}
-details.deep{border:1px solid var(--line);border-radius:10px;background:var(--surface)}
-details.deep summary{cursor:pointer;padding:12px 18px;font-weight:700;font-size:.95rem;color:var(--accent);list-style:none;display:flex;align-items:center;gap:8px}
+details.deep{border:3px solid var(--edge);border-radius:18px;background:var(--surface)}
+details.deep summary{cursor:pointer;padding:12px 18px;font-weight:800;font-size:.95rem;color:var(--green-ink);list-style:none;display:flex;align-items:center;gap:10px}
 details.deep summary::-webkit-details-marker{display:none}
-details.deep summary::before{content:"+";font-family:var(--font-mono);width:1em}
+details.deep summary::before{content:"+";flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--edge);background:var(--gold);color:var(--on-gold);display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1}
 details.deep[open] summary::before{content:"−"}
-details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:12px}
+details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
 
-/* まとめ・課題 */
-.summary{border-left:4px solid var(--accent);padding:4px 0 4px 18px;gap:10px}
-.summary ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;font-weight:500}
-.try{background:var(--practice-bg);border:1px dashed var(--practice-line);border-radius:12px;padding:18px 20px;gap:10px}
-.try h2{font-size:1.1rem}
+/* おさらい・現場ミッション */
+.summary{padding:18px 22px;gap:10px;background:var(--green-soft)}
+.summary ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.summary li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;font-weight:700;counter-increment:s}
+.summary li::before{content:counter(s);width:26px;height:26px;margin-top:3px;border-radius:50%;background:var(--green);color:var(--on-green);border:2px solid var(--edge);display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.try{background:var(--gold-soft);border:3px dashed var(--gold-line);border-radius:20px;padding:18px 22px;gap:10px}
+.try h2{font-size:1.15rem}
 .try ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px}
 
-/* クイズ */
+/* チェックポイント(クイズ) */
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.stars{display:flex;gap:4px}
+.stars svg{width:22px;height:22px}
+.stars .s{fill:var(--idle);stroke:var(--edge)}
+.stars .s.got{fill:var(--gold)}
 .quiz{display:flex;flex-direction:column;gap:18px}
-.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
-.q-title{font-weight:700}
-.q-title span{font-family:var(--font-mono);color:var(--accent);margin-right:8px}
-.opts{display:grid;gap:8px}
-.opt{font:inherit;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);cursor:pointer;line-height:1.6}
-.opt:hover:not(:disabled){border-color:var(--accent)}
-.opt:disabled{cursor:default}
-.opt.correct{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);font-weight:700}
-.opt.wrong{border-color:var(--ng);background:var(--ng-bg);color:var(--ng)}
-.explain{border-top:1px solid var(--line);padding-top:10px;font-size:.92rem;display:flex;flex-direction:column;gap:6px}
-.verdict{font-weight:700}
+.q{padding:18px;display:flex;flex-direction:column;gap:12px}
+.q-title{font-weight:800}
+.q-title span{display:inline-block;font-size:.75rem;color:var(--on-gold);background:var(--gold);border:2px solid var(--edge);border-radius:999px;padding:0 10px;margin-right:8px;vertical-align:2px}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{font:inherit;font-weight:700;font-size:.92rem;text-align:left;padding:12px 14px;border:2px solid var(--edge);border-radius:14px;background:var(--surface);color:var(--fg);cursor:pointer;line-height:1.55;box-shadow:0 3px 0 var(--drop);transition:transform .08s,box-shadow .08s}
+.opt:hover:not(:disabled){background:var(--gold-soft)}
+.opt:active:not(:disabled){transform:translateY(3px);box-shadow:0 0 0 var(--drop)}
+.opt:disabled{cursor:default;box-shadow:none}
+.opt.correct{background:var(--green);color:var(--on-green);border-color:var(--edge)}
+.opt.wrong{background:var(--ng-bg);color:var(--ng);border-color:var(--ng)}
+.explain{border-top:2px dashed var(--hair);padding-top:10px;font-size:.92rem;display:flex;flex-direction:column;gap:6px}
+.verdict{font-weight:800}
 .verdict.ok{color:var(--ok)} .verdict.ng{color:var(--ng)}
-.score{background:var(--accent-soft);border-radius:12px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:700;text-align:center}
-.score b{font-family:var(--font-mono);font-size:1.6rem;color:var(--accent);font-variant-numeric:tabular-nums}
-.retry{font:inherit;font-weight:700;font-size:.9rem;padding:8px 18px;border-radius:999px;border:1px solid var(--accent);background:var(--surface);color:var(--accent);cursor:pointer}
-.retry:hover{background:var(--accent);color:var(--surface)}
+.score{padding:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.medal{width:96px;height:96px}
+.medal .disc{fill:var(--gold);stroke:var(--edge)}
+.medal .disc.dim{fill:var(--idle)}
+.medal .ribbon{fill:var(--green);stroke:var(--edge)}
+.medal .mark{fill:none;stroke:var(--on-gold)}
+.score .big{font-family:var(--font-display);font-size:1.6rem;line-height:1.3}
+.score b{font-variant-numeric:tabular-nums}
+.retry{font:inherit;font-weight:800;font-size:.92rem;padding:10px 22px;border-radius:999px;border:2px solid var(--edge);background:var(--gold);color:var(--on-gold);cursor:pointer;box-shadow:0 3px 0 var(--drop)}
+.retry:active{transform:translateY(3px);box-shadow:none}
 
+/* 出典・ページ下ナビ */
 .sources ol{margin:0;padding-left:1.6em;display:flex;flex-direction:column;gap:6px}
 .sources li{scroll-margin-top:16px}
-.sources li:target{background:var(--accent-soft);border-radius:4px}
+.sources li:target{background:var(--gold-soft);border-radius:6px}
+.pager{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pager > *{border:3px solid var(--edge);border-radius:18px;padding:12px 16px;background:var(--surface);display:flex;flex-direction:column;gap:2px;text-decoration:none;color:var(--fg);min-width:0;box-shadow:0 4px 0 var(--drop)}
+.pager small{font-size:.74rem;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.pager b{font-size:.95rem}
+.pager .next{text-align:right}
+.pager .soon{background:transparent;border-style:dashed;box-shadow:none;color:var(--muted)}
+.pager a:hover{background:var(--gold-soft)}
 
 @media (max-width:560px){
-  .map-row{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .stage::after{display:none}
+  .bar{width:96px}
+  .route{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}
+  .route::before{display:none}
   .glossary dl{grid-template-columns:minmax(0,1fr)}
-  .glossary dd{margin-bottom:6px}
+  .opts{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
@@ -153,56 +189,52 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
 <div class="wrap">
 
 <nav class="topnav" aria-label="講座内の移動">
-  <a href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/">← 講座の目次</a>
-  <span>第1回 / 全15回</span>
+  <a class="pill-btn" href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/">← ワールドマップ</a>
+  <div class="progress"><span>STAGE 1 / 15</span><div class="bar" role="img" aria-label="15ステージ中1ステージ目"><i style="width:6.7%"></i></div></div>
 </nav>
 
-<header>
-  <div class="eyebrow">SEO仕組み講座 · 第1週 Google検索の仕組み</div>
+<header class="hero">
+  <span class="world">WORLD 1 · Google検索のしくみ</span>
   <h1>全体像:Google検索の3つのステージ</h1>
-  <div class="dates"><span>公開日 2026-10-08</span><span>出典確認日 2026-10-08</span></div>
-  <p class="meta">約15分。「深掘り」は開いて読む補足です。本文中の小さな番号は、ページ下の出典一覧へのリンクです。</p>
-  <div class="legend">
-    <span><span class="tag official">公式の説明</span> Googleの公式ページに書かれていることだけ</span>
-    <span><span class="tag practice">実務での解釈</span> SEO実務上の読み方(Googleの公式見解ではありません)</span>
-  </div>
+  <div class="chips"><span>所要 15分</span><span>チェックポイント 5問</span><span>全問正解でクリアメダル</span></div>
+  <div class="dates">公開日 2026-10-08 · 出典確認日 2026-10-08</div>
 </header>
 
-<section class="goal" aria-labelledby="goal-h">
-  <h2 id="goal-h" style="font-size:1.05rem">今日のゴール</h2>
+<div class="legend">
+  <span><span class="tag official">公式の説明</span> Googleの公式ページに書かれていることだけ</span>
+  <span><span class="tag practice">攻略メモ</span> 実務での解釈(Googleの公式見解ではありません)</span>
+  <span>本文の小さな番号は、ページ下の出典へのリンクです。「深掘り」は開いて読む補足です。</span>
+</div>
+
+<section class="goal card" aria-labelledby="goal-h">
+  <h2 id="goal-h">今日のミッション</h2>
   <ul>
-    <li>Google検索が「クロール → インデックス登録 → 検索結果の表示」の3段階で動いていることを説明できる。</li>
-    <li>各段階で「何が起きるか」と「つまずきやすい典型的な原因」を1つずつ挙げられる。</li>
+    <li><span>Google検索が「クロール → インデックス登録 → 検索結果の表示」の3段階で動いていることを説明できる。</span></li>
+    <li><span>各段階で「何が起きるか」と「つまずきやすい典型的な原因」を1つずつ挙げられる。</span></li>
   </ul>
 </section>
 
-<section class="glossary" aria-labelledby="glo-h">
-  <h2 id="glo-h">今日出てくる用語</h2>
+<section class="glossary card" aria-labelledby="glo-h">
+  <h2 id="glo-h">今日の用語ずかん</h2>
   <dl>
-    <dt id="g-googlebot">Googlebot</dt>
-    <dd>ウェブ上のページを取得するGoogleのプログラム。クローラー、ロボット、ボット、スパイダーとも呼ばれます。<sup class="ref"><a href="#src-3">3</a></sup></dd>
-    <dt id="g-rendering">レンダリング</dt>
-    <dd>ブラウザと同じようにページを表示処理すること。Googleは最新版のChromeでページをレンダリングし、JavaScriptも実行します。<sup class="ref"><a href="#src-3">3</a></sup></dd>
-    <dt id="g-index">Googleインデックス</dt>
-    <dd>ページについて集めた情報を保存する、何千台ものコンピュータ上にある大規模なデータベース。<sup class="ref"><a href="#src-4">4</a></sup></dd>
-    <dt id="g-canonical">正規ページ</dt>
-    <dd>内容が似たページのグループから代表として選ばれた、検索結果に表示される可能性のあるページ。<sup class="ref"><a href="#src-4">4</a></sup></dd>
-    <dt id="g-robots">robots.txt / robots metaルール</dt>
-    <dd>robots.txtはGooglebotのアクセス(クロール)を、robots metaルールはインデックス登録や表示を制御するための指定です。<sup class="ref"><a href="#src-3">3</a></sup><sup class="ref"><a href="#src-4">4</a></sup></dd>
-    <dt id="g-relevance">関連性</dt>
-    <dd>検索語句に対するページの合い具合。ユーザーの所在地・言語・デバイスなど、多くの要素で決まります。<sup class="ref"><a href="#src-5">5</a></sup></dd>
+    <div class="item" id="g-googlebot"><dt>Googlebot</dt><dd>ウェブ上のページを取得するGoogleのプログラム。クローラー、ロボット、ボット、スパイダーとも呼ばれます。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
+    <div class="item" id="g-rendering"><dt>レンダリング</dt><dd>ブラウザと同じようにページを表示処理すること。Googleは最新版のChromeでレンダリングし、JavaScriptも実行します。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
+    <div class="item" id="g-index"><dt>Googleインデックス</dt><dd>ページについて集めた情報を保存する、何千台ものコンピュータ上にある大規模なデータベース。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
+    <div class="item" id="g-canonical"><dt>正規ページ</dt><dd>内容が似たページのグループから代表として選ばれた、検索結果に表示される可能性のあるページ。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
+    <div class="item" id="g-robots"><dt>robots.txt / robots metaルール</dt><dd>robots.txtはGooglebotのアクセス(クロール)を、robots metaルールはインデックス登録や表示を制御する指定です。<sup class="ref"><a href="#src-3">3</a></sup><sup class="ref"><a href="#src-4">4</a></sup></dd></div>
+    <div class="item" id="g-relevance"><dt>関連性</dt><dd>検索語句に対するページの合い具合。ユーザーの所在地・言語・デバイスなど、多くの要素で決まります。<sup class="ref"><a href="#src-5">5</a></sup></dd></div>
   </dl>
 </section>
 
-<section class="map" aria-labelledby="map-h">
-  <div class="eyebrow" id="map-h">工程地図 · 今日の位置</div>
-  <div class="map-row">
-    <div class="stage on"><small>STEP 1</small><b>クロール</b><span>ページを見つけて取得する</span></div>
-    <div class="stage on"><small>STEP 2</small><b>インデックス</b><span>内容を解析して保存する</span></div>
-    <div class="stage on"><small>STEP 3</small><b>ランキング</b><span>関連性と品質で結果を選ぶ</span></div>
-    <div class="stage on"><small>STEP 4</small><b>表示</b><span>検索した人に結果を返す</span></div>
+<section class="map card" aria-labelledby="map-h">
+  <h2 id="map-h">冒険ルート(工程地図)</h2>
+  <div class="route">
+    <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></div><small>STEP 1</small><b>クロール</b><span>ページを見つけて取得する</span></div>
+    <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l8-4 8 4-8 4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></div><small>STEP 2</small><b>インデックス</b><span>内容を解析して保存する</span></div>
+    <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M9 20V10h6v10"/><path d="M3 20v-6h6"/><path d="M15 20v-8h6v8"/></svg></div><small>STEP 3</small><b>ランキング</b><span>関連性と品質で結果を選ぶ</span></div>
+    <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8"/></svg></div><small>STEP 4</small><b>表示</b><span>検索した人に結果を返す</span></div>
   </div>
-  <p>第1回は全体像なので4工程すべてが範囲です。公式ページでは「ランキング」は「検索結果の表示」の中で説明されています。この講座では第2週でランキングを独立して扱うため、地図では分けて描いています。</p>
+  <p>第1回は全体像なので、4つのステップすべてを通ります。公式ページでは「ランキング」は「検索結果の表示」の中で説明されています。この講座では第2週でランキングを独立して扱うため、ルートでは分けて描いています。</p>
 </section>
 
 <!-- Topic 1 -->
@@ -214,7 +246,7 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
     <p>Googleは、サイトのクロール頻度や掲載順位を上げる対価として金銭を受け取りません。また、Google検索の基本事項に準拠していても、クロール・インデックス登録・検索結果への表示が保証されるわけではありません。<sup class="ref"><a href="#src-1">1</a></sup></p>
   </div>
   <div class="block practice">
-    <span class="tag practice">実務での解釈</span>
+    <span class="tag practice">攻略メモ</span>
     <p>クライアントから「申請すれば載りますか」「費用を払えば早くなりますか」と聞かれたときの根拠になる一文です。「基本事項を満たしても表示は保証されない」という前提を最初に共有しておくと、施策の期待値調整がしやすくなります。</p>
   </div>
 </section>
@@ -232,7 +264,7 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
     </ol>
   </div>
   <div class="block practice">
-    <span class="tag practice">実務での解釈</span>
+    <span class="tag practice">攻略メモ</span>
     <p>「検索に出ない」という相談は、まずどの段階で止まっているかを切り分けると整理しやすくなります。クロールされていないのか、クロールされたがインデックスに入っていないのか、インデックスにはあるが表示されないのか。Search ConsoleのURL検査は、この切り分けに使う道具だと捉えると読みやすくなります。</p>
   </div>
 </section>
@@ -247,7 +279,7 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
     <p><b>つまずく典型的な原因:</b>見つかったURLがすべてクロールされるわけではありません。<a class="term" href="#g-robots">robots.txt</a>でクロールが禁止されているページやログインが必要なページは取得されません。アクセス自体の問題としては、サーバーの処理の問題、ネットワークの問題、robots.txtのルールが挙げられています。<sup class="ref"><a href="#src-3">3</a></sup></p>
   </div>
   <div class="block practice">
-    <span class="tag practice">実務での解釈</span>
+    <span class="tag practice">攻略メモ</span>
     <p>「リンクとサイトマップで見つかる」ということは、内部リンクから到達できず、サイトマップにも載っていないページは発見されにくい、ということです。新規ページの公開時に内部リンクとサイトマップの両方を確認する運用は、この説明から自然に導けます。</p>
   </div>
   <details class="deep">
@@ -258,7 +290,7 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
         <p>クロール中、Googleはページを最新版のChromeで<a class="term" href="#g-rendering">レンダリング</a>し、見つかったJavaScriptを実行します。多くのサイトはJavaScriptでコンテンツを表示しており、レンダリングしないとそのコンテンツが見えないためです。<sup class="ref"><a href="#src-3">3</a></sup></p>
       </div>
       <div class="block practice">
-        <span class="tag practice">実務での解釈</span>
+        <span class="tag practice">攻略メモ</span>
         <p>JavaScriptで後から表示する本文やリンクがある場合は、Googleから見えているかをURL検査で確かめる価値があります。サイトマップ・robots.txt・JavaScriptの詳細は第2回で扱います。</p>
       </div>
     </div>
@@ -275,7 +307,7 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
     <p><b>つまずく典型的な原因:</b>処理したページがすべてインデックスに登録されるわけではありません。コンテンツの品質が低い、<a class="term" href="#g-robots">robots metaルール</a>で登録が禁止されている、サイトのデザインが原因で登録が難しくなっている、の3つが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
   </div>
   <div class="block practice">
-    <span class="tag practice">実務での解釈</span>
+    <span class="tag practice">攻略メモ</span>
     <p>「正規ページ=検索結果に表示されうるページ」という定義は、canonical設計の出発点になります。自分が正規にしたいURLとGoogleが選ぶURLがずれると、意図しないURLが表示されるためです。noindexは第3回、重複と正規化は第4回で詳しく扱います。</p>
   </div>
   <details class="deep">
@@ -286,7 +318,7 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
         <p>Googleは正規ページとそのコンテンツについてシグナルも集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
       </div>
       <div class="block practice">
-        <span class="tag practice">実務での解釈</span>
+        <span class="tag practice">攻略メモ</span>
         <p>言語や配信国がシグナルとして集められることは、多言語・多地域サイトでページの言語と対象地域をはっきりさせておく理由になります。</p>
       </div>
     </div>
@@ -302,7 +334,7 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
     <p><b>つまずく典型的な原因:</b>Search Consoleでインデックス登録済みなのに、検索結果に出ないことがあります。ページの内容が検索語句と関連していない、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つが挙げられています。<sup class="ref"><a href="#src-5">5</a></sup></p>
   </div>
   <div class="block practice">
-    <span class="tag practice">実務での解釈</span>
+    <span class="tag practice">攻略メモ</span>
     <p>順位チェックツールの結果と、クライアントが自分の端末で見た結果が違うという相談はよくあります。所在地・言語・デバイスで関連性が変わるという説明は、この差を伝えるときの根拠になります。「インデックス済み=表示される」ではない点も、クライアントと共有しておきたいポイントです。</p>
   </div>
   <details class="deep">
@@ -313,24 +345,24 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
         <p>検索結果ページに出る検索機能も、検索語句によって変わります。「自転車修理店」ではローカル検索結果が、「最新の自転車」では画像検索結果が表示される可能性が高い、と説明されています。<sup class="ref"><a href="#src-5">5</a></sup></p>
       </div>
       <div class="block practice">
-        <span class="tag practice">実務での解釈</span>
+        <span class="tag practice">攻略メモ</span>
         <p>狙うキーワードで実際にどんな検索機能が出ているかを見ておくと、通常の検索結果だけを狙うべきか、ローカルや画像の枠も狙うべきかを判断しやすくなります。</p>
       </div>
     </div>
   </details>
 </section>
 
-<section class="summary" aria-labelledby="sum-h">
-  <h2 id="sum-h">今日の3行まとめ</h2>
+<section class="summary card" aria-labelledby="sum-h">
+  <h2 id="sum-h">今日のおさらい(3行まとめ)</h2>
   <ol>
-    <li>Google検索は「クロール → インデックス登録 → 検索結果の表示」の3段階で動き、すべてのページが全段階を通るわけではない。</li>
-    <li>ページはリンクとサイトマップで見つかり、似たページはまとめられて代表の「正規ページ」が選ばれる。</li>
-    <li>結果は所在地・言語・デバイスで変わり、インデックス済みでも関連性・品質・robots metaルールが原因で表示されないことがある。</li>
+    <li><span>Google検索は「クロール → インデックス登録 → 検索結果の表示」の3段階で動き、すべてのページが全段階を通るわけではない。</span></li>
+    <li><span>ページはリンクとサイトマップで見つかり、似たページはまとめられて代表の「正規ページ」が選ばれる。</span></li>
+    <li><span>結果は所在地・言語・デバイスで変わり、インデックス済みでも関連性・品質・robots metaルールが原因で表示されないことがある。</span></li>
   </ol>
 </section>
 
 <section class="try" aria-labelledby="try-h">
-  <span class="tag practice">現場でやってみる</span>
+  <span class="tag practice">現場ミッション · 5分</span>
   <h2 id="try-h">担当サイトのページが、3段階のどこまで進んでいるか確かめる</h2>
   <ol>
     <li>担当サイトから、最近公開したページか、流入が少ないページを1つ選ぶ。</li>
@@ -338,16 +370,25 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
     <li>登録されていない場合は、表示されている理由を読み、今日の3段階(クロール/インデックス登録/表示)のどこで止まっているかを考える。</li>
     <li>登録済みの場合は、そのページで狙っている語句で実際に検索し、表示されているか、どんな検索機能が出ているかを見る。</li>
   </ol>
-  <p class="meta">所要5分。結果をチームで共有すると、「どの段階の問題か」で会話する練習になります。</p>
+  <p class="meta">結果をチームで共有すると、「どの段階の問題か」で会話する練習になります。</p>
 </section>
 
 <section aria-labelledby="quiz-h">
-  <div class="eyebrow">確認クイズ · 4択5問</div>
-  <h2 id="quiz-h">理解度チェック</h2>
+  <div class="quiz-head">
+    <h2 id="quiz-h">チェックポイント</h2>
+    <div class="stars" id="stars" role="img" aria-label="正解数"></div>
+  </div>
+  <p class="meta">4択5問。全問正解でステージクリアです。</p>
   <div class="quiz" id="quiz"></div>
-  <div class="score" id="score" hidden>
-    <div id="score-text"></div>
-    <button type="button" class="retry" id="retry">もう一度解く</button>
+  <div class="score card pop" id="score" hidden>
+    <svg class="medal" viewBox="0 0 96 96" aria-hidden="true">
+      <path class="ribbon" stroke-width="3" d="M30 6h14l8 30H38zM52 6h14L58 36H44z"/>
+      <circle class="disc" id="medal-disc" cx="48" cy="60" r="30" stroke-width="3"/>
+      <path class="mark" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M36 60l8 8 16-16"/>
+    </svg>
+    <div class="big" id="score-big"></div>
+    <div class="meta" id="score-msg"></div>
+    <button type="button" class="retry" id="retry">もう一度挑戦する</button>
   </div>
 </section>
 
@@ -363,9 +404,9 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
   </ol>
 </section>
 
-<nav class="pager" aria-label="前後の回">
-  <a href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/"><small>← 目次</small><b>講座の目次</b></a>
-  <div class="next soon"><small>次回 · 10/9 公開</small><b>第2回 クロール</b></div>
+<nav class="pager" aria-label="前後のステージ">
+  <a href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/"><small>← もどる</small><b>ワールドマップ</b></a>
+  <div class="next soon"><small>NEXT STAGE · 10/9 公開</small><b>STAGE 2 クロール</b></div>
 </nav>
 
 </div>
@@ -389,13 +430,23 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
      o:["ページにalt属性が1つもない","コンテンツの品質が低い","サイトマップを毎日送信していない","ページがJavaScriptを使っている"],a:1,
      e:"公式ページは、検索語句との関連性が低い、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つを挙げています。",s:[5]}
   ];
-  var L=["A","B","C","D"];
-  var root=document.getElementById("quiz"),scoreBox=document.getElementById("score"),scoreText=document.getElementById("score-text");
-  var done=0,right=0;
+  var L=["A","B","C","D"],NS="http://www.w3.org/2000/svg";
+  var root=document.getElementById("quiz"),scoreBox=document.getElementById("score"),starsEl=document.getElementById("stars");
+  var done=0,right=0,starNodes=[];
+  function buildStars(){
+    starsEl.innerHTML="";starNodes=[];
+    Q.forEach(function(){
+      var svg=document.createElementNS(NS,"svg");svg.setAttribute("viewBox","0 0 24 24");
+      var p=document.createElementNS(NS,"path");p.setAttribute("class","s");p.setAttribute("stroke-width","1.6");p.setAttribute("stroke-linejoin","round");
+      p.setAttribute("d","M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z");
+      svg.appendChild(p);starsEl.appendChild(svg);starNodes.push(p);
+    });
+    starsEl.setAttribute("aria-label","正解数 0 / "+Q.length);
+  }
   function render(){
-    root.innerHTML="";done=0;right=0;scoreBox.hidden=true;
+    root.innerHTML="";done=0;right=0;scoreBox.hidden=true;buildStars();
     Q.forEach(function(item,i){
-      var card=document.createElement("div");card.className="q";
+      var card=document.createElement("div");card.className="q card";
       var t=document.createElement("div");t.className="q-title";
       var n=document.createElement("span");n.textContent="Q"+(i+1);t.appendChild(n);
       t.appendChild(document.createTextNode(item.q));card.appendChild(t);
@@ -408,21 +459,24 @@ details.deep .inner{padding:0 18px 16px;display:flex;flex-direction:column;gap:1
         btns[item.a].classList.add("correct");
         var ok=j===item.a;if(!ok)btns[j].classList.add("wrong");
         var ex=document.createElement("div");ex.className="explain";
-        var v=document.createElement("div");v.className="verdict "+(ok?"ok":"ng");v.textContent=ok?"正解":"不正解(正解は "+L[item.a]+")";
+        var v=document.createElement("div");v.className="verdict "+(ok?"ok":"ng");v.textContent=ok?"正解!スターを1つ獲得":"おしい!正解は "+L[item.a];
         var p=document.createElement("p");p.textContent=item.e;
         var c=document.createElement("p");c.className="meta";c.appendChild(document.createTextNode("根拠:"));
         item.s.forEach(function(k,idx){var a=document.createElement("a");a.href="#src-"+k;a.textContent="出典"+k;if(idx)c.appendChild(document.createTextNode("、"));c.appendChild(a)});
         ex.appendChild(v);ex.appendChild(p);ex.appendChild(c);card.appendChild(ex);
-        done++;if(ok)right++;
-        if(done===Q.length){
-          scoreText.innerHTML="スコア <b>"+right+" / "+Q.length+"</b>";
-          var m=document.createElement("div");m.className="meta";m.style.fontWeight="400";
-          m.textContent=right===Q.length?"全問正解です。":"間違えた問題の出典を読み返してから、もう一度解いてみてください。";
-          scoreText.appendChild(m);scoreBox.hidden=false;
-        }
+        done++;if(ok){starNodes[right].classList.add("got");right++;}
+        starsEl.setAttribute("aria-label","正解数 "+right+" / "+Q.length);
+        if(done===Q.length)finish();
       }
       root.appendChild(card);
     });
+  }
+  function finish(){
+    var all=right===Q.length;
+    document.getElementById("medal-disc").setAttribute("class","disc"+(all?"":" dim"));
+    document.getElementById("score-big").textContent=all?"STAGE 1 クリア!":"スター "+right+" / "+Q.length;
+    document.getElementById("score-msg").textContent=all?"全問正解です。次のステージも挑戦してみてください。":"間違えた問題の出典を読み返してから、もう一度挑戦してみてください。";
+    scoreBox.hidden=false;
   }
   document.getElementById("retry").addEventListener("click",function(){
     render();document.getElementById("quiz-h").scrollIntoView({behavior:"smooth",block:"start"});
