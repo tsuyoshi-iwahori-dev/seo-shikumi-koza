@@ -2,7 +2,8 @@
  * 本文の言葉を選択すると、Google AIモード / Claude / Google検索 を
  * 質問文入力済みの新しいタブで開くボタンを表示する。サーバー・費用不要。 */
 (function () {
-  var MAX_LEN = 40;
+  var MAX_LEN = 150;   /* これより長い選択では出さない */
+  var WORD_LEN = 20;   /* これ以下は「言葉」、超えると「文章」として聞く */
   var SKIP = 'button, input, textarea, select, .topnav, .quiz .opts, .koza-lookup, .koza-lookup-tip';
 
   var css = [
@@ -47,6 +48,15 @@
   }
 
   function links(term, ctx) {
+    if (term.length > WORD_LEN) {
+      var askLong = 'SEOを勉強中の初心者です。次の文章の意味を、Google検索のしくみの文脈で、身近な例えを使ってやさしく説明してください。\n「' + term + '」' +
+        (ctx && ctx.length > term.length + 5 ? '\n前後の文:「' + ctx + '」' : '');
+      var aiModeLong = 'SEO初心者向けに次の文章の意味をやさしく説明して:「' + term + '」';
+      return [
+        { cls: 'kl-main', ico: '✨', label: 'Google AIモードで聞く', sub: 'この文章の意味を解説', href: 'https://www.google.com/search?udm=50&q=' + q(aiModeLong) },
+        { ico: '💬', label: 'Claudeに聞く', sub: '前後の文も添えて質問', href: 'https://claude.ai/new?q=' + q(askLong) }
+      ];
+    }
     var ai = 'SEOを勉強中の初心者です。「' + term + '」とは何ですか?' +
       'Google検索のしくみ(クロール・インデックス・ランキング・表示)の文脈で、身近な例えを1つ使って、やさしく説明してください。' +
       (ctx && ctx !== term ? '\n学習中の文章:「' + ctx + '」' : '');
@@ -75,6 +85,7 @@
   function show(term, range) {
     current = term;
     box.querySelector('.kl-term').textContent = '「' + term + '」';
+    box.querySelector('.kl-label').textContent = term.length > WORD_LEN ? 'この文章を聞く' : 'しらべる';
     var ctx = contextOf(range, term);
     var wrap = box.querySelector('.kl-links');
     wrap.innerHTML = '';
