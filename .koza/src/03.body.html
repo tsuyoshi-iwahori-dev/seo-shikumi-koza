@@ -1,0 +1,121 @@
+<section class="goal card" aria-labelledby="goal-h">
+  <h2 id="goal-h">今日のミッション</h2>
+  <ul>
+    <li><span>インデックス登録で、Googleがページの何を読み取っているかを説明できる。</span></li>
+    <li><span>ページがインデックスに登録されない典型的な3つの原因を挙げられる。</span></li>
+    <li><span>noindexの2つの設定方法と、robots.txtと組み合わせたときの落とし穴を説明できる。</span></li>
+  </ul>
+</section>
+
+<section class="glossary card" aria-labelledby="glo-h">
+  <h2 id="glo-h">今日の用語ずかん</h2>
+  <dl>
+    <div class="item" id="g-indexing"><dt>インデックス登録</dt><dd>クロールしたページの内容を把握し、その情報をGoogleインデックスに保存する段階。[[1]]</dd></div>
+    <div class="item" id="g-tags"><dt>title要素・alt属性</dt><dd>titleはページのタイトル、altは画像の内容を説明する属性。インデックス登録で処理・分析される主要なタグと属性の例です。[[1]]</dd></div>
+    <div class="item" id="g-signals"><dt>シグナル</dt><dd>正規ページとそのコンテンツについてGoogleが集める情報。例は、ページの言語、配信元の国、ページの使いやすさ。[[1]]</dd></div>
+    <div class="item" id="g-noindex"><dt>noindex</dt><dd>ページをGoogle検索に表示させないための指示。metaタグかHTTPレスポンスヘッダーで設定します。[[2]]</dd></div>
+    <div class="item" id="g-xrobots"><dt>X-Robots-Tag</dt><dd>noindexなどの指示をHTTPレスポンスヘッダーで伝える方法。PDF・動画・画像などHTML以外にも使えます。[[2]]</dd></div>
+    <div class="item" id="g-inspect"><dt>URL検査ツール</dt><dd>Search Consoleの機能。Googlebotが取得したHTMLを確認したり、再クロールをリクエストしたりできます。[[2]]</dd></div>
+  </dl>
+</section>
+
+<!--ROUTE-->
+
+<!-- Topic 1 -->
+<section class="topic" aria-labelledby="t1">
+  <div class="topic-head"><span class="num">01</span><h2 id="t1">インデックス登録でGoogleが読み取るもの</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-what">クロールの後、Googleはページの内容を把握しようとします。この段階が<a class="term" href="#g-indexing">インデックス登録</a>で、テキストの内容に加えて、<a class="term" href="#g-tags">&lt;title&gt;要素やalt属性</a>などの主要なタグと属性、画像、動画を処理・分析します。[[1]]</p>
+    <p id="a-signals">Googleは正規ページとそのコンテンツについての<a class="term" href="#g-signals">シグナル</a>も集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。集めた情報は、何千台ものコンピュータ上にある大規模なデータベース、Googleインデックスに保存されます。[[1]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>titleやaltは、Googleが内容を理解するための材料として公式に名前が挙がっている要素です。「全ページのtitleが同じ」「画像のaltが空」という状態は、理解の材料を減らしていると説明できます。titleの書き方そのものは、第13回で詳しく扱います。</p>
+  </div>
+</section>
+
+<!-- Topic 2 -->
+<section class="topic" aria-labelledby="t2">
+  <div class="topic-head"><span class="num">02</span><h2 id="t2">インデックスに登録されない3つの原因</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p>インデックス登録は保証されておらず、Googleが処理したページがすべて登録されるとは限りません。登録されるかどうかは、ページのコンテンツとメタデータにも左右されます。典型的な原因として、次の3つが挙げられています。[[1]]</p>
+    <ul class="steps" id="a-notindexed">
+      <li>ページのコンテンツの品質が低い</li>
+      <li>robots metaルールによって、インデックス登録が禁止されている</li>
+      <li>ウェブサイトのデザインが原因で、インデックス登録が難しくなっている</li>
+    </ul>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>Search Consoleで「登録されていない」ページを見たら、この3つに仕分けると整理しやすくなります。2つ目はタグを確認すれば白黒がつき、3つ目はJavaScriptでの表示など作りの問題(第2回)、1つ目は内容の見直しが必要、と打ち手も分かれます。</p>
+  </div>
+</section>
+
+<!-- Topic 3 -->
+<section class="topic" aria-labelledby="t3">
+  <div class="topic-head"><span class="num">03</span><h2 id="t3">noindex:検索結果に出さないための指示</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-noindex"><a class="term" href="#g-noindex">noindex</a>は、ページをGoogle検索に表示させないための指示です。Googlebotがこの指示を見つけると、他のサイトからリンクされているかどうかに関係なく、そのページを検索結果から外します。設定方法は次の2つです。[[2]]</p>
+    <ul class="steps" id="a-noindex-ways">
+      <li><b>metaタグ</b>:ページの&lt;head&gt;内にrobotsのmetaタグを入れます。Googleのクローラーだけを対象にする場合は、nameに「googlebot」を指定します。</li>
+      <li><b>HTTPレスポンスヘッダー</b>:<a class="term" href="#g-xrobots">X-Robots-Tag</a>にnoindexを指定します。PDF、動画、画像など、HTML以外のファイルにも使えます。</li>
+    </ul>
+    <p>WordPressなどのCMSでは、HTMLを直接編集しなくても、検索設定などの画面から指定できる場合があります。[[2]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>問い合わせ完了ページや社内向けページなど、検索結果に出す必要のないページを整理するときの基本の道具です。PDFを検索結果から外したい場合は、metaタグを書けないので、サーバー側でX-Robots-Tagを設定する、と覚えておくと指示書が書きやすくなります。</p>
+  </div>
+</section>
+
+<!-- Topic 4 -->
+<section class="topic" aria-labelledby="t4">
+  <div class="topic-head"><span class="num">04</span><h2 id="t4">noindexが効かない落とし穴</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-robots-trap">noindexを機能させるには、robots.txtでページをブロックせず、クローラーがアクセスできる状態にしておく必要があります。robots.txtでブロックされているとnoindexが読み取られず、他のページからリンクされていれば、検索結果に表示され続けることがあります。なお、robots.txtにnoindexを書く方法は、Googleではサポートされていません。[[2]]</p>
+    <p id="a-recrawl">noindexは、Googleがページを再クロールしてタグを読むまで反映されません。ページの重要度によっては数か月かかることもあり、<a class="term" href="#g-inspect">URL検査ツール</a>で再クロールをリクエストできます。[[2]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>「noindexを付けて、さらにrobots.txtでもブロック」は丁寧に見えて逆効果です。検索結果から外したいページは、robots.txtではブロックせず、noindexを読める状態に保ちます。第2回の「robots.txtは表示を止める道具ではない」とセットで覚えましょう。</p>
+  </div>
+  <details class="deep">
+    <summary>深掘り:noindexとJavaScript、反映の確かめ方</summary>
+    <div class="inner">
+      <div class="block official">
+        <span class="tag official">公式の説明</span>
+        <p>JavaScriptでrobotsのmetaタグを追加・変更することもできますが、Googleはnoindexを見つけるとレンダリングやJavaScriptの実行を省略することがあります。そのため、元のHTMLにnoindexを入れておき、JavaScriptで消す方法は期待どおりに動かない可能性があります。インデックスさせたいページでは、元のHTMLでnoindexを使わないことが大切です。[[3]]</p>
+        <p>反映を確かめるには、URL検査ツールで、Googlebotが取得したHTMLにnoindexが含まれているかを確認できます。また、Search Consoleの「ページのインデックス登録」レポートで、noindexが検出されたページを確認できます。検索結果からすぐに消す必要がある場合は、削除に関する別のドキュメントが案内されています。[[2]]</p>
+      </div>
+      <div class="block practice">
+        <span class="tag practice">攻略メモ</span>
+        <p>サイトリニューアルのとき、公開前のテスト環境で付けていたnoindexが本番に残ってしまう事故はよくあります。公開直後に「ページのインデックス登録」レポートでnoindexの件数を確認する習慣をつけると、早く気づけます。</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<section class="summary card" aria-labelledby="sum-h">
+  <h2 id="sum-h">今日のおさらい(3行まとめ)</h2>
+  <ol>
+    <li><span>インデックス登録では、テキストやtitle・altなどのタグ、画像・動画が処理され、言語や配信国などのシグナルも集められる。</span></li>
+    <li><span>登録は保証されず、典型的な原因は「品質が低い」「robots metaルールで禁止」「サイトのデザインで登録が難しい」の3つ。</span></li>
+    <li><span>noindexはmetaタグかX-Robots-Tagで設定する。robots.txtでブロックするとnoindexが読まれず、効かない。</span></li>
+  </ol>
+</section>
+
+<section class="try" aria-labelledby="try-h">
+  <span class="tag practice">現場ミッション · 5分</span>
+  <h2 id="try-h">担当サイトの「登録されていないページ」を仕分ける</h2>
+  <ol>
+    <li>Search Consoleの「ページのインデックス登録」レポートを開き、ページが登録されていない理由の一覧を見る。</li>
+    <li>件数が多い理由を1つ選び、例として表示されているURLを2〜3件開く。</li>
+    <li>それぞれが今日の3つの原因(品質/robots metaルール/サイトのデザイン)のどれに近いかを考える。</li>
+    <li>noindexが理由のページは、本当に検索結果に不要なページかどうかを確認する。</li>
+  </ol>
+  <p class="meta">意図しないnoindexが見つかったら、それだけで大きな改善につながることがあります。</p>
+</section>

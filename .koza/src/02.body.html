@@ -1,0 +1,148 @@
+<section class="goal card" aria-labelledby="goal-h">
+  <h2 id="goal-h">今日のミッション</h2>
+  <ul>
+    <li><span>Googleが新しいページを見つける2つの方法と、サイトマップが役立つケースを説明できる。</span></li>
+    <li><span>robots.txtで「できること」と「できないこと」を説明できる。</span></li>
+    <li><span>JavaScriptを使うページが、取得されてから登録されるまでの3段階を説明できる。</span></li>
+  </ul>
+</section>
+
+<section class="glossary card" aria-labelledby="glo-h">
+  <h2 id="glo-h">今日の用語ずかん</h2>
+  <dl>
+    <div class="item" id="g-discovery"><dt>URL検出</dt><dd>Googleが新しいページや更新されたページを見つけ、既知のページのリストに加えること。[[1]]</dd></div>
+    <div class="item" id="g-sitemap"><dt>サイトマップ</dt><dd>サイト上のページや動画などのファイルと、その関係を検索エンジンに伝えるファイル。[[2]]</dd></div>
+    <div class="item" id="g-robots"><dt>robots.txt</dt><dd>クローラーに、サイト内のどのURLにアクセスしてよいかを伝えるファイル。主な目的はサーバーの過負荷を避けること。[[3]]</dd></div>
+    <div class="item" id="g-noindex"><dt>noindex</dt><dd>ページを検索結果に表示させないための指定。metaタグかHTTPレスポンスヘッダーで設定します(第3回で詳しく)。[[3]]</dd></div>
+    <div class="item" id="g-rendering"><dt>レンダリング</dt><dd>ページを表示処理すること。GoogleはヘッドレスのChromiumでJavaScriptを実行します。[[4]]</dd></div>
+    <div class="item" id="g-status"><dt>HTTPステータスコード</dt><dd>サーバーがページの状態を伝える番号(200=正常、404=見つからない など)。Googlebotはこれでページの問題を判断します。[[4]]</dd></div>
+  </dl>
+</section>
+
+<!--ROUTE-->
+
+<!-- Topic 1 -->
+<section class="topic" aria-labelledby="t1">
+  <div class="topic-head"><span class="num">01</span><h2 id="t1">新しいページの見つけ方</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-discovery">すべてのウェブページを登録したデータベースは存在しないため、Googleは新しいページや更新されたページを常に探し、既知のページのリストに加えています。これを<a class="term" href="#g-discovery">URL検出</a>と呼びます。新しいページの多くは、すでに知っているページからのリンクをたどって見つかります(例:カテゴリページから新しいブログ記事へのリンク)。もう1つの方法が、サイト所有者が送るページのリスト、つまり<a class="term" href="#g-sitemap">サイトマップ</a>です。[[1]]</p>
+    <p id="a-pace">見つけたページを取りに行くのはGooglebotです。どのサイトを、どのくらいの頻度で、何ページ取得するかはアルゴリズムで決まります。サイトに負担をかけすぎないよう、サイトの応答を見て速度を調整しており、たとえばHTTP 500エラーは「速度を落とす」合図として扱われます。[[1]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>「新しいページがなかなか見つけてもらえない」という相談では、まず既存のページからリンクされているかを確認します。カテゴリページや一覧ページなど、普段からよくクロールされるページに新規ページへのリンクを置くのは、この仕組みに沿った対策です。</p>
+  </div>
+</section>
+
+<!-- Topic 2 -->
+<section class="topic" aria-labelledby="t2">
+  <div class="topic-head"><span class="num">02</span><h2 id="t2">サイトマップが役立つケース</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p>ページ同士が適切にリンクされていれば、Googleは通常、ほとんどのページを見つけられます。それでも、規模が大きいサイトや複雑なサイトでは、サイトマップがクロールの助けになります。WordPressなどのCMSでは、最初からサイトマップが用意されていることも多く、その場合は追加の作業は不要です。[[2]]</p>
+    <ul class="steps" id="a-sitemap-cases">
+      <li><b>必要になることがあるケース</b>:サイトの規模が大きい/サイトが新しく、外部からのリンクが少ない/動画や画像などのリッチメディアが多い、またはGoogleニュースに掲載されている</li>
+      <li><b>不要な可能性があるケース</b>:サイトの規模が小さい(検索結果に出す必要のあるページがおおむね500ページ以下)/ホームページからのリンクで重要なページすべてにたどり着ける/検索結果に出したい動画・画像・ニュースが多くない</li>
+    </ul>
+    <p id="a-sitemap-guarantee">サイトマップでURLは見つかりやすくなりますが、載せたすべての項目がクロールされ、インデックスに登録されることが保証されるわけではありません。ただし、ほとんどの場合は送って損はないとされています。[[2]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>「サイトマップを送れば検索に載る」という誤解はよくあります。サイトマップは見つけてもらうための道具で、登録の約束ではない、と伝えましょう。CMSを使っているサイトなら、新しく作る前に、すでに自動で出力されていないかを確認するのが早道です。</p>
+  </div>
+  <details class="deep">
+    <summary>深掘り:サイトマップで伝えられる追加情報</summary>
+    <div class="inner">
+      <div class="block official">
+        <span class="tag official">公式の説明</span>
+        <p>サイトマップでは、ページの最終更新日や代替言語のページなどの情報も伝えられます。動画は再生時間・評価・年齢制限、画像はページ内での位置、ニュースは記事のタイトルと公開日を含められます。[[2]]</p>
+      </div>
+      <div class="block practice">
+        <span class="tag practice">攻略メモ</span>
+        <p>多言語サイトや動画・ニュースの多いサイトでは、URLの一覧以上の役割を持たせられます。サイトマップの中身を確認するときは、最終更新日が実際の更新と合っているかも見ておくと安心です。</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- Topic 3 -->
+<section class="topic" aria-labelledby="t3">
+  <div class="topic-head"><span class="num">03</span><h2 id="t3">robots.txt:クロールの交通整理</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-robots-purpose"><a class="term" href="#g-robots">robots.txt</a>は、クローラーにサイト内のどのURLへアクセスしてよいかを伝えるファイルで、主な目的はサーバーへのリクエストの過負荷を避けることです。ページをGoogleの検索結果に出さないための仕組みではありません。検索結果に出さないためには、<a class="term" href="#g-noindex">noindex</a>を使うか、パスワードで保護する必要があります。[[3]]</p>
+    <p id="a-robots-indexed">robots.txtでブロックしたページでも、他のページからリンクされていればURLが見つかり、クロールされないまま検索結果にURLだけが表示されることがあります(説明文は表示されません)。[[3]]</p>
+    <p>また、robots.txtの指示に従うかどうかはクローラー次第です。Googlebotなどの信頼できるクローラーは従いますが、すべてのクローラーが従う保証はなく、解釈もクローラーによって異なることがあります。機密情報は、パスワード保護など別の方法で守ることが勧められています。[[3]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>「robots.txtでブロックしたのに検索結果に出ている」は定番の相談です。答えは「robots.txtは表示を止める道具ではない」。検索結果から外したいならnoindexを使います。ただし、noindexを付けたページをrobots.txtでもブロックすると、Googleがnoindexを読めなくなるので注意が必要です(第3回で詳しく扱います)。</p>
+  </div>
+  <details class="deep">
+    <summary>深掘り:ファイルの種類ごとの影響</summary>
+    <div class="inner">
+      <div class="block official">
+        <span class="tag official">公式の説明</span>
+        <p>ウェブページ(HTMLやPDFなど)では、Googleのリクエストでサーバーが過負荷になっているときにクロール量を抑えたり、重要でないページや似たページのクロールを防いだりするのに使えます。画像・動画・音声などのメディアファイルでは、検索結果に表示させない目的にも使えます。画像・スクリプト・スタイルなどのリソースファイルは、なくてもページに大きな支障がなければブロックできますが、必要なものをブロックするとクローラーがページを正しく理解できなくなることがあります。[[3]]</p>
+      </div>
+      <div class="block practice">
+        <span class="tag practice">攻略メモ</span>
+        <p>CSSやJavaScriptのフォルダを丸ごとブロックしているサイトは今もあります。第1回で学んだ「Googleとユーザーで見え方を同じにする」ためにも、ページの表示に必要なリソースがブロックされていないかを確認しましょう。</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- Topic 4 -->
+<section class="topic" aria-labelledby="t4">
+  <div class="topic-head"><span class="num">04</span><h2 id="t4">JavaScriptのページはどう処理されるか</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p>Googleは、JavaScriptを使うページを次の3段階で処理します。[[4]]</p>
+    <ol class="steps" id="a-js-steps">
+      <li><b>クロール</b>:robots.txtを確認し、許可されたURLにだけリクエストを送ります。ブロックされたページではJavaScriptも実行されません。HTML内のリンク(href)は次のクロール候補になります。</li>
+      <li><b>レンダリング</b>:ステータスコード200で返ったページは、noindexで禁止されていなければレンダリングの順番待ち(キュー)に入ります。待ち時間は数秒以上になることがあります。その後、ヘッドレスのChromiumがJavaScriptを実行します。</li>
+      <li><b>インデックス登録</b>:<a class="term" href="#g-rendering">レンダリング</a>後のHTMLをもとにページを登録し、そこに含まれるリンクを再びクロールの候補に加えます。</li>
+    </ol>
+    <p>JavaScriptで表示するサイトでは、最初のHTMLに本文が入っていないことがあるため、レンダリングが必要になります。ユーザーにもクローラーにも速く確実に表示されるよう、サーバー側でのレンダリング(プリレンダリング)も検討するよう勧められています。[[4]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>本文や内部リンクをJavaScriptで後から表示するサイトでは、レンダリングの順番待ちがある分、反映に時間がかかる可能性があります。重要な本文とリンクが最初のHTML(ページのソース)に入っているかを、Search ConsoleのURL検査で見られるレンダリング後のHTMLと見比べて確認しましょう。</p>
+  </div>
+  <details class="deep">
+    <summary>深掘り:ステータスコードとnoindexの注意点</summary>
+    <div class="inner">
+      <div class="block official">
+        <span class="tag official">公式の説明</span>
+        <p>Googlebotは<a class="term" href="#g-status">HTTPステータスコード</a>でページの問題を判断します。クロールや登録をさせたくないページには、404(見つからない)や401(認証が必要)などの適切なコードを返します。また、Googleはnoindexを見つけるとレンダリングやJavaScriptの実行を省略することがあるため、JavaScriptでnoindexを消しても期待どおりに動かない可能性があります。登録させたいページでは、元のHTMLでnoindexを使わないことが大切です。[[4]]</p>
+      </div>
+      <div class="block practice">
+        <span class="tag practice">攻略メモ</span>
+        <p>JavaScriptで作られたサイトでは、存在しない商品ページが「200(正常)」を返してしまうことがあります。こうしたページは、404相当のページへのリダイレクトやnoindexで扱うよう公式にも示されています。開発会社への指示書では、ステータスコードまで指定しておくと手戻りが減ります。</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<section class="summary card" aria-labelledby="sum-h">
+  <h2 id="sum-h">今日のおさらい(3行まとめ)</h2>
+  <ol>
+    <li><span>Googleは既知のページからのリンクとサイトマップで新しいページを見つけ、サイトの応答を見ながら速度を調整して取得する。サイトマップは登録を保証しない。</span></li>
+    <li><span>robots.txtはクロールの交通整理で、検索結果から隠す道具ではない。ブロックしたURLでも、リンクされていれば検索結果に出ることがある。</span></li>
+    <li><span>JavaScriptを使うページは「クロール → レンダリング → インデックス登録」の順に処理され、レンダリングには順番待ちがある。</span></li>
+  </ol>
+</section>
+
+<section class="try" aria-labelledby="try-h">
+  <span class="tag practice">現場ミッション · 5分</span>
+  <h2 id="try-h">担当サイトのrobots.txtとサイトマップを確かめる</h2>
+  <ol>
+    <li>ブラウザで「https://(担当サイトのドメイン)/robots.txt」を開き、Disallowで何がブロックされているかを見る。</li>
+    <li>検索結果に出したいページや、ページの表示に必要なCSS・JavaScriptがブロックされていないかを確認する。</li>
+    <li>robots.txtの「Sitemap:」の行、またはSearch Consoleの「サイトマップ」の画面で、サイトマップが送信されているかを確認する。</li>
+    <li>最近公開したページが、サイトマップか既存ページからのリンクのどちらかに含まれているかを確かめる。</li>
+  </ol>
+  <p class="meta">気になる設定を見つけたら、どの段階(発見・取得・レンダリング)の問題かをメモしておくと、チームへの共有がスムーズです。</p>
+</section>

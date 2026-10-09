@@ -1,0 +1,163 @@
+<section class="goal card" aria-labelledby="goal-h">
+  <h2 id="goal-h">今日のミッション</h2>
+  <ul>
+    <li><span>重複コンテンツが生まれる理由と、Googleが正規URLを選ぶ流れを説明できる。</span></li>
+    <li><span>正規URLを伝える3つの方法と、シグナルの強さの違いを説明できる。</span></li>
+    <li><span>永続的リダイレクトと一時的リダイレクトで、検索結果に出るURLがどう変わるかを説明できる。</span></li>
+  </ul>
+</section>
+
+<section class="glossary card" aria-labelledby="glo-h">
+  <h2 id="glo-h">今日の用語ずかん</h2>
+  <dl>
+    <div class="item" id="g-canonicalization"><dt>正規化</dt><dd>重複するページの中から、代表のURL(正規URL)を選ぶこと。重複除去とも呼ばれます。[[1]]</dd></div>
+    <div class="item" id="g-canonical-url"><dt>正規URL</dt><dd>重複するページのうち、Googleが最も代表的だと判断したページのURL。通常は検索結果に表示されます。[[1]]</dd></div>
+    <div class="item" id="g-relcanonical"><dt>rel="canonical"</dt><dd>正規URLを伝えるための指定。HTMLのlink要素か、HTTPヘッダーで書きます。強いシグナルです。[[2]]</dd></div>
+    <div class="item" id="g-301"><dt>301・308リダイレクト</dt><dd>ページが別の場所へ完全に移ったことを示す、サーバー側の永続的なリダイレクト。[[3]]</dd></div>
+    <div class="item" id="g-302"><dt>302・303・307リダイレクト</dt><dd>サーバー側の一時的なリダイレクト。検索結果にはリダイレクト元のURLが残りやすくなります。[[3]]</dd></div>
+    <div class="item" id="g-hreflang"><dt>hreflang</dt><dd>言語や地域ごとのページの対応を伝える指定。同じ言語で地域だけが違うページでは、正規化との併用が勧められています。[[1]]</dd></div>
+  </dl>
+</section>
+
+<!--ROUTE-->
+
+<!-- Topic 1 -->
+<section class="topic" aria-labelledby="t1">
+  <div class="topic-head"><span class="num">01</span><h2 id="t1">重複コンテンツはなぜ生まれるか</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p>同じ内容のページが複数のURLで存在する理由として、次の5つが挙げられています。[[1]]</p>
+    <ul class="steps" id="a-dup-causes">
+      <li><b>地域の違い</b>:米国向けと英国向けのURLがあっても、同じ言語・同じ内容の場合</li>
+      <li><b>デバイスの違い</b>:1つのページにモバイル版とパソコン版がある場合</li>
+      <li><b>プロトコルの違い</b>:HTTP版とHTTPS版の両方がある場合</li>
+      <li><b>サイトの機能</b>:カテゴリページの並べ替えや絞り込みで、ほぼ同じ結果のページができる場合</li>
+      <li><b>意図しないバリエーション</b>:クローラーがアクセスできるデモ版サイトが残っている場合など</li>
+    </ul>
+    <p id="a-not-spam">サイト上で重複コンテンツが生じるのは通常のことで、Googleのスパムポリシー違反ではありません。ただし、同じ内容に多くのURLでアクセスできる状態は、ユーザーがどれが正しいページか迷いやすく、検索でのパフォーマンスも追跡しにくくなります。[[1]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>「重複コンテンツはペナルティになる」と心配するクライアントには、公式に「違反ではない」と書かれていることを伝えられます。問題は罰ではなく、評価やデータが複数のURLに分かれて管理しにくくなる点だと整理しましょう。</p>
+  </div>
+</section>
+
+<!-- Topic 2 -->
+<section class="topic" aria-labelledby="t2">
+  <div class="topic-head"><span class="num">02</span><h2 id="t2">Googleが正規URLを選ぶ流れ</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-choose">インデックス登録の際、Googleは各ページの主要なコンテンツを特定し、内容が同じかよく似たページをグループにまとめます。そのうえで、集めたシグナルをもとに、最も完成度が高く有用なページを正規ページとして選びます。正規ページは最も頻繁にクロールされ、重複ページはクロールの頻度が下がります。[[1]]</p>
+    <p id="a-hint"><a class="term" href="#g-canonicalization">正規化</a>には、HTTPとHTTPSのどちらで配信しているか、リダイレクト、サイトマップに含まれているか、<a class="term" href="#g-relcanonical">rel="canonical"</a>などが影響します。これらで希望を伝えることはできますが、Googleが別の理由で別のページを正規として選ぶこともあります。[[1]]</p>
+    <p>通常は<a class="term" href="#g-canonical-url">正規URL</a>のページが検索結果に表示されますが、たとえばスマートフォンでの検索では、パソコン用のページが正規でもモバイル版が表示されることがあります。[[1]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>canonicalは「命令」ではなく「希望」です。Search ConsoleのURL検査で「ユーザーが指定した正規URL」と「Googleが選択した正規URL」がずれていたら、リダイレクト、内部リンク、サイトマップなど、ほかのシグナルが食い違っていないかを疑いましょう。</p>
+  </div>
+</section>
+
+<!-- Topic 3 -->
+<section class="topic" aria-labelledby="t3">
+  <div class="topic-head"><span class="num">03</span><h2 id="t3">正規URLを伝える3つの方法</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-methods">正規URLを伝える方法は、効果の強い順に、リダイレクト、rel="canonical"、サイトマップです。リダイレクトとrel="canonical"は強いシグナル、サイトマップは弱いシグナルです。2つ以上を組み合わせると希望の正規URLが選ばれる可能性が高まりますが、どの方法も必須ではありません。[[2]]</p>
+    <ul class="steps">
+      <li><b>リダイレクト</b>:強いシグナル。重複ページを廃止するときだけ使います。</li>
+      <li><b>rel="canonical"</b>:強いシグナル。重複ページの数に関係なく指定できます。HTMLにはlink要素を、PDFなどHTML以外にはHTTPヘッダーを使います。</li>
+      <li><b>サイトマップ</b>:弱いシグナル。大規模なサイトでも指定・維持しやすい一方、重複ページの特定はGoogle側が行います。</li>
+    </ul>
+    <p id="a-why">正規URLを指定する理由として、検索結果に表示させたいURLを選べる、重複URLに分かれた被リンクなどのシグナルを1つにまとめられる、指標を集計しやすくなる、重複ページのクロールを減らせる、の4つが挙げられています。[[2]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>広告用のパラメータ付きURLや並べ替えのURLが大量にあるECサイトでは、まずcanonicalで正規URLを示し、不要になった古いURLはリダイレクトで廃止する、という使い分けが基本です。</p>
+  </div>
+  <details class="deep">
+    <summary>深掘り:HTTPSとhreflangも正規化のシグナルになる</summary>
+    <div class="inner">
+      <div class="block official">
+        <span class="tag official">公式の説明</span>
+        <p>Googleは、同等のHTTPページよりHTTPSページを正規として優先します。ただし、HTTPSページの証明書が無効な場合、HTTPSからHTTPへリダイレクトしている場合、HTTPSページがHTTPページをcanonicalに指定している場合などは例外です。また、<a class="term" href="#g-hreflang">hreflang</a>で相互にリンクしたローカライズ版のページ同士では、そのグループ内のURLが正規化で優先されます。[[2]]</p>
+      </div>
+      <div class="block practice">
+        <span class="tag practice">攻略メモ</span>
+        <p>HTTPS化したのにHTTPのURLが選ばれているときは、サイトマップやhreflangにHTTPのURLが残っていないかを確認します。シグナルはすべて同じURLを指すように揃えるのが原則です。</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- Topic 4 -->
+<section class="topic" aria-labelledby="t4">
+  <div class="topic-head"><span class="num">04</span><h2 id="t4">避けるべき正規化のやり方</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p>正規化のベストプラクティスとして、次のことは避けるよう示されています。[[2]]</p>
+    <ul class="steps" id="a-dont">
+      <li>robots.txtを正規化に使う(ブロックしたURLが、内容なしでインデックスに登録されることがあります)</li>
+      <li>URL削除ツールを正規化に使う(すべてのバージョンが検索結果から消えます)</li>
+      <li>方法ごとに別々のURLを正規として指定する(例:サイトマップとcanonicalで違うURL)</li>
+      <li>URLのフラグメント(#以降)を正規URLにする</li>
+      <li>正規の選択を妨げる目的でnoindexを使う(ページが検索結果から完全に除外されます)</li>
+    </ul>
+    <p id="a-self">正規ページ自身にも自己参照のrel="canonical"を入れ、サイト内のリンクは重複URLではなく正規URLに向けることが勧められています。canonicalのURLは、相対パスではなく絶対パスで書きます。[[2]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>このリストは、修正指示書のチェック項目にそのまま使えます。特に「canonicalは正規URLなのに、サイトマップや内部リンクは別のURL」という食い違いは、サイトリニューアル後によく起こります。</p>
+  </div>
+</section>
+
+<!-- Topic 5 -->
+<section class="topic" aria-labelledby="t5">
+  <div class="topic-head"><span class="num">05</span><h2 id="t5">リダイレクト:永続的と一時的</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-redirect">Googleはリダイレクトの種類を、リダイレクト先が正規版かどうかを判断するシグナルとして使います。永続的なリダイレクトでは検索結果にリダイレクト先が表示され、一時的なリダイレクトではリダイレクト元が表示されます。[[3]]</p>
+    <ul class="steps">
+      <li><b>永続的</b>:サーバー側の<a class="term" href="#g-301">301・308</a>、0秒のmeta refresh など。元に戻す予定がない場合に使います。</li>
+      <li><b>一時的</b>:サーバー側の<a class="term" href="#g-302">302・303・307</a>、0秒を超えるmeta refresh など。</li>
+    </ul>
+    <p>検索結果に表示されるURLを変えたいときは、可能な限りサーバー側の永続的リダイレクトが推奨されています。JavaScriptによるリダイレクトは、レンダリングに失敗するとGoogleが認識できない可能性があるため、サーバー側やmeta refreshが使えない場合に限って使います。[[3]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>URL変更やサイト移転で302が使われていると、検索結果に古いURLが残りやすくなります。移転の相談を受けたら、まず旧URLのステータスコードが301か308になっているかを確認しましょう。</p>
+  </div>
+  <details class="deep">
+    <summary>深掘り:移転後も古いURLが表示されるのはなぜか</summary>
+    <div class="inner">
+      <div class="block official">
+        <span class="tag official">公式の説明</span>
+        <p>Googleはリダイレクト元とリダイレクト先の両方を記録し、一方を正規URL、もう一方を代替名として扱います。検索語句によっては、古いURLが代替名として検索結果に表示されることがあります。ドメインを移転した後に古いドメインが表示され続けるのは通常の挙動で、ユーザーが新しいドメインに慣れるにつれて、自然に表示されなくなるとされています。[[3]]</p>
+      </div>
+      <div class="block practice">
+        <span class="tag practice">攻略メモ</span>
+        <p>移転直後の「まだ古いURLが出ている」という問い合わせには、この説明が使えます。リダイレクトが301で正しく設定されていれば、慌てて追加の対応をする必要はありません。</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<section class="summary card" aria-labelledby="sum-h">
+  <h2 id="sum-h">今日のおさらい(3行まとめ)</h2>
+  <ol>
+    <li><span>重複コンテンツはHTTP/HTTPSや並べ替え機能などで自然に生まれ、スパムポリシー違反ではない。Googleは似たページをまとめて正規URLを選ぶ。</span></li>
+    <li><span>正規URLを伝える方法は、リダイレクトとrel="canonical"(強い)、サイトマップ(弱い)。指定は希望なので、すべての方法が同じURLを指すよう揃える。</span></li>
+    <li><span>永続的リダイレクト(301・308)では検索結果にリダイレクト先が、一時的リダイレクト(302・303・307)ではリダイレクト元が表示される。</span></li>
+  </ol>
+</section>
+
+<section class="try" aria-labelledby="try-h">
+  <span class="tag practice">現場ミッション · 5分</span>
+  <h2 id="try-h">担当サイトの正規URLのずれを探す</h2>
+  <ol>
+    <li>Search ConsoleのURL検査で、担当サイトの重要なページ(カテゴリページなど)を1つ調べる。</li>
+    <li>「ユーザーが指定した正規URL」と「Googleが選択した正規URL」が一致しているかを見る。</li>
+    <li>ずれていたら、そのページのcanonical、内部リンクの向き先、サイトマップに載っているURLが同じかを確認する。</li>
+    <li>「http://」で始まるURLや末尾のスラッシュ違いなど、同じページの別URLを開き、正規URLへリダイレクトされるかを確かめる。</li>
+  </ol>
+  <p class="meta">ステータスコードは、ブラウザの開発者ツールの「ネットワーク」タブなどで確認できます。</p>
+</section>

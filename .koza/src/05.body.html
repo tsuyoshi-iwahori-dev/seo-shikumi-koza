@@ -1,0 +1,123 @@
+<section class="goal card" aria-labelledby="goal-h">
+  <h2 id="goal-h">今日のミッション</h2>
+  <ul>
+    <li><span>Googleが検索結果を返すときの基準と、関連性を左右する要素を説明できる。</span></li>
+    <li><span>検索語句によって表示される結果の種類が変わることを、例を挙げて説明できる。</span></li>
+    <li><span>テキスト検索結果を構成する主な要素の名前と役割を言える。</span></li>
+  </ul>
+</section>
+
+<section class="glossary card" aria-labelledby="glo-h">
+  <h2 id="glo-h">今日の用語ずかん</h2>
+  <dl>
+    <div class="item" id="g-relevance"><dt>関連性</dt><dd>検索語句に対するページの合い具合。ユーザーの所在地・言語・デバイスなど、多くの要素で決まります。[[1]]</dd></div>
+    <div class="item" id="g-visual"><dt>視覚要素</dt><dd>検索結果ページで見たり操作したりできる構成要素。デバイス・国・検索言語などで表示が変わります。[[2]]</dd></div>
+    <div class="item" id="g-attribution"><dt>アトリビューション</dt><dd>検索結果の情報源を示す部分。ファビコン、サイト名、表示URL(ドメインとパンくずリスト)で構成されます。[[2]]</dd></div>
+    <div class="item" id="g-titlelink"><dt>タイトルリンク</dt><dd>検索結果の見出しとして表示されるリンク。[[2]]</dd></div>
+    <div class="item" id="g-snippet"><dt>スニペット</dt><dd>検索結果に表示される、ページの説明文や概要。[[2]]</dd></div>
+    <div class="item" id="g-rich"><dt>リッチリザルト</dt><dd>主に構造化データに基づき、グラフィックや対話的な要素を表示する検索結果。[[2]]</dd></div>
+  </dl>
+</section>
+
+<!--ROUTE-->
+
+<!-- Topic 1 -->
+<section class="topic" aria-labelledby="t1">
+  <div class="topic-head"><span class="num">01</span><h2 id="t1">検索結果を返すときの基準</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-serve">ユーザーが検索語句を入力すると、Googleはインデックスから一致するページを探し、関連性が高く高品質であると判断した結果を返します。ランキングはプログラムによって決まり、Googleは掲載順位を上げるために金銭を受け取りません。[[1]]</p>
+    <p id="a-relevance"><a class="term" href="#g-relevance">関連性</a>は数多くの要素で決まり、ユーザーの所在地、言語、デバイス(パソコンかスマートフォンか)などの情報も含まれます。たとえば「自転車修理店」と検索した場合、パリのユーザーと香港のユーザーでは異なる結果が表示されます。[[1]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>順位は「誰にとっても同じ1つの答え」ではなく、検索した人の条件で変わります。順位レポートを説明するときは、計測した地域とデバイスの条件を添えると、「自分の画面と順位が違う」という誤解を防げます。</p>
+  </div>
+</section>
+
+<!-- Topic 2 -->
+<section class="topic" aria-labelledby="t2">
+  <div class="topic-head"><span class="num">02</span><h2 id="t2">検索語句で変わる「結果の種類」</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p id="a-features">検索語句によって、検索結果ページに表示される機能も変わります。「自転車修理店」と検索するとローカル検索結果が表示されやすく画像検索結果は表示されにくい一方、「最新の自転車」と検索するとローカル検索結果は表示されず、画像検索結果が表示されやすい、と説明されています。[[1]]</p>
+    <p id="a-types">検索結果の主な種類として、テキスト検索結果、<a class="term" href="#g-rich">リッチリザルト</a>、画像検索結果、動画検索結果、探索機能(関連する検索や関連する質問など)が挙げられています。<a class="term" href="#g-visual">視覚要素</a>の表示はデバイス、国、検索言語などによって変わり、外観も時間とともに変わることがあります。[[2]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>狙うキーワードを決めるときは、その語句で実際にどんな枠(ローカル、画像、動画、関連する質問など)が出ているかを見ておきましょう。テキストの順位だけでは、その語句での見え方を説明しきれません。</p>
+  </div>
+</section>
+
+<!-- Topic 3 -->
+<section class="topic" aria-labelledby="t3">
+  <div class="topic-head"><span class="num">03</span><h2 id="t3">テキスト検索結果のパーツ</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p>ページのテキストに基づく検索結果は、主に次の要素で構成されています。[[2]]</p>
+    <ul class="steps" id="a-parts">
+      <li><b><a class="term" href="#g-attribution">アトリビューション</a></b>:情報源を示す部分。ファビコン、サイト名、表示URL(ドメインとパンくずリスト)で構成されます。サイト名とパンくずリストは構造化データで指定できます。</li>
+      <li><b><a class="term" href="#g-titlelink">タイトルリンク</a></b>:検索結果の見出しになるリンク。</li>
+      <li><b><a class="term" href="#g-snippet">スニペット</a></b>:説明文や概要。</li>
+      <li><b>署名日</b>:Googleが、ページの公開日または更新日と推定した日付。</li>
+      <li><b>サイトリンク</b>:同じサイトから2つ以上のリンクがまとめて表示されるもの。自動で生成されます。</li>
+    </ul>
+    <p>これらがすべて同時に表示されるわけではなく、端末や検索内容、言語などによって変わります。[[2]]</p>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>「検索結果のタイトルが、設定したtitleと違う」という相談では、検索結果に出ているのは「タイトルリンク」という要素であり、titleがそのまま表示されるとは限らない、と説明できます。タイトルリンクとスニペットへの影響の与え方は、第13回で詳しく扱います。</p>
+  </div>
+</section>
+
+<!-- Topic 4 -->
+<section class="topic" aria-labelledby="t4">
+  <div class="topic-head"><span class="num">04</span><h2 id="t4">インデックス済みなのに表示されないとき</h2></div>
+  <div class="block official">
+    <span class="tag official">公式の説明</span>
+    <p>Search Consoleでインデックスに登録済みと表示されているのに、検索結果にページが出ないことがあります。その原因として、次の3つが挙げられています。[[1]]</p>
+    <ul class="steps" id="a-notshown">
+      <li>ページのコンテンツとユーザーの検索語句が関連していない</li>
+      <li>コンテンツの品質が低い</li>
+      <li>robots metaルールによって、表示が許可されていない</li>
+    </ul>
+  </div>
+  <div class="block practice">
+    <span class="tag practice">攻略メモ</span>
+    <p>「登録済みなのに出てこない」は、クロールやインデックスではなく表示の段階の問題です。まずは、狙っている語句とページの内容が本当に合っているか(関連性)から見直します。第3回の「登録されない3つの原因」と見比べると、段階ごとの違いが整理できます。</p>
+  </div>
+  <details class="deep">
+    <summary>深掘り:探索機能(関連する検索・関連する質問)</summary>
+    <div class="inner">
+      <div class="block official">
+        <span class="tag official">公式の説明</span>
+        <p>探索機能は、元の検索に関連する質問や検索をユーザーが行えるようにする機能です。関連検索グループは、ほかのユーザーが行った関連検索のまとまりで、関連質問グループは「他の人はこちらも質問」とも呼ばれ、質問を開くと強調スニペットが表示されます。表示内容を直接制御することはできませんが、サイトで扱うトピックを考える参考として関連検索を確認するとよいとされています。[[2]]</p>
+      </div>
+      <div class="block practice">
+        <span class="tag practice">攻略メモ</span>
+        <p>関連する質問は、記事の見出しやFAQを考えるときの材料になります。狙う語句で表示される質問を書き出し、ページがそれに答えられているかを確認してみましょう。</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<section class="summary card" aria-labelledby="sum-h">
+  <h2 id="sum-h">今日のおさらい(3行まとめ)</h2>
+  <ol>
+    <li><span>Googleはインデックスから一致するページを探し、関連性が高く高品質な結果を返す。関連性はユーザーの所在地・言語・デバイスなどで変わる。</span></li>
+    <li><span>検索語句によって、ローカル・画像・動画・リッチリザルトなど、表示される結果の種類が変わる。</span></li>
+    <li><span>テキスト検索結果はアトリビューション・タイトルリンク・スニペットなどで構成され、インデックス済みでも関連性・品質・robots metaルールが原因で表示されないことがある。</span></li>
+  </ol>
+</section>
+
+<section class="try" aria-labelledby="try-h">
+  <span class="tag practice">現場ミッション · 5分</span>
+  <h2 id="try-h">狙っている語句の検索結果を観察する</h2>
+  <ol>
+    <li>担当サイトで重要なキーワードを1つ選び、ブラウザのシークレットウィンドウで検索する。</li>
+    <li>1ページ目に出ている結果の種類(テキスト、画像、動画、ローカル、関連する質問など)を書き出す。</li>
+    <li>担当サイトの結果があれば、タイトルリンク・スニペット・パンくずリストがどう表示されているかを見る。</li>
+    <li>スマートフォンでも同じ語句で検索し、パソコンとの違いを比べる。</li>
+  </ol>
+  <p class="meta">WORLD 1 はこれでクリアです。次回からは WORLD 2 で、STEP 3 ランキングのしくみを詳しく見ていきます。</p>
+</section>

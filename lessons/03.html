@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="ja" data-stage="1">
+<html lang="ja" data-stage="3">
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SEO仕組み講座 第1回</title>
+<title>SEO仕組み講座 第3回</title>
 <script src="../assets/schedule.js"></script>
-<meta name="description" content="Google公式ドキュメントを出典に、クロール・インデックス登録・検索結果の表示の3段階を15分で学ぶ。">
-<meta property="og:title" content="SEO仕組み講座 第1回|全体像:Google検索の3つのステージ">
-<meta property="og:description" content="Google公式ドキュメントを出典に、クロール・インデックス登録・検索結果の表示の3段階を15分で学ぶ。">
+<meta name="description" content="インデックス登録でGoogleが読み取るもの、登録されない3つの原因、noindexの使い方と落とし穴を公式ドキュメントから15分で学ぶ。">
+<meta property="og:title" content="SEO仕組み講座 第3回|インデックス①:中身の理解と、登録されない理由">
+<meta property="og:description" content="インデックス登録でGoogleが読み取るもの、登録されない3つの原因、noindexの使い方と落とし穴を公式ドキュメントから15分で学ぶ。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/lessons/01.html">
+<meta property="og:url" content="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/lessons/03.html">
 <meta property="og:site_name" content="SEO仕組み講座">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
@@ -198,14 +198,14 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 
 <nav class="topnav" aria-label="講座内の移動">
   <a class="pill-btn" href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/">← ワールドマップ</a>
-  <div class="progress"><span>STAGE 1 / 15</span><div class="bar" role="img" aria-label="15ステージ中1ステージ目"><i style="width:6.7%"></i></div></div>
+  <div class="progress"><span>STAGE 3 / 15</span><div class="bar" role="img" aria-label="15ステージ中3ステージ目"><i style="width:20.0%"></i></div></div>
 </nav>
 
 <header class="hero">
   <span class="world">WORLD 1 · Google検索のしくみ</span>
-  <h1>全体像:Google検索の3つのステージ</h1>
+  <h1>インデックス①:中身の理解と、登録されない理由</h1>
   <div class="chips"><span>所要 15分</span><span>チェックポイント 5問</span><span>全問正解でクリアメダル</span></div>
-  <div class="dates">公開日 <span data-koza-pub>2026-10-09</span> · 出典確認日 2026-10-08</div>
+  <div class="dates">公開日 <span data-koza-pub>2026-10-14</span> · 出典確認日 2026-10-09</div>
 </header>
 
 <div class="legend">
@@ -217,144 +217,108 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 <section class="goal card" aria-labelledby="goal-h">
   <h2 id="goal-h">今日のミッション</h2>
   <ul>
-    <li><span>Google検索が「クロール → インデックス登録 → 検索結果の表示」の3段階で動いていることを説明できる。</span></li>
-    <li><span>各段階で「何が起きるか」と「つまずきやすい典型的な原因」を1つずつ挙げられる。</span></li>
+    <li><span>インデックス登録で、Googleがページの何を読み取っているかを説明できる。</span></li>
+    <li><span>ページがインデックスに登録されない典型的な3つの原因を挙げられる。</span></li>
+    <li><span>noindexの2つの設定方法と、robots.txtと組み合わせたときの落とし穴を説明できる。</span></li>
   </ul>
 </section>
 
 <section class="glossary card" aria-labelledby="glo-h">
   <h2 id="glo-h">今日の用語ずかん</h2>
   <dl>
-    <div class="item" id="g-googlebot"><dt>Googlebot</dt><dd>ウェブ上のページを取得するGoogleのプログラム。クローラー、ロボット、ボット、スパイダーとも呼ばれます。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
-    <div class="item" id="g-rendering"><dt>レンダリング</dt><dd>ブラウザと同じようにページを表示処理すること。Googleは最新版のChromeでレンダリングし、JavaScriptも実行します。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
-    <div class="item" id="g-index"><dt>Googleインデックス</dt><dd>ページについて集めた情報を保存する、何千台ものコンピュータ上にある大規模なデータベース。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
-    <div class="item" id="g-canonical"><dt>正規ページ</dt><dd>内容が似たページのグループから代表として選ばれた、検索結果に表示される可能性のあるページ。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
-    <div class="item" id="g-robots"><dt>robots.txt / robots metaルール</dt><dd>robots.txtはGooglebotのアクセス(クロール)を、robots metaルールはインデックス登録や表示を制御する指定です。<sup class="ref"><a href="#src-3">3</a></sup><sup class="ref"><a href="#src-4">4</a></sup></dd></div>
-    <div class="item" id="g-relevance"><dt>関連性</dt><dd>検索語句に対するページの合い具合。ユーザーの所在地・言語・デバイスなど、多くの要素で決まります。<sup class="ref"><a href="#src-5">5</a></sup></dd></div>
+    <div class="item" id="g-indexing"><dt>インデックス登録</dt><dd>クロールしたページの内容を把握し、その情報をGoogleインデックスに保存する段階。<sup class="ref"><a href="#src-1">1</a></sup></dd></div>
+    <div class="item" id="g-tags"><dt>title要素・alt属性</dt><dd>titleはページのタイトル、altは画像の内容を説明する属性。インデックス登録で処理・分析される主要なタグと属性の例です。<sup class="ref"><a href="#src-1">1</a></sup></dd></div>
+    <div class="item" id="g-signals"><dt>シグナル</dt><dd>正規ページとそのコンテンツについてGoogleが集める情報。例は、ページの言語、配信元の国、ページの使いやすさ。<sup class="ref"><a href="#src-1">1</a></sup></dd></div>
+    <div class="item" id="g-noindex"><dt>noindex</dt><dd>ページをGoogle検索に表示させないための指示。metaタグかHTTPレスポンスヘッダーで設定します。<sup class="ref"><a href="#src-2">2</a></sup></dd></div>
+    <div class="item" id="g-xrobots"><dt>X-Robots-Tag</dt><dd>noindexなどの指示をHTTPレスポンスヘッダーで伝える方法。PDF・動画・画像などHTML以外にも使えます。<sup class="ref"><a href="#src-2">2</a></sup></dd></div>
+    <div class="item" id="g-inspect"><dt>URL検査ツール</dt><dd>Search Consoleの機能。Googlebotが取得したHTMLを確認したり、再クロールをリクエストしたりできます。<sup class="ref"><a href="#src-2">2</a></sup></dd></div>
   </dl>
 </section>
 
 <section class="map card" aria-labelledby="map-h">
   <h2 id="map-h">冒険ルート(工程地図)</h2>
   <div class="route">
-    <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></div><small>STEP 1</small><b>クロール</b><span>ページを見つけて取得する</span></div>
+    <div class="stage"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></div><small>STEP 1</small><b>クロール</b><span>ページを見つけて取得する</span></div>
     <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l8-4 8 4-8 4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></div><small>STEP 2</small><b>インデックス</b><span>内容を解析して保存する</span></div>
-    <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M9 20V10h6v10"/><path d="M3 20v-6h6"/><path d="M15 20v-8h6v8"/></svg></div><small>STEP 3</small><b>ランキング</b><span>関連性と品質で結果を選ぶ</span></div>
-    <div class="stage on"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8"/></svg></div><small>STEP 4</small><b>表示</b><span>検索した人に結果を返す</span></div>
+    <div class="stage"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M9 20V10h6v10"/><path d="M3 20v-6h6"/><path d="M15 20v-8h6v8"/></svg></div><small>STEP 3</small><b>ランキング</b><span>関連性と品質で結果を選ぶ</span></div>
+    <div class="stage"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8"/></svg></div><small>STEP 4</small><b>表示</b><span>検索した人に結果を返す</span></div>
   </div>
-  <p>第1回は全体像なので、4つのステップすべてを通ります。公式ページでは「ランキング」は「検索結果の表示」の中で説明されています。この講座では第2週でランキングを独立して扱うため、ルートでは分けて描いています。</p>
+  <p>今日は STEP 2 インデックスの前半です。ページの中身を理解して保存するしくみと、登録されない理由を扱います。重複ページの扱い(正規化)は次回です。</p>
 </section>
 
 <!-- Topic 1 -->
 <section class="topic" aria-labelledby="t1">
-  <div class="topic-head"><span class="num">01</span><h2 id="t1">Google検索の前提</h2></div>
+  <div class="topic-head"><span class="num">01</span><h2 id="t1">インデックス登録でGoogleが読み取るもの</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>Google検索は完全に自動化された検索エンジンで、ウェブクローラーと呼ばれるソフトウェアが定期的にウェブを探索し、インデックスに追加するページを見つけています。検索結果に載るページの大半は、手動で登録されたものではなく、クローラーが見つけて自動で追加したものです。<sup class="ref"><a href="#src-1">1</a></sup></p>
-    <p id="a-nopay">Googleは、サイトのクロール頻度や掲載順位を上げる対価として金銭を受け取りません。また、Google検索の基本事項に準拠していても、クロール・インデックス登録・検索結果への表示が保証されるわけではありません。<sup class="ref"><a href="#src-1">1</a></sup></p>
+    <p id="a-what">クロールの後、Googleはページの内容を把握しようとします。この段階が<a class="term" href="#g-indexing">インデックス登録</a>で、テキストの内容に加えて、<a class="term" href="#g-tags">&lt;title&gt;要素やalt属性</a>などの主要なタグと属性、画像、動画を処理・分析します。<sup class="ref"><a href="#src-1">1</a></sup></p>
+    <p id="a-signals">Googleは正規ページとそのコンテンツについての<a class="term" href="#g-signals">シグナル</a>も集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。集めた情報は、何千台ものコンピュータ上にある大規模なデータベース、Googleインデックスに保存されます。<sup class="ref"><a href="#src-1">1</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
-    <p>クライアントから「申請すれば載りますか」「費用を払えば早くなりますか」と聞かれたときの根拠になる一文です。「基本事項を満たしても表示は保証されない」という前提を最初に共有しておくと、施策の期待値調整がしやすくなります。</p>
+    <p>titleやaltは、Googleが内容を理解するための材料として公式に名前が挙がっている要素です。「全ページのtitleが同じ」「画像のaltが空」という状態は、理解の材料を減らしていると説明できます。titleの書き方そのものは、第13回で詳しく扱います。</p>
   </div>
 </section>
 
 <!-- Topic 2 -->
 <section class="topic" aria-labelledby="t2">
-  <div class="topic-head"><span class="num">02</span><h2 id="t2">3つのステージ</h2></div>
+  <div class="topic-head"><span class="num">02</span><h2 id="t2">インデックスに登録されない3つの原因</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>Google検索は次の3段階で動いています。ただし、すべてのページがすべての段階を通過するわけではありません。<sup class="ref"><a href="#src-2">2</a></sup></p>
-    <ol class="steps" id="a-stages">
-      <li><b>クロール</b>:クローラーと呼ばれる自動プログラムが、ウェブ上で見つけたページからテキスト・画像・動画をダウンロードする。</li>
-      <li><b>インデックス登録</b>:ページ上のテキスト・画像・動画ファイルを解析し、大規模なデータベースである<a class="term" href="#g-index">Googleインデックス</a>に保存する。</li>
-      <li><b>検索結果の表示</b>:ユーザーが検索したときに、検索語句に関連する情報を返す。</li>
-    </ol>
+    <p>インデックス登録は保証されておらず、Googleが処理したページがすべて登録されるとは限りません。登録されるかどうかは、ページのコンテンツとメタデータにも左右されます。典型的な原因として、次の3つが挙げられています。<sup class="ref"><a href="#src-1">1</a></sup></p>
+    <ul class="steps" id="a-notindexed">
+      <li>ページのコンテンツの品質が低い</li>
+      <li>robots metaルールによって、インデックス登録が禁止されている</li>
+      <li>ウェブサイトのデザインが原因で、インデックス登録が難しくなっている</li>
+    </ul>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
-    <p>「検索に出ない」という相談は、まずどの段階で止まっているかを切り分けると整理しやすくなります。クロールされていないのか、クロールされたがインデックスに入っていないのか、インデックスにはあるが表示されないのか。Search ConsoleのURL検査は、この切り分けに使う道具だと捉えると読みやすくなります。</p>
+    <p>Search Consoleで「登録されていない」ページを見たら、この3つに仕分けると整理しやすくなります。2つ目はタグを確認すれば白黒がつき、3つ目はJavaScriptでの表示など作りの問題(第2回)、1つ目は内容の見直しが必要、と打ち手も分かれます。</p>
   </div>
 </section>
 
 <!-- Topic 3 -->
 <section class="topic" aria-labelledby="t3">
-  <div class="topic-head"><span class="num">03</span><h2 id="t3">クロール:ページを見つけて取得する</h2></div>
+  <div class="topic-head"><span class="num">03</span><h2 id="t3">noindex:検索結果に出さないための指示</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p id="a-discovery">最初のステップは、ウェブ上にどんなページがあるかを把握すること(URL検出)です。すべてのページを網羅したデータベースは存在しないため、Googleは新しいページや更新されたページを常に探しています。既知のページからのリンクをたどったり、サイト所有者が送信したページ一覧(サイトマップ)を使ったりして新しいページを見つけます。<sup class="ref"><a href="#src-3">3</a></sup></p>
-    <p>見つけたページを取得するのが<a class="term" href="#g-googlebot">Googlebot</a>です。どのサイトを、どのくらいの頻度で、何ページ取得するかはアルゴリズムで決まり、サイトに過負荷をかけないよう速度も調整されています。<sup class="ref"><a href="#src-3">3</a></sup></p>
-    <p><b>つまずく典型的な原因:</b>見つかったURLがすべてクロールされるわけではありません。<a class="term" href="#g-robots">robots.txt</a>でクロールが禁止されているページやログインが必要なページは取得されません。アクセス自体の問題としては、サーバーの処理の問題、ネットワークの問題、robots.txtのルールが挙げられています。<sup class="ref"><a href="#src-3">3</a></sup></p>
+    <p id="a-noindex"><a class="term" href="#g-noindex">noindex</a>は、ページをGoogle検索に表示させないための指示です。Googlebotがこの指示を見つけると、他のサイトからリンクされているかどうかに関係なく、そのページを検索結果から外します。設定方法は次の2つです。<sup class="ref"><a href="#src-2">2</a></sup></p>
+    <ul class="steps" id="a-noindex-ways">
+      <li><b>metaタグ</b>:ページの&lt;head&gt;内にrobotsのmetaタグを入れます。Googleのクローラーだけを対象にする場合は、nameに「googlebot」を指定します。</li>
+      <li><b>HTTPレスポンスヘッダー</b>:<a class="term" href="#g-xrobots">X-Robots-Tag</a>にnoindexを指定します。PDF、動画、画像など、HTML以外のファイルにも使えます。</li>
+    </ul>
+    <p>WordPressなどのCMSでは、HTMLを直接編集しなくても、検索設定などの画面から指定できる場合があります。<sup class="ref"><a href="#src-2">2</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
-    <p>「リンクとサイトマップで見つかる」ということは、内部リンクから到達できず、サイトマップにも載っていないページは発見されにくい、ということです。新規ページの公開時に内部リンクとサイトマップの両方を確認する運用は、この説明から自然に導けます。</p>
+    <p>問い合わせ完了ページや社内向けページなど、検索結果に出す必要のないページを整理するときの基本の道具です。PDFを検索結果から外したい場合は、metaタグを書けないので、サーバー側でX-Robots-Tagを設定する、と覚えておくと指示書が書きやすくなります。</p>
   </div>
-  <details class="deep">
-    <summary>深掘り:レンダリングとJavaScript</summary>
-    <div class="inner">
-      <div class="block official">
-        <span class="tag official">公式の説明</span>
-        <p>クロール中、Googleはページを最新版のChromeで<a class="term" href="#g-rendering">レンダリング</a>し、見つかったJavaScriptを実行します。多くのサイトはJavaScriptでコンテンツを表示しており、レンダリングしないとそのコンテンツが見えないためです。<sup class="ref"><a href="#src-3">3</a></sup></p>
-      </div>
-      <div class="block practice">
-        <span class="tag practice">攻略メモ</span>
-        <p>JavaScriptで後から表示する本文やリンクがある場合は、Googleから見えているかをURL検査で確かめる価値があります。サイトマップ・robots.txt・JavaScriptの詳細は第2回で扱います。</p>
-      </div>
-    </div>
-  </details>
 </section>
 
 <!-- Topic 4 -->
 <section class="topic" aria-labelledby="t4">
-  <div class="topic-head"><span class="num">04</span><h2 id="t4">インデックス登録:内容を理解して保存する</h2></div>
+  <div class="topic-head"><span class="num">04</span><h2 id="t4">noindexが効かない落とし穴</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>クロールの後、Googleはページの内容を理解しようとします。テキストに加え、&lt;title&gt;要素やalt属性などの主要なタグと属性、画像、動画が処理・分析されます。<sup class="ref"><a href="#src-4">4</a></sup></p>
-    <p id="a-canonical">この過程で、ページが別ページの重複かどうかが判断されます。内容が似たページをグループにまとめ、その中から最も代表的なページが<a class="term" href="#g-canonical">正規ページ</a>として選ばれます。グループ内のほかのページは、モバイル端末からの検索など、別の状況で表示されうる代替バージョンとして扱われます。<sup class="ref"><a href="#src-4">4</a></sup></p>
-    <p><b>つまずく典型的な原因:</b>処理したページがすべてインデックスに登録されるわけではありません。コンテンツの品質が低い、<a class="term" href="#g-robots">robots metaルール</a>で登録が禁止されている、サイトのデザインが原因で登録が難しくなっている、の3つが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p id="a-robots-trap">noindexを機能させるには、robots.txtでページをブロックせず、クローラーがアクセスできる状態にしておく必要があります。robots.txtでブロックされているとnoindexが読み取られず、他のページからリンクされていれば、検索結果に表示され続けることがあります。なお、robots.txtにnoindexを書く方法は、Googleではサポートされていません。<sup class="ref"><a href="#src-2">2</a></sup></p>
+    <p id="a-recrawl">noindexは、Googleがページを再クロールしてタグを読むまで反映されません。ページの重要度によっては数か月かかることもあり、<a class="term" href="#g-inspect">URL検査ツール</a>で再クロールをリクエストできます。<sup class="ref"><a href="#src-2">2</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
-    <p>「正規ページ=検索結果に表示されうるページ」という定義は、canonical設計の出発点になります。自分が正規にしたいURLとGoogleが選ぶURLがずれると、意図しないURLが表示されるためです。noindexは第3回、重複と正規化は第4回で詳しく扱います。</p>
+    <p>「noindexを付けて、さらにrobots.txtでもブロック」は丁寧に見えて逆効果です。検索結果から外したいページは、robots.txtではブロックせず、noindexを読める状態に保ちます。第2回の「robots.txtは表示を止める道具ではない」とセットで覚えましょう。</p>
   </div>
   <details class="deep">
-    <summary>深掘り:インデックス登録で集められるシグナル</summary>
+    <summary>深掘り:noindexとJavaScript、反映の確かめ方</summary>
     <div class="inner">
       <div class="block official">
         <span class="tag official">公式の説明</span>
-        <p>Googleは正規ページとそのコンテンツについてシグナルも集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
+        <p>JavaScriptでrobotsのmetaタグを追加・変更することもできますが、Googleはnoindexを見つけるとレンダリングやJavaScriptの実行を省略することがあります。そのため、元のHTMLにnoindexを入れておき、JavaScriptで消す方法は期待どおりに動かない可能性があります。インデックスさせたいページでは、元のHTMLでnoindexを使わないことが大切です。<sup class="ref"><a href="#src-3">3</a></sup></p>
+        <p>反映を確かめるには、URL検査ツールで、Googlebotが取得したHTMLにnoindexが含まれているかを確認できます。また、Search Consoleの「ページのインデックス登録」レポートで、noindexが検出されたページを確認できます。検索結果からすぐに消す必要がある場合は、削除に関する別のドキュメントが案内されています。<sup class="ref"><a href="#src-2">2</a></sup></p>
       </div>
       <div class="block practice">
         <span class="tag practice">攻略メモ</span>
-        <p>言語や配信国がシグナルとして集められることは、多言語・多地域サイトでページの言語と対象地域をはっきりさせておく理由になります。</p>
-      </div>
-    </div>
-  </details>
-</section>
-
-<!-- Topic 5 -->
-<section class="topic" aria-labelledby="t5">
-  <div class="topic-head"><span class="num">05</span><h2 id="t5">検索結果の表示:関連性の高い結果を返す</h2></div>
-  <div class="block official">
-    <span class="tag official">公式の説明</span>
-    <p>ユーザーが検索すると、Googleはインデックスから一致するページを探し、関連性が高く高品質と判断した結果を返します。<a class="term" href="#g-relevance">関連性</a>は多くの要素で決まり、ユーザーの所在地、言語、デバイス(パソコンかスマートフォンか)などが含まれます。例えば「自転車修理店」と検索すると、パリのユーザーと香港のユーザーでは異なる結果が表示されます。<sup class="ref"><a href="#src-5">5</a></sup></p>
-    <p id="a-notshown"><b>つまずく典型的な原因:</b>Search Consoleでインデックス登録済みなのに、検索結果に出ないことがあります。ページの内容が検索語句と関連していない、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つが挙げられています。<sup class="ref"><a href="#src-5">5</a></sup></p>
-  </div>
-  <div class="block practice">
-    <span class="tag practice">攻略メモ</span>
-    <p>順位チェックツールの結果と、クライアントが自分の端末で見た結果が違うという相談はよくあります。所在地・言語・デバイスで関連性が変わるという説明は、この差を伝えるときの根拠になります。「インデックス済み=表示される」ではない点も、クライアントと共有しておきたいポイントです。</p>
-  </div>
-  <details class="deep">
-    <summary>深掘り:検索語句によって変わる検索機能</summary>
-    <div class="inner">
-      <div class="block official">
-        <span class="tag official">公式の説明</span>
-        <p>検索結果ページに出る検索機能も、検索語句によって変わります。「自転車修理店」ではローカル検索結果が、「最新の自転車」では画像検索結果が表示される可能性が高い、と説明されています。<sup class="ref"><a href="#src-5">5</a></sup></p>
-      </div>
-      <div class="block practice">
-        <span class="tag practice">攻略メモ</span>
-        <p>狙うキーワードで実際にどんな検索機能が出ているかを見ておくと、通常の検索結果だけを狙うべきか、ローカルや画像の枠も狙うべきかを判断しやすくなります。</p>
+        <p>サイトリニューアルのとき、公開前のテスト環境で付けていたnoindexが本番に残ってしまう事故はよくあります。公開直後に「ページのインデックス登録」レポートでnoindexの件数を確認する習慣をつけると、早く気づけます。</p>
       </div>
     </div>
   </details>
@@ -363,22 +327,22 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 <section class="summary card" aria-labelledby="sum-h">
   <h2 id="sum-h">今日のおさらい(3行まとめ)</h2>
   <ol>
-    <li><span>Google検索は「クロール → インデックス登録 → 検索結果の表示」の3段階で動き、すべてのページが全段階を通るわけではない。</span></li>
-    <li><span>ページはリンクとサイトマップで見つかり、似たページはまとめられて代表の「正規ページ」が選ばれる。</span></li>
-    <li><span>結果は所在地・言語・デバイスで変わり、インデックス済みでも関連性・品質・robots metaルールが原因で表示されないことがある。</span></li>
+    <li><span>インデックス登録では、テキストやtitle・altなどのタグ、画像・動画が処理され、言語や配信国などのシグナルも集められる。</span></li>
+    <li><span>登録は保証されず、典型的な原因は「品質が低い」「robots metaルールで禁止」「サイトのデザインで登録が難しい」の3つ。</span></li>
+    <li><span>noindexはmetaタグかX-Robots-Tagで設定する。robots.txtでブロックするとnoindexが読まれず、効かない。</span></li>
   </ol>
 </section>
 
 <section class="try" aria-labelledby="try-h">
   <span class="tag practice">現場ミッション · 5分</span>
-  <h2 id="try-h">担当サイトのページが、3段階のどこまで進んでいるか確かめる</h2>
+  <h2 id="try-h">担当サイトの「登録されていないページ」を仕分ける</h2>
   <ol>
-    <li>担当サイトから、最近公開したページか、流入が少ないページを1つ選ぶ。</li>
-    <li>Search ConsoleのURL検査にそのURLを入れ、Googleに登録されているかどうかの表示を確認する。</li>
-    <li>登録されていない場合は、表示されている理由を読み、今日の3段階(クロール/インデックス登録/表示)のどこで止まっているかを考える。</li>
-    <li>登録済みの場合は、そのページで狙っている語句で実際に検索し、表示されているか、どんな検索機能が出ているかを見る。</li>
+    <li>Search Consoleの「ページのインデックス登録」レポートを開き、ページが登録されていない理由の一覧を見る。</li>
+    <li>件数が多い理由を1つ選び、例として表示されているURLを2〜3件開く。</li>
+    <li>それぞれが今日の3つの原因(品質/robots metaルール/サイトのデザイン)のどれに近いかを考える。</li>
+    <li>noindexが理由のページは、本当に検索結果に不要なページかどうかを確認する。</li>
   </ol>
-  <p class="meta">結果をチームで共有すると、「どの段階の問題か」で会話する練習になります。</p>
+  <p class="meta">意図しないnoindexが見つかったら、それだけで大きな改善につながることがあります。</p>
 </section>
 
 <section aria-labelledby="quiz-h">
@@ -402,19 +366,17 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 
 <section class="sources" aria-labelledby="src-h">
   <h2 id="src-h">出典一覧</h2>
-  <p class="meta">すべてGoogle検索セントラル「Google検索の仕組みに関する詳細ガイド」(2026-10-08 確認)。</p>
+  <p class="meta">すべてGoogle検索セントラルの公式ドキュメント(2026-10-09 確認)。</p>
   <ol>
-    <li id="src-1"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">冒頭・開始するにあたっての注意事項</a></li>
-    <li id="src-2"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja">Google検索の3つのステージの流れ</a></li>
-    <li id="src-3"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#crawling">クロール</a></li>
-    <li id="src-4"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">インデックス登録</a></li>
-    <li id="src-5"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#serving">検索結果への表示</a></li>
+    <li id="src-1"><a href="https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja#indexing">Google検索の仕組み「インデックス登録」</a></li>
+    <li id="src-2"><a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing?hl=ja">noindex を使用してコンテンツをインデックスから除外する</a></li>
+    <li id="src-3"><a href="https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics?hl=ja">JavaScript SEO の基本を理解する</a></li>
   </ol>
 </section>
 
 <nav class="pager" aria-label="前後のステージ">
-  <a href="https://tsuyoshi-iwahori-dev.github.io/seo-shikumi-koza/"><small>← もどる</small><b>ワールドマップ</b></a>
-  <div class="next soon" data-next="2"><small>NEXT STAGE · 10/13 公開</small><b>STAGE 2 クロール</b></div>
+  <a href="02.html"><small>← もどる</small><b>STAGE 2 クロール</b></a>
+  <div class="next soon" data-next="4"><small>NEXT STAGE · 10/15 公開</small><b>STAGE 4 インデックス②</b></div>
 </nav>
 
 </div>
@@ -424,22 +386,82 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
 <script>
 (function(){
   var Q=[
-    {q:"Google検索が動く3つのステージの順序として正しいものはどれですか。",
-     o:["インデックス登録 → クロール → 検索結果の表示","クロール → インデックス登録 → 検索結果の表示","クロール → 検索結果の表示 → インデックス登録","検索結果の表示 → クロール → インデックス登録"],a:1,
-     e:"クローラーがページを取得し(クロール)、内容を解析してインデックスに保存し(インデックス登録)、検索時に関連情報を返します(検索結果の表示)。",s:[2],g:"a-stages"},
-    {q:"Googleが新しいページを見つける方法として、公式ページで挙げられているものはどれですか。",
-     o:["検索広告に出稿されたURLを登録する","すべてのウェブページを網羅した公式データベースから一覧を受け取る","既知のページからのリンクをたどる、またはサイトマップを使う","メタキーワードを読み取って登録する"],a:2,
-     e:"すべてのページを網羅したデータベースは存在しないため、Googleは既知のページからのリンクや、サイト所有者が送信したサイトマップで新しいページを見つけます。",s:[3],g:"a-discovery"},
-    {q:"公式ページでの「正規ページ」の説明として正しいものはどれですか。",
-     o:["検索結果に表示される可能性のあるページ","サイト所有者が最初に公開したページ","最もアクセス数が多いページ","Search Consoleで送信したページ"],a:0,
-     e:"似たページをグループにまとめ、最も代表的なものが正規ページとして選ばれます。正規ページは検索結果に表示される可能性のあるページです。",s:[4],g:"a-canonical"},
-    {q:"Googleの姿勢として、公式ページに書かれていることはどれですか。",
-     o:["有料プランに申し込むとクロール頻度を上げられる","基本事項に準拠していれば、インデックス登録と表示が保証される","クロール頻度や掲載順位を上げる対価として金銭を受け取らず、基本事項に準拠しても表示は保証されない","検索結果のページの大半は手動で登録されている"],a:2,
-     e:"Googleは掲載順位やクロール頻度のために金銭を受け取らず、基本事項に準拠していてもクロール・インデックス登録・表示は保証されないと明記しています。掲載ページの大半はクローラーが自動で追加したものです。",s:[1],g:"a-nopay"},
-    {q:"Search Consoleでインデックス登録済みなのに検索結果に出ない理由として、公式ページで挙げられているものはどれですか。",
-     o:["ページにalt属性が1つもない","コンテンツの品質が低い","サイトマップを毎日送信していない","ページがJavaScriptを使っている"],a:1,
-     e:"公式ページは、検索語句との関連性が低い、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つを挙げています。",s:[5],g:"a-notshown"}
-  ];
+ {
+  "q": "インデックス登録で処理・分析されるものとして、公式ページで挙げられているものはどれですか。",
+  "o": [
+   "サイト運営会社の売上",
+   "<title>要素やalt属性などのタグと属性、画像、動画",
+   "ページの閲覧者数",
+   "メタキーワードの数"
+  ],
+  "a": 1,
+  "e": "インデックス登録では、テキストの内容に加えて、<title>要素やalt属性などの主要なタグと属性、画像、動画が処理・分析されます。",
+  "s": [
+   1
+  ],
+  "g": "a-what"
+ },
+ {
+  "q": "インデックス登録の際に集められるシグナルの例として、公式ページで挙げられているものはどれですか。",
+  "o": [
+   "ドメインの取得日",
+   "サイトの広告予算",
+   "ページの言語、配信元の国、ページの使いやすさ",
+   "運営会社の従業員数"
+  ],
+  "a": 2,
+  "e": "正規ページとそのコンテンツについてのシグナルとして、ページの言語、配信元の国、ページの使いやすさが例に挙げられています。",
+  "s": [
+   1
+  ],
+  "g": "a-signals"
+ },
+ {
+  "q": "インデックスに登録されない典型的な原因として、公式ページで挙げられているものはどれですか。",
+  "o": [
+   "robots metaルールでインデックス登録が禁止されている",
+   "サイトマップを送信していない",
+   "サイトのページ数が500を超えている",
+   "ページでJavaScriptを使っている"
+  ],
+  "a": 0,
+  "e": "典型的な原因は「コンテンツの品質が低い」「robots metaルールで禁止されている」「サイトのデザインが原因で登録が難しい」の3つです。",
+  "s": [
+   1
+  ],
+  "g": "a-notindexed"
+ },
+ {
+  "q": "noindexがGoogleに読み取られない状態はどれですか。",
+  "o": [
+   "metaタグを<head>内に書いている",
+   "robots.txtでそのページのクロールをブロックしている",
+   "X-Robots-Tagで指定している",
+   "CMSの検索設定画面から指定している"
+  ],
+  "a": 1,
+  "e": "robots.txtでブロックされているとクローラーがページにアクセスできず、noindexが読み取られません。リンクされていれば検索結果に表示され続けることがあります。",
+  "s": [
+   2
+  ],
+  "g": "a-robots-trap"
+ },
+ {
+  "q": "noindexを追加したのに、まだ検索結果に表示されている理由として考えられるものはどれですか。",
+  "o": [
+   "Googleがまだ再クロールしておらず、タグを読んでいない",
+   "他のサイトからリンクされているとnoindexは無効になる",
+   "noindexはGoogleでサポートされていない",
+   "反映には必ず1年かかる"
+  ],
+  "a": 0,
+  "e": "noindexはGoogleがページを再クロールしてタグを読むまで反映されず、ページによっては数か月かかることもあります。URL検査ツールで再クロールをリクエストできます。",
+  "s": [
+   2
+  ],
+  "g": "a-recrawl"
+ }
+];
   var L=["A","B","C","D"],NS="http://www.w3.org/2000/svg";
   var root=document.getElementById("quiz"),scoreBox=document.getElementById("score"),starsEl=document.getElementById("stars");
   var done=0,right=0,starNodes=[];
@@ -504,7 +526,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   function finish(){
     var all=right===Q.length;
     document.getElementById("medal-disc").setAttribute("class","disc"+(all?"":" dim"));
-    document.getElementById("score-big").textContent=all?"STAGE 1 クリア!":"スター "+right+" / "+Q.length;
+    document.getElementById("score-big").textContent=all?"STAGE 3 クリア!":"スター "+right+" / "+Q.length;
     document.getElementById("score-msg").textContent=all?"全問正解です。次のステージも挑戦してみてください。":"間違えた問題は「本文で確認する」から答えの箇所を読み返して、もう一度挑戦してみてください。";
     scoreBox.hidden=false;
   }
