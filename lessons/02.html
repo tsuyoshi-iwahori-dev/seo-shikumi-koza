@@ -230,7 +230,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
     <div class="item" id="g-sitemap"><dt>サイトマップ</dt><dd>サイト上のページや動画などのファイルと、その関係を検索エンジンに伝えるファイル。<sup class="ref"><a href="#src-2">2</a></sup></dd></div>
     <div class="item" id="g-robots"><dt>robots.txt</dt><dd>クローラーに、サイト内のどのURLにアクセスしてよいかを伝えるファイル。主な目的はサーバーの過負荷を避けること。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
     <div class="item" id="g-noindex"><dt>noindex</dt><dd>ページを検索結果に表示させないための指定。metaタグかHTTPレスポンスヘッダーで設定します(第3回で詳しく)。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
-    <div class="item" id="g-rendering"><dt>レンダリング</dt><dd>ページを表示処理すること。GoogleはヘッドレスのChromiumでJavaScriptを実行します。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
+    <div class="item" id="g-rendering"><dt>レンダリング</dt><dd>ブラウザと同じようにページを組み立てて表示すること。Googleは画面を持たないブラウザ(ヘッドレスChromium)でJavaScriptを実行します。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
     <div class="item" id="g-status"><dt>HTTPステータスコード</dt><dd>サーバーがページの状態を伝える番号(200=正常、404=見つからない など)。Googlebotはこれでページの問題を判断します。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
   </dl>
 </section>
@@ -309,11 +309,11 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
     <div class="inner">
       <div class="block official">
         <span class="tag official">公式の説明</span>
-        <p>ウェブページ(HTMLやPDFなど)では、Googleのリクエストでサーバーが過負荷になっているときにクロール量を抑えたり、重要でないページや似たページのクロールを防いだりするのに使えます。画像・動画・音声などのメディアファイルでは、検索結果に表示させない目的にも使えます。画像・スクリプト・スタイルなどのリソースファイルは、なくてもページに大きな支障がなければブロックできますが、必要なものをブロックするとクローラーがページを正しく理解できなくなることがあります。<sup class="ref"><a href="#src-3">3</a></sup></p>
+        <p>ウェブページ(HTMLやPDFなど)の場合は、Googleのリクエストでサーバーが過負荷になっているときにクロール量を抑えたり、重要でないページや似たページのクロールを防いだりする目的で使えます。画像・動画・音声などのメディアファイルでは、検索結果に表示させない目的にも使えます。画像・スクリプト・スタイルなどのリソースファイルは、なくてもページに大きな支障がなければブロックできますが、必要なものをブロックするとクローラーがページを正しく理解できなくなることがあります。<sup class="ref"><a href="#src-3">3</a></sup></p>
       </div>
       <div class="block practice">
         <span class="tag practice">攻略メモ</span>
-        <p>CSSやJavaScriptのフォルダを丸ごとブロックしているサイトは今もあります。第1回で学んだ「Googleとユーザーで見え方を同じにする」ためにも、ページの表示に必要なリソースがブロックされていないかを確認しましょう。</p>
+        <p>CSSやJavaScriptのフォルダを丸ごとブロックしているサイトは今もあります。第1回で学んだとおり、GoogleはChromeでページを表示して中身を見ています。そのためにも、ページの表示に必要なリソースがブロックされていないかを確認しましょう。</p>
       </div>
     </div>
   </details>
@@ -327,10 +327,10 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
     <p>Googleは、JavaScriptを使うページを次の3段階で処理します。<sup class="ref"><a href="#src-4">4</a></sup></p>
     <ol class="steps" id="a-js-steps">
       <li><b>クロール</b>:robots.txtを確認し、許可されたURLにだけリクエストを送ります。ブロックされたページではJavaScriptも実行されません。HTML内のリンク(href)は次のクロール候補になります。</li>
-      <li><b>レンダリング</b>:ステータスコード200で返ったページは、noindexで禁止されていなければレンダリングの順番待ち(キュー)に入ります。待ち時間は数秒以上になることがあります。その後、ヘッドレスのChromiumがJavaScriptを実行します。</li>
+      <li><b>レンダリング</b>:正常(ステータスコード200)に返ってきたページは、noindexが指定されていなければレンダリングの順番待ち(キュー)に入ります。待ち時間は数秒で済むこともあれば、それより長くかかることもあります。その後、画面を持たないブラウザ(ヘッドレスChromium)がJavaScriptを実行します。</li>
       <li><b>インデックス登録</b>:<a class="term" href="#g-rendering">レンダリング</a>後のHTMLをもとにページを登録し、そこに含まれるリンクを再びクロールの候補に加えます。</li>
     </ol>
-    <p>JavaScriptで表示するサイトでは、最初のHTMLに本文が入っていないことがあるため、レンダリングが必要になります。ユーザーにもクローラーにも速く確実に表示されるよう、サーバー側でのレンダリング(プリレンダリング)も検討するよう勧められています。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p>JavaScriptで表示するサイトでは、最初のHTMLに本文が入っていないことがあるため、レンダリングが必要になります。ユーザーにもクローラーにも速く確実に表示されるよう、サーバー側レンダリングやプリレンダリングを検討するよう勧められています。<sup class="ref"><a href="#src-4">4</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>

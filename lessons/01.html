@@ -228,7 +228,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
     <div class="item" id="g-googlebot"><dt>Googlebot</dt><dd>ウェブ上のページを取得するGoogleのプログラム。クローラー、ロボット、ボット、スパイダーとも呼ばれます。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
     <div class="item" id="g-rendering"><dt>レンダリング</dt><dd>ブラウザと同じようにページを表示処理すること。Googleは最新版のChromeでレンダリングし、JavaScriptも実行します。<sup class="ref"><a href="#src-3">3</a></sup></dd></div>
     <div class="item" id="g-index"><dt>Googleインデックス</dt><dd>ページについて集めた情報を保存する、何千台ものコンピュータ上にある大規模なデータベース。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
-    <div class="item" id="g-canonical"><dt>正規ページ</dt><dd>内容が似たページのグループから代表として選ばれた、検索結果に表示される可能性のあるページ。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
+    <div class="item" id="g-canonical"><dt>正規ページ</dt><dd>似たページのグループから代表として選ばれたページ。検索結果に表示される可能性があるのは、このページです。<sup class="ref"><a href="#src-4">4</a></sup></dd></div>
     <div class="item" id="g-robots"><dt>robots.txt / robots metaルール</dt><dd>robots.txtはGooglebotのアクセス(クロール)を、robots metaルールはインデックス登録や表示を制御する指定です。<sup class="ref"><a href="#src-3">3</a></sup><sup class="ref"><a href="#src-4">4</a></sup></dd></div>
     <div class="item" id="g-relevance"><dt>関連性</dt><dd>検索語句に対するページの合い具合。ユーザーの所在地・言語・デバイスなど、多くの要素で決まります。<sup class="ref"><a href="#src-5">5</a></sup></dd></div>
   </dl>
@@ -284,7 +284,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
     <span class="tag official">公式の説明</span>
     <p id="a-discovery">最初のステップは、ウェブ上にどんなページがあるかを把握すること(URL検出)です。すべてのページを網羅したデータベースは存在しないため、Googleは新しいページや更新されたページを常に探しています。既知のページからのリンクをたどったり、サイト所有者が送信したページ一覧(サイトマップ)を使ったりして新しいページを見つけます。<sup class="ref"><a href="#src-3">3</a></sup></p>
     <p>見つけたページを取得するのが<a class="term" href="#g-googlebot">Googlebot</a>です。どのサイトを、どのくらいの頻度で、何ページ取得するかはアルゴリズムで決まり、サイトに過負荷をかけないよう速度も調整されています。<sup class="ref"><a href="#src-3">3</a></sup></p>
-    <p><b>つまずく典型的な原因:</b>見つかったURLがすべてクロールされるわけではありません。<a class="term" href="#g-robots">robots.txt</a>でクロールが禁止されているページやログインが必要なページは取得されません。アクセス自体の問題としては、サーバーの処理の問題、ネットワークの問題、robots.txtのルールが挙げられています。<sup class="ref"><a href="#src-3">3</a></sup></p>
+    <p><b>つまずく典型的な原因:</b>見つかったURLがすべてクロールされるわけではありません。<a class="term" href="#g-robots">robots.txt</a>でクロールが禁止されているページやログインが必要なページは取得されません。Googlebotがページにアクセスできない原因として、サーバーの不具合、ネットワークの不具合、robots.txtのルールが挙げられています。<sup class="ref"><a href="#src-3">3</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
@@ -310,9 +310,9 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="topic-head"><span class="num">04</span><h2 id="t4">インデックス登録:内容を理解して保存する</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>クロールの後、Googleはページの内容を理解しようとします。テキストに加え、&lt;title&gt;要素やalt属性などの主要なタグと属性、画像、動画が処理・分析されます。<sup class="ref"><a href="#src-4">4</a></sup></p>
-    <p id="a-canonical">この過程で、ページが別ページの重複かどうかが判断されます。内容が似たページをグループにまとめ、その中から最も代表的なページが<a class="term" href="#g-canonical">正規ページ</a>として選ばれます。グループ内のほかのページは、モバイル端末からの検索など、別の状況で表示されうる代替バージョンとして扱われます。<sup class="ref"><a href="#src-4">4</a></sup></p>
-    <p><b>つまずく典型的な原因:</b>処理したページがすべてインデックスに登録されるわけではありません。コンテンツの品質が低い、<a class="term" href="#g-robots">robots metaルール</a>で登録が禁止されている、サイトのデザインが原因で登録が難しくなっている、の3つが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p>クロールの後、Googleはページの内容を理解しようとします。テキストだけでなく、&lt;title&gt;要素やalt属性などの主なタグや属性、画像、動画も処理・分析されます。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p id="a-canonical">この過程で、ページが別ページの重複かどうかが判断されます。内容が似たページをグループにまとめ、その中から最も代表的なページが<a class="term" href="#g-canonical">正規ページ</a>として選ばれます。グループ内のほかのページは、モバイル端末からの検索など、場面によって代わりに表示されることがある「代替版」として扱われます。<sup class="ref"><a href="#src-4">4</a></sup></p>
+    <p><b>つまずく典型的な原因:</b>処理したページがすべてインデックスに登録されるわけではありません。コンテンツの品質が低い、<a class="term" href="#g-robots">robots metaルール</a>で登録が禁止されている、サイトの作り(公式の表現では「デザイン」)が原因で登録されにくくなっている、の3つが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
@@ -323,11 +323,11 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
     <div class="inner">
       <div class="block official">
         <span class="tag official">公式の説明</span>
-        <p>Googleは正規ページとそのコンテンツについてシグナルも集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
+        <p>Googleは正規ページとそのコンテンツについてシグナルも集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツがどの国向けか、ページの使いやすさが挙げられています。<sup class="ref"><a href="#src-4">4</a></sup></p>
       </div>
       <div class="block practice">
         <span class="tag practice">攻略メモ</span>
-        <p>言語や配信国がシグナルとして集められることは、多言語・多地域サイトでページの言語と対象地域をはっきりさせておく理由になります。</p>
+        <p>言語やどの国向けかがシグナルとして集められることは、多言語・多地域サイトでページの言語と対象地域をはっきりさせておく理由になります。</p>
       </div>
     </div>
   </details>
@@ -338,7 +338,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="topic-head"><span class="num">05</span><h2 id="t5">検索結果の表示:関連性の高い結果を返す</h2></div>
   <div class="block official">
     <span class="tag official">公式の説明</span>
-    <p>ユーザーが検索すると、Googleはインデックスから一致するページを探し、関連性が高く高品質と判断した結果を返します。<a class="term" href="#g-relevance">関連性</a>は多くの要素で決まり、ユーザーの所在地、言語、デバイス(パソコンかスマートフォンか)などが含まれます。例えば「自転車修理店」と検索すると、パリのユーザーと香港のユーザーでは異なる結果が表示されます。<sup class="ref"><a href="#src-5">5</a></sup></p>
+    <p>ユーザーが検索すると、Googleはインデックスから一致するページを探し、関連性が高く高品質と判断した結果を返します。<a class="term" href="#g-relevance">関連性</a>は多くの要素で決まり、その中にはユーザーの所在地、言語、デバイス(パソコンかスマートフォンか)なども含まれます。例えば「自転車修理店」と検索すると、パリのユーザーと香港のユーザーでは異なる結果が表示されます。<sup class="ref"><a href="#src-5">5</a></sup></p>
     <p id="a-notshown"><b>つまずく典型的な原因:</b>Search Consoleでインデックス登録済みなのに、検索結果に出ないことがあります。ページの内容が検索語句と関連していない、コンテンツの品質が低い、robots metaルールで表示が禁止されている、の3つが挙げられています。<sup class="ref"><a href="#src-5">5</a></sup></p>
   </div>
   <div class="block practice">

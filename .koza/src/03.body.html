@@ -12,7 +12,7 @@
   <dl>
     <div class="item" id="g-indexing"><dt>インデックス登録</dt><dd>クロールしたページの内容を把握し、その情報をGoogleインデックスに保存する段階。[[1]]</dd></div>
     <div class="item" id="g-tags"><dt>title要素・alt属性</dt><dd>titleはページのタイトル、altは画像の内容を説明する属性。インデックス登録で処理・分析される主要なタグと属性の例です。[[1]]</dd></div>
-    <div class="item" id="g-signals"><dt>シグナル</dt><dd>正規ページとそのコンテンツについてGoogleが集める情報。例は、ページの言語、配信元の国、ページの使いやすさ。[[1]]</dd></div>
+    <div class="item" id="g-signals"><dt>シグナル</dt><dd>正規ページとそのコンテンツについてGoogleが集める情報。例は、ページの言語、どの国向けのコンテンツか、ページの使いやすさ。[[1]]</dd></div>
     <div class="item" id="g-noindex"><dt>noindex</dt><dd>ページをGoogle検索に表示させないための指示。metaタグかHTTPレスポンスヘッダーで設定します。[[2]]</dd></div>
     <div class="item" id="g-xrobots"><dt>X-Robots-Tag</dt><dd>noindexなどの指示をHTTPレスポンスヘッダーで伝える方法。PDF・動画・画像などHTML以外にも使えます。[[2]]</dd></div>
     <div class="item" id="g-inspect"><dt>URL検査ツール</dt><dd>Search Consoleの機能。Googlebotが取得したHTMLを確認したり、再クロールをリクエストしたりできます。[[2]]</dd></div>
@@ -27,7 +27,7 @@
   <div class="block official">
     <span class="tag official">公式の説明</span>
     <p id="a-what">クロールの後、Googleはページの内容を把握しようとします。この段階が<a class="term" href="#g-indexing">インデックス登録</a>で、テキストの内容に加えて、<a class="term" href="#g-tags">&lt;title&gt;要素やalt属性</a>などの主要なタグと属性、画像、動画を処理・分析します。[[1]]</p>
-    <p id="a-signals">Googleは正規ページとそのコンテンツについての<a class="term" href="#g-signals">シグナル</a>も集め、次の段階(検索結果の表示)で使います。例として、ページの言語、コンテンツの配信元の国、ページの使いやすさが挙げられています。集めた情報は、何千台ものコンピュータ上にある大規模なデータベース、Googleインデックスに保存されます。[[1]]</p>
+    <p id="a-signals">Googleは正規ページとそのコンテンツについての<a class="term" href="#g-signals">シグナル</a>も集め、次の段階(検索結果の表示)で使います。例として、ページの言語、どの国向けのコンテンツか、ページの使いやすさが挙げられています。集めた情報は「Googleインデックス」という、何千台ものコンピュータにまたがる巨大なデータベースに保存されます。[[1]]</p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
@@ -44,7 +44,7 @@
     <ul class="steps" id="a-notindexed">
       <li>ページのコンテンツの品質が低い</li>
       <li>robots metaルールによって、インデックス登録が禁止されている</li>
-      <li>ウェブサイトのデザインが原因で、インデックス登録が難しくなっている</li>
+      <li>サイトの作り(公式の表現では「デザイン」)が原因で、インデックスに登録されにくくなっている</li>
     </ul>
   </div>
   <div class="block practice">
@@ -89,7 +89,7 @@
       <div class="block official">
         <span class="tag official">公式の説明</span>
         <p>JavaScriptでrobotsのmetaタグを追加・変更することもできますが、Googleはnoindexを見つけるとレンダリングやJavaScriptの実行を省略することがあります。そのため、元のHTMLにnoindexを入れておき、JavaScriptで消す方法は期待どおりに動かない可能性があります。インデックスさせたいページでは、元のHTMLでnoindexを使わないことが大切です。[[3]]</p>
-        <p>反映を確かめるには、URL検査ツールで、Googlebotが取得したHTMLにnoindexが含まれているかを確認できます。また、Search Consoleの「ページのインデックス登録」レポートで、noindexが検出されたページを確認できます。検索結果からすぐに消す必要がある場合は、削除に関する別のドキュメントが案内されています。[[2]]</p>
+        <p>反映を確かめるには、URL検査ツールで、Googlebotが取得したHTMLにnoindexが含まれているかを確認できます。また、Search Consoleの「ページのインデックス登録」レポートで、noindexが検出されたページを確認できます。すぐに検索結果から消したい場合の方法は、削除についての別のページで案内されています。[[2]]</p>
       </div>
       <div class="block practice">
         <span class="tag practice">攻略メモ</span>
@@ -102,8 +102,8 @@
 <section class="summary card" aria-labelledby="sum-h">
   <h2 id="sum-h">今日のおさらい(3行まとめ)</h2>
   <ol>
-    <li><span>インデックス登録では、テキストやtitle・altなどのタグ、画像・動画が処理され、言語や配信国などのシグナルも集められる。</span></li>
-    <li><span>登録は保証されず、典型的な原因は「品質が低い」「robots metaルールで禁止」「サイトのデザインで登録が難しい」の3つ。</span></li>
+    <li><span>インデックス登録では、テキストやtitle・altなどのタグ、画像・動画が処理され、言語やどの国向けかなどのシグナルも集められる。</span></li>
+    <li><span>登録は保証されず、典型的な原因は「品質が低い」「robots metaルールで禁止」「サイトの作りが原因で登録されにくい」の3つ。</span></li>
     <li><span>noindexはmetaタグかX-Robots-Tagで設定する。robots.txtでブロックするとnoindexが読まれず、効かない。</span></li>
   </ol>
 </section>
@@ -114,7 +114,7 @@
   <ol>
     <li>Search Consoleの「ページのインデックス登録」レポートを開き、ページが登録されていない理由の一覧を見る。</li>
     <li>件数が多い理由を1つ選び、例として表示されているURLを2〜3件開く。</li>
-    <li>それぞれが今日の3つの原因(品質/robots metaルール/サイトのデザイン)のどれに近いかを考える。</li>
+    <li>それぞれが今日の3つの原因(品質/robots metaルール/サイトの作り)のどれに近いかを考える。</li>
     <li>noindexが理由のページは、本当に検索結果に不要なページかどうかを確認する。</li>
   </ol>
   <p class="meta">意図しないnoindexが見つかったら、それだけで大きな改善につながることがあります。</p>
