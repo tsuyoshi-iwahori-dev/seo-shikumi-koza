@@ -35,6 +35,20 @@
     var w = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).getUTCDay();
     return md(s) + "(" + WD[w] + ")";
   }
+  /* クリア記録:この端末のブラウザにだけ保存する(サーバーには送らない) */
+  var PKEY = "koza-progress-v1";
+  function loadProgress() {
+    try { var v = JSON.parse(localStorage.getItem(PKEY) || "{}"); return v && typeof v === "object" ? v : {}; }
+    catch (e) { return {}; }
+  }
+  function clearedOn(n) { var p = loadProgress()[n]; return p && p.d ? p.d : null; }
+  function recordClear(n) {
+    var p = loadProgress();
+    if (!p[n]) p[n] = { d: new Date(Date.now() + 9 * 36e5).toISOString().slice(0, 10) };
+    try { localStorage.setItem(PKEY, JSON.stringify(p)); return true; } catch (e) { return false; }
+  }
+  function mdOf(d) { var p = d.split("-"); return (+p[1]) + "/" + (+p[2]); }
+
   function file(n) { return "lessons/" + pad(n) + ".html"; }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -59,7 +73,12 @@
     ".koza-lock-card h1{margin:0;font-family:var(--font-display);font-weight:400;font-size:1.45rem;line-height:1.4;text-wrap:balance}" +
     ".koza-lock-card p{margin:0;color:var(--muted);font-size:.92rem}" +
     ".koza-lock-card a{display:inline-flex;font-weight:800;font-size:.9rem;text-decoration:none;color:var(--on-gold);background:var(--gold);border:2px solid var(--edge);border-radius:999px;padding:8px 18px;box-shadow:0 3px 0 var(--drop)}" +
-    ".koza-banner{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--gold);color:var(--on-gold);font-weight:800;font-size:.85rem;text-align:center;padding:8px 16px;border-bottom:3px solid var(--edge)}";
+    ".koza-banner{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--gold);color:var(--on-gold);font-weight:800;font-size:.85rem;text-align:center;padding:8px 16px;border-bottom:3px solid var(--edge)}" +
+    ".chips .koza-cleared,.how .koza-cleared{background:var(--gold);color:var(--on-gold);border:2px solid var(--edge)}" +
+    ".koza-saved{margin-top:4px;font-size:.8rem;color:var(--muted)}" +
+    ".koza-st{font-size:.76rem;font-weight:800;color:var(--muted);line-height:1.5}" +
+    "li.cleared .koza-st{color:var(--green-ink)}" +
+    "li.open.cleared .node{background:var(--green);color:var(--on-green)}";
   var st = document.createElement("style");
   st.textContent = css;
   (document.head || root).appendChild(st);
@@ -88,6 +107,23 @@
     for (var i = 0; i < pub.length; i++) pub[i].textContent = s.date;
     if (locked && !preview) document.body.insertBefore(lockScreen(s), document.body.firstChild);
     if (locked && preview) document.body.insertBefore(el("div", "koza-banner", "プレビュー表示(公開前)· 公開予定 " + mdw(s) + " " + UNLOCK_HOUR + ":00"), document.body.firstChild);
+    var chips = document.querySelector(".hero .chips");
+    function showCleared(d) {
+      if (!chips || !d) return;
+      var c = chips.querySelector(".koza-cleared") || chips.appendChild(el("span", "koza-cleared"));
+      c.textContent = "🏅 クリア済み(" + mdOf(d) + ")";
+    }
+    showCleared(clearedOn(stageN));
+    document.addEventListener("koza:clear", function () {
+      var saved = recordClear(stageN);
+      showCleared(clearedOn(stageN));
+      var box = document.getElementById("score");
+      if (box && !box.querySelector(".koza-saved")) {
+        var m = el("div", "koza-saved meta", saved ? "クリアの記録をこの端末のブラウザに保存しました。ワールドマップにメダルが付きます。" : "このブラウザの設定では、クリアの記録を保存できませんでした。");
+        var retry = document.getElementById("retry");
+        box.insertBefore(m, retry || null);
+      }
+    });
     var nx = document.querySelectorAll("[data-next]");
     for (var j = 0; j < nx.length; j++) {
       var box = nx[j], t = get(parseInt(box.getAttribute("data-next"), 10));
@@ -124,6 +160,18 @@
       if (old) title.replaceChild(node, old); else title.appendChild(node);
       var d = li.querySelector(".date");
       if (d) d.textContent = md(s) + (open ? (s.n === latest ? " 公開中" : " 公開") : "");
+      var st = title.querySelector(".koza-st");
+      if (st) st.remove();
+      var cd = clearedOn(s.n);
+      if (cd) { li.classList.add("cleared"); title.appendChild(el("span", "koza-st", "🏅 クリア済み(" + mdOf(cd) + ")")); }
+      else if (open) title.appendChild(el("span", "koza-st", "○ 未クリア"));
+    }
+    var how = document.querySelector(".hero .how");
+    if (how) {
+      var cnt = 0, prog = loadProgress();
+      for (var m = 0; m < STAGES.length; m++) if (prog[STAGES[m].n]) cnt++;
+      var tag = how.querySelector(".koza-cleared") || how.appendChild(el("span", "koza-cleared"));
+      tag.textContent = "🏅 あなたのクリア " + cnt + " / " + STAGES.length;
     }
   }
 
@@ -131,5 +179,5 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
   else run();
 
-  window.KOZA = { stages: STAGES, get: get, isOpen: isOpen, unlockHour: UNLOCK_HOUR };
+  window.KOZA = { stages: STAGES, get: get, isOpen: isOpen, unlockHour: UNLOCK_HOUR, clearedOn: clearedOn };
 })();

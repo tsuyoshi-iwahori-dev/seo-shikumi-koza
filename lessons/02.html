@@ -557,6 +557,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
     document.getElementById("score-big").textContent=all?"STAGE 2 クリア!":"スター "+right+" / "+Q.length;
     document.getElementById("score-msg").textContent=all?"全問正解です。次のステージも挑戦してみてください。":"間違えた問題は「本文で確認する」から答えの箇所を読み返して、もう一度挑戦してみてください。";
     scoreBox.hidden=false;
+    if(all){try{document.dispatchEvent(new CustomEvent("koza:clear"))}catch(e){}}
   }
   document.getElementById("retry").addEventListener("click",function(){
     backq.hidden=true;clearHit();render();document.getElementById("quiz-h").scrollIntoView({behavior:"smooth",block:"start"});
