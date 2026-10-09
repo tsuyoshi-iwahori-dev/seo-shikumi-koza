@@ -252,7 +252,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <div class="block official">
     <span class="tag official">公式の説明</span>
     <p id="a-what">クロールの後、Googleはページの内容を把握しようとします。この段階が<a class="term" href="#g-indexing">インデックス登録</a>で、テキストの内容に加えて、<a class="term" href="#g-tags">&lt;title&gt;要素やalt属性</a>などの主要なタグと属性、画像、動画を処理・分析します。<sup class="ref"><a href="#src-1">1</a></sup></p>
-    <p id="a-signals">Googleは正規ページとそのコンテンツについての<a class="term" href="#g-signals">シグナル</a>も集め、次の段階(検索結果の表示)で使います。例として、ページの言語、どの国向けのコンテンツか、ページの使いやすさが挙げられています。集めた情報は「Googleインデックス」という、何千台ものコンピュータにまたがる巨大なデータベースに保存されます。<sup class="ref"><a href="#src-1">1</a></sup></p>
+    <p id="a-signals">Googleは正規ページとそのコンテンツについての<a class="term" href="#g-signals">シグナル</a>も集め、後の段階(検索結果の表示)で使われることがあります。例として、ページの言語、どの国向けのコンテンツか、ページの使いやすさが挙げられています。集めた情報は「Googleインデックス」という、何千台ものコンピュータにまたがる巨大なデータベースに保存される場合があります。<sup class="ref"><a href="#src-1">1</a></sup></p>
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
@@ -274,7 +274,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   </div>
   <div class="block practice">
     <span class="tag practice">攻略メモ</span>
-    <p>Search Consoleで「登録されていない」ページを見たら、この3つに仕分けると整理しやすくなります。2つ目はタグを確認すれば白黒がつき、3つ目はJavaScriptでの表示など作りの問題(第2回)、1つ目は内容の見直しが必要、と打ち手も分かれます。</p>
+    <p>Search Consoleで「未登録」のページを見たら、まずこの3つのどれかに当てはまるかを考えると整理しやすくなります(重複・404・リダイレクトなど、3つ以外の理由もあり、次回以降で扱います)。2つ目はmetaタグとX-Robots-Tag(またはURL検査ツール)を確認すれば白黒がつき、3つ目はJavaScriptでの表示など作りの問題(第2回)、1つ目は内容の見直しが必要、と打ち手も分かれます。</p>
   </div>
 </section>
 
@@ -339,7 +339,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
   <ol>
     <li>Search Consoleの「ページのインデックス登録」レポートを開き、ページが登録されていない理由の一覧を見る。</li>
     <li>件数が多い理由を1つ選び、例として表示されているURLを2〜3件開く。</li>
-    <li>それぞれが今日の3つの原因(品質/robots metaルール/サイトの作り)のどれに近いかを考える。</li>
+    <li>それぞれが今日の3つの原因(品質/robots metaルール/サイトの作り)のどれかに当てはまるかを考える(3つ以外の理由のこともあります)。</li>
     <li>noindexが理由のページは、本当に検索結果に不要なページかどうかを確認する。</li>
   </ol>
   <p class="meta">意図しないnoindexが見つかったら、それだけで大きな改善につながることがあります。</p>
@@ -422,7 +422,7 @@ details.deep .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:1
    "robots metaルールでインデックス登録が禁止されている",
    "サイトマップを送信していない",
    "サイトのページ数が500を超えている",
-   "ページでJavaScriptを使っている"
+   "ページのURLに日本語が含まれている"
   ],
   "a": 0,
   "e": "典型的な原因は「コンテンツの品質が低い」「robots metaルールで禁止されている」「サイトの作り(公式の表現では「デザイン」)が原因で登録されにくい」の3つです。",
