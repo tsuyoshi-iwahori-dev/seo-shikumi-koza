@@ -142,7 +142,7 @@ def build(n, sched, tpl):
             assert ctx.rfind("<details") <= ctx.rfind("</details>"), (n, i, "guide target is inside 深掘り", q["g"])
     assert not missing, (n, "broken anchors", missing)
     assert 'name="robots" content="noindex"' in out, (n, "noindex")
-    assert f'data-stage="{n}"' in out and "../assets/schedule.js" in out, (n, "schedule hook")
+    assert f'data-stage="{n}"' in out and "../assets/schedule.js" in out and "../assets/lookup.js" in out, (n, "schedule/lookup hook")
     open(os.path.join(ROOT, f"lessons/{nn}.html"), "w", encoding="utf-8").write(out)
     print(f"built lessons/{nn}.html ({len(out)} bytes)")
 
